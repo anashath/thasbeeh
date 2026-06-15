@@ -19,67 +19,39 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Make gradlew executable
+        run: chmod +x android/gradlew
 
-      - name: Install Android SDK components
+      - name: Build debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+
+      - name: Sign APK
         run: |
-          sdkmanager --install \
-            "platforms;android-34" \
-            "build-tools;34.0.0" \
-            "platform-tools" 2>/dev/null | tail -1
+          APK=android/app/build/outputs/apk/debug/app-debug.apk
 
-      - name: Install Bubblewrap CLI
-        run: npm install -g @bubblewrap/cli
-
-      - name: Configure Bubblewrap (JDK + SDK paths, no prompts)
-        run: |
-          mkdir -p ~/.bubblewrap
-          cat > ~/.bubblewrap/config.json << EOF
-          {
-            "jdkPath": "$JAVA_HOME",
-            "androidSdkPath": "$ANDROID_SDK_ROOT"
-          }
-          EOF
-
-      - name: Build Android project from twa-manifest.json
-        run: |
-          # bubblewrap build reads twa-manifest.json in the current directory
-          # and generates + compiles the Android project without interactive prompts
-          bubblewrap build
-
-      - name: Locate and sign APK
-        run: |
-          # Find the unsigned/debug APK produced by Gradle
-          APK=$(find . -name "*.apk" ! -path "*/intermediates/*" | head -1)
-          echo "Found APK: $APK"
-
-          # Generate a debug signing keystore
           keytool -genkeypair -v \
-            -keystore debug.keystore \
-            -storepass android \
-            -alias androiddebugkey \
-            -keypass android \
+            -keystore release.keystore \
+            -storepass thasbeeh123 \
+            -alias thasbeeh \
+            -keypass thasbeeh123 \
             -dname "CN=Sacred Devotion,O=Thasbeeh,C=MY" \
             -keyalg RSA -keysize 2048 \
             -validity 10000 2>/dev/null
 
-          # Align and sign
           $ANDROID_SDK_ROOT/build-tools/34.0.0/zipalign -f 4 "$APK" Thasbeeh-aligned.apk
           $ANDROID_SDK_ROOT/build-tools/34.0.0/apksigner sign \
-            --ks debug.keystore \
-            --ks-pass pass:android \
-            --ks-key-alias androiddebugkey \
-            --key-pass pass:android \
+            --ks release.keystore \
+            --ks-pass pass:thasbeeh123 \
+            --ks-key-alias thasbeeh \
+            --key-pass pass:thasbeeh123 \
             --out Thasbeeh.apk \
             Thasbeeh-aligned.apk
 
-          echo "✅ Signed APK ready: $(ls -lh Thasbeeh.apk)"
+          echo "✅ APK signed: $(ls -lh Thasbeeh.apk)"
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -88,7 +60,7 @@ jobs:
           path: Thasbeeh.apk
           retention-days: 90
 
-      - name: Create GitHub Release with APK
+      - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v1.0.${{ github.run_number }}
@@ -96,10 +68,10 @@ jobs:
           body: |
             ## 📱 Sacred Devotion – Thasbeeh Android App
 
-            ### How to install on Android
-            1. **Download** `Thasbeeh.apk` below
-            2. On your phone: **Settings → Security → Install unknown apps** → allow your browser or file manager
-            3. Open the downloaded file and tap **Install**
+            ### Install on Android
+            1. Download **Thasbeeh.apk** below
+            2. On your phone: **Settings → Security → Install unknown apps** → allow your browser/Files app
+            3. Tap the downloaded APK → **Install**
             4. Open **Thasbeeh** from your home screen — no browser bar, works offline ✅
           files: Thasbeeh.apk
           draft: false
