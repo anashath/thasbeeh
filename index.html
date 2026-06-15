@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sacred Devotion - Thasbeeh</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="manifest" href="./manifest.json"/>
+<meta name="theme-color" content="#064e3b" id="themeColorMeta"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Thasbeeh"/>
+<link rel="apple-touch-icon" href="./icons/icon-192.png"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-low": "#f3f4f5",
+          "primary-container": "#064e3b",
+          "on-error": "#ffffff",
+          "on-background": "#191c1d",
+          "secondary-fixed-dim": "#ffb77d",
+          "inverse-on-surface": "#f0f1f2",
+          "on-secondary-container": "#663500",
+          "secondary": "#904d00",
+          "surface-container": "#edeeef",
+          "error": "#ba1a1a",
+          "primary-fixed-dim": "#95d3ba",
+          "tertiary-fixed": "#6ffbbe",
+          "outline-variant": "#bfc9c3",
+          "error-container": "#ffdad6",
+          "surface-bright": "#f8f9fa",
+          "on-secondary": "#ffffff",
+          "surface-container-highest": "#e1e3e4",
+          "background": "#f8f9fa",
+          "on-tertiary": "#ffffff",
+          "on-tertiary-fixed": "#002113",
+          "surface-variant": "#e1e3e4",
+          "on-secondary-fixed-variant": "#6e3900",
+          "on-error-container": "#93000a",
+          "inverse-surface": "#2e3132",
+          "on-secondary-fixed": "#2f1500",
+          "inverse-primary": "#95d3ba",
+          "on-primary-fixed-variant": "#0b513d",
+          "surface-container-lowest": "#ffffff",
+          "on-primary-fixed": "#002117",
+          "surface": "#f8f9fa",
+          "on-tertiary-container": "#31c98f",
+          "on-primary-container": "#80bea6",
+          "on-tertiary-fixed-variant": "#005236",
+          "tertiary-fixed-dim": "#4edea3",
+          "tertiary": "#003623",
+          "surface-tint": "#2b6954",
+          "on-primary": "#ffffff",
+          "tertiary-container": "#004f34",
+          "secondary-container": "#fe932c",
+          "primary": "#003527",
+          "secondary-fixed": "#ffdcc3",
+          "primary-fixed": "#b0f0d6",
+          "outline": "#707974",
+          "surface-dim": "#d9dadb",
+          "on-surface-variant": "#404944",
+          "on-surface": "#191c1d",
+          "surface-container-high": "#e7e8e9"
+        },
+        borderRadius: {
+          DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
+        },
+        spacing: {
+          "margin-mobile": "20px", md: "24px", "margin-desktop": "auto",
+          xl: "64px", lg: "40px", gutter: "16px", sm: "12px", base: "8px", xs: "4px"
+        },
+        fontFamily: {
+          "display-lg": ["Noto Serif"], "body-lg": ["Manrope"],
+          "headline-lg": ["Noto Serif"], "body-md": ["Manrope"],
+          "headline-lg-mobile": ["Noto Serif"], "label-md": ["Manrope"],
+          "arabic-display": ["Noto Serif"]
+        },
+        fontSize: {
+          "display-lg": ["48px", {lineHeight:"56px", letterSpacing:"-0.02em", fontWeight:"700"}],
+          "body-lg": ["18px", {lineHeight:"28px", fontWeight:"400"}],
+          "headline-lg": ["32px", {lineHeight:"40px", fontWeight:"600"}],
+          "body-md": ["16px", {lineHeight:"24px", fontWeight:"400"}],
+          "headline-lg-mobile": ["24px", {lineHeight:"32px", fontWeight:"600"}],
+          "label-md": ["14px", {lineHeight:"20px", letterSpacing:"0.05em", fontWeight:"600"}],
+          "arabic-display": ["40px", {lineHeight:"72px", fontWeight:"500"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body {
+    background-color: #f8f9fa;
+    color: #191c1d;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 100dvh;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    user-select: none;
+  }
+
+  /* ===== DARK MODE ===== */
+  .dark body                            { background-color: #111514; color: #e0e3e1; }
+
+  /* Surfaces */
+  .dark .bg-background                  { background-color: #111514 !important; }
+  .dark .bg-surface-container-lowest    { background-color: #1a1f1d !important; }
+  .dark .bg-surface-container-low       { background-color: #1f2422 !important; }
+  .dark .bg-surface-container           { background-color: #252b29 !important; }
+  .dark .bg-surface-container-high      { background-color: #2e3432 !important; }
+  .dark .bg-surface-container-highest   { background-color: #38403e !important; }
+  .dark .bg-surface-dim                 { background-color: #131817 !important; }
+  .dark .bg-surface-variant             { background-color: #252b29 !important; }
+
+  /* Text */
+  .dark .text-on-surface                { color: #e0e3e1 !important; }
+  .dark .text-on-surface-variant        { color: #bec9c3 !important; }
+  .dark .text-on-background             { color: #e0e3e1 !important; }
+  .dark .text-outline                   { color: #899389 !important; }
+
+  /* Primary */
+  .dark .text-primary                   { color: #95d3ba !important; }
+  .dark .bg-primary                     { background-color: #1a4a3a !important; }
+  .dark .text-on-primary                { color: #e0e3e1 !important; }
+  .dark .text-primary-fixed-dim         { color: #95d3ba !important; }
+  .dark .bg-primary-fixed               { background-color: #0a2d22 !important; }
+  .dark .text-on-primary-fixed          { color: #95d3ba !important; }
+  .dark .bg-primary-fixed\/30           { background-color: rgba(149,211,186,0.15) !important; }
+
+  /* Primary container */
+  .dark .bg-primary-container           { background-color: #0d3d2e !important; }
+  .dark .text-on-primary-container      { color: #95d3ba !important; }
+  .dark .text-primary-container         { color: #4db891 !important; }
+  .dark .border-primary-container       { border-color: #0d3d2e !important; }
+
+  /* Secondary */
+  .dark .text-secondary                 { color: #ffb77d !important; }
+  .dark .bg-secondary-container         { background-color: #5a2e00 !important; }
+  .dark .text-on-secondary-container    { color: #ffdcc3 !important; }
+  .dark .bg-secondary-fixed             { background-color: #3a1e00 !important; }
+  .dark .border-secondary               { border-color: #ffb77d !important; }
+  .dark .border-b-secondary-container   { border-color: #5a2e00 !important; }
+
+  /* Borders */
+  .dark .border-outline-variant         { border-color: #3a4440 !important; }
+  .dark .border-surface-container-highest { border-color: #38403e !important; }
+  .dark .border-outline                 { border-color: #4e5954 !important; }
+  .dark .border-error                   { border-color: #ff8989 !important; }
+
+  /* Text colours that appear on dark primary bg */
+  .dark .text-surface-container-lowest  { color: #e0e3e1 !important; }
+  .dark .text-on-primary-container      { color: #95d3ba !important; }
+
+  /* Error */
+  .dark .text-error                     { color: #ff8989 !important; }
+  .dark .bg-error-container             { background-color: #4a0000 !important; }
+
+  /* Inverse surface (tooltips) */
+  .dark .bg-inverse-surface             { background-color: #e0e3e1 !important; }
+  .dark .text-inverse-on-surface        { color: #2e3132 !important; }
+
+  /* Inputs, selects, textareas */
+  .dark input, .dark textarea, .dark select {
+    background-color: #1f2422 !important;
+    color: #e0e3e1 !important;
+    border-color: #3a4440 !important;
+  }
+  .dark input::placeholder, .dark textarea::placeholder { color: #6a7470 !important; }
+  .dark input:focus, .dark textarea:focus, .dark select:focus {
+    border-color: #4db891 !important;
+    box-shadow: 0 0 0 2px rgba(77,184,145,0.25) !important;
+  }
+
+  /* Toggle switch track */
+  .dark .bg-surface-dim { background-color: #131817 !important; }
+  .dark .peer-checked\:bg-primary { --tw-bg-opacity:1; }
+  .dark .peer:checked ~ .peer-checked\:bg-primary { background-color: #0d6b50 !important; }
+
+  /* Header / nav bar backdrop */
+  .dark header { background-color: rgba(17,21,20,0.92) !important; }
+  .dark nav     { background-color: #1a1f1d !important; }
+  .dark .nav-active { background-color: #0d3d2e !important; color: #95d3ba !important; }
+
+  /* Counter button */
+  .dark .counter-glow { box-shadow: 0 10px 40px rgba(0,0,0,0.4) !important; }
+
+  /* Modal backdrop sheet */
+  .dark #addZikrModal > div:last-child { background-color: #1a1f1d !important; }
+
+  /* Settings theme indicator */
+  .dark .active-tab-indicator { background: #252b29 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important; }
+
+  /* Achievement locked badge */
+  .dark .bg-surface-container-high .material-symbols-outlined { color: #6a7470 !important; }
+
+  /* SVG ring tracks that use currentColor via text-* */
+  .dark .text-surface-container-high  { color: #2e3432 !important; }
+  .dark .text-surface-container-highest { color: #38403e !important; }
+
+  /* Toggle switch track color when unchecked */
+  .dark .bg-surface-dim { background-color: #1f2422 !important; }
+
+  /* Category chips unchecked state */
+  .dark .hover\:bg-surface-container-high:hover { background-color: #2e3432 !important; }
+
+  /* Milestone locked badge card */
+  .dark .border-dashed { border-color: #3a4440 !important; }
+
+  /* Zikr article hover shadow */
+  .dark .hover\:shadow-md:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
+
+  /* Completion toast */
+  .dark #completionToast { background-color: #0d3d2e !important; color: #95d3ba !important; }
+
+  /* Scrollbar in dark */
+  .dark ::-webkit-scrollbar-thumb { background: #2e3432 !important; }
+  /* Page transitions */
+  .page { display: none; }
+  .page.active { display: block; }
+  /* Counter styles */
+  .counter-glow { box-shadow: 0px 10px 40px rgba(6, 78, 59, 0.12); }
+  .progress-ring {
+    transition: stroke-dashoffset 0.3s ease;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+  .tap-active { transform: scale(0.96); transition: transform 0.1s ease-out; }
+  /* Progress ring home */
+  .progress-ring__circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #e1e3e4; border-radius: 10px; }
+  /* Settings toggle */
+  .active-tab-indicator {
+    position: absolute;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 9999px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  /* Chart bars */
+  .progress-bar-fill { transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
+  .achievement-card:hover .badge-glow { opacity: 1; transform: scale(1.1); }
+  /* Category active */
+  .active-category { border-left: 3px solid #b0f0d6; }
+  /* No scrollbar */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  /* Bottom nav glow for active */
+  .nav-active { background-color: #064e3b; color: #80bea6; border-radius: 9999px; }
+  /* Slide in animation */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .page.active { animation: slideIn 0.25s ease-out; }
+</style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+
+<!-- ===== TOP APP BAR ===== -->
+<header class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-background/90 backdrop-blur-md">
+  <div class="flex justify-between items-center px-margin-mobile md:px-lg py-sm w-full">
+    <button id="settingsBtn" class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+      <span class="material-symbols-outlined text-primary">settings</span>
+    </button>
+    <h1 class="font-display-lg text-[28px] leading-none text-primary">Sacred Devotion</h1>
+    <button id="themeBtn" class="hover:opacity-80 transition-opacity active:scale-95 duration-200" title="Toggle dark mode">
+      <span class="material-symbols-outlined text-primary" id="themeIcon">dark_mode</span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== PAGES ===== -->
+<div class="pt-[64px] pb-[80px] max-w-[640px] mx-auto min-h-screen">
+
+  <!-- PAGE: HOME -->
+  <div class="page active" id="page-home">
+    <main class="pt-10 pb-4 px-margin-mobile md:px-lg">
+      <!-- Greeting -->
+      <section class="mb-lg">
+        <p class="text-on-surface-variant font-label-md uppercase tracking-widest mb-xs">Welcome back</p>
+        <h2 class="font-headline-lg-mobile md:font-headline-lg text-primary">Assalamu Alaikum</h2>
+        <p class="text-on-surface-variant mt-xs" id="greetingSubtitle">May your day be filled with remembrance and peace.</p>
+      </section>
+      <div class="grid grid-cols-1 gap-gutter">
+        <!-- Daily Progress -->
+        <section class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
+          <div class="relative z-10">
+            <h3 class="font-label-md text-on-surface-variant mb-base">Daily Progress</h3>
+            <div class="flex items-baseline gap-xs">
+              <span class="font-display-lg text-primary" id="homeDailyCount">0</span>
+              <span class="text-on-surface-variant font-body-md">/ <span id="homeDailyTarget">33</span></span>
+            </div>
+            <p class="text-sm text-on-surface-variant mt-base" id="homeProgressPct">0% of your daily goal achieved</p>
+          </div>
+          <div class="relative flex items-center justify-center">
+            <svg class="w-24 h-24 md:w-32 md:h-32">
+              <circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+              <circle class="text-primary-container progress-ring__circle" cx="48" cy="48" fill="transparent" r="40" id="homeProgressCircle"
+                stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke-width="8"></circle>
+            </svg>
+            <div class="absolute">
+              <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">eco</span>
+            </div>
+          </div>
+        </section>
+        <!-- Featured Zikr -->
+        <section class="bg-primary text-white rounded-xl p-md shadow-lg overflow-hidden relative">
+          <div class="absolute top-0 right-0 p-4 opacity-10">
+            <span class="material-symbols-outlined text-[120px]">auto_awesome</span>
+          </div>
+          <div class="relative z-10">
+            <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold mb-md">FEATURED ZIKR</span>
+            <h4 class="font-arabic-display text-arabic-display mb-xs leading-none">سُبْحَانَ اللهِ</h4>
+            <h3 class="font-headline-lg-mobile mb-xs">SubhanAllah</h3>
+            <p class="text-primary-fixed-dim text-sm opacity-80 mb-lg max-w-[240px]">Glory be to Allah. The foundational remembrance for clarity and gratitude.</p>
+            <button onclick="navigateTo('counter')" class="bg-primary-fixed text-primary px-6 py-2 rounded-lg font-bold flex items-center gap-base hover:opacity-90 transition-all active:scale-95">
+              Start Now
+              <span class="material-symbols-outlined">play_arrow</span>
+            </button>
+          </div>
+        </section>
+        <!-- Quick Access -->
+        <div class="grid grid-cols-2 gap-gutter">
+          <div onclick="navigateTo('library')" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/20 hover:border-primary-container transition-colors cursor-pointer">
+            <div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-base">
+              <span class="material-symbols-outlined">history</span>
+            </div>
+            <h4 class="font-label-md text-on-surface">Library</h4>
+            <p class="text-xs text-on-surface-variant">Browse Adhkar</p>
+          </div>
+          <div onclick="navigateTo('progress')" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/20 hover:border-primary-container transition-colors cursor-pointer">
+            <div class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center mb-base">
+              <span class="material-symbols-outlined">query_stats</span>
+            </div>
+            <h4 class="font-label-md text-on-surface">Progress</h4>
+            <p class="text-xs text-on-surface-variant" id="homeStreakLabel">7 day streak</p>
+          </div>
+        </div>
+        <!-- Inspiration -->
+        <section class="h-48 rounded-xl overflow-hidden relative bg-primary-container flex items-end">
+          <div class="absolute inset-0 opacity-20 flex items-center justify-center">
+            <span class="material-symbols-outlined text-[160px] text-primary-fixed">mosque</span>
+          </div>
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+          <div class="relative bottom-0 p-4 text-white w-full">
+            <p class="font-label-md italic">"Verily, in the remembrance of Allah do hearts find rest."</p>
+            <p class="text-[10px] mt-1 opacity-70">Surah Ar-Ra'd 13:28</p>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- PAGE: LIBRARY -->
+  <div class="page" id="page-library">
+    <main class="pt-10 pb-4 px-margin-mobile md:px-lg">
+      <section class="mb-lg">
+        <div class="relative flex items-center">
+          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant">search</span>
+          <input id="librarySearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm focus:ring-2 focus:ring-primary-fixed transition-all text-body-md placeholder:text-on-surface-variant/50" placeholder="Search Adhkar..." type="text"/>
+        </div>
+      </section>
+      <!-- Category chips -->
+      <section class="mb-lg overflow-x-auto no-scrollbar flex gap-sm py-xs">
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm transition-all" data-cat="All">All</button>
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Morning">Morning</button>
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Evening">Evening</button>
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="After Prayer">After Prayer</button>
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Protection">Protection</button>
+        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Custom">My Zikr</button>
+      </section>
+      <div class="space-y-base" id="zikrList"></div>
+      <!-- FAB: Add Zikr -->
+      <button onclick="openAddZikrModal()" class="fixed bottom-24 right-4 z-40 w-14 h-14 rounded-full bg-primary-container text-on-primary-container shadow-lg flex items-center justify-center hover:brightness-110 active:scale-95 transition-all duration-200" id="addZikrFab" style="display:none">
+        <span class="material-symbols-outlined text-[28px]">add</span>
+      </button>
+    </main>
+  </div>
+
+  <!-- PAGE: COUNTER -->
+  <div class="page" id="page-counter">
+    <main class="flex-grow w-full flex flex-col items-center justify-center px-margin-mobile pt-10 pb-4">
+      <!-- Zikr selector -->
+      <div class="text-center mb-8 space-y-2">
+        <h2 class="font-arabic-display text-arabic-display text-primary-container" id="counterArabic">سُبْحَانَ ٱللَّٰهِ</h2>
+        <p class="font-body-lg text-body-lg text-on-surface-variant tracking-wide uppercase opacity-80" id="counterEnglish">SubhanAllah</p>
+        <p class="font-label-md text-label-md text-outline" id="counterMeaning">Glory be to Allah</p>
+        <!-- Zikr switcher -->
+        <div class="flex gap-2 justify-center pt-2 flex-wrap">
+          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-primary-container text-on-primary-container" data-arabic="سُبْحَانَ ٱللَّٰهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
+          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-surface-container text-on-surface-variant" data-arabic="الْحَمْدُ لِلَّهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
+          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-surface-container text-on-surface-variant" data-arabic="اللَّهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
+        </div>
+      </div>
+      <!-- Counter circle -->
+      <div class="relative w-full aspect-square max-w-[320px] flex items-center justify-center mb-8">
+        <svg class="absolute inset-0 w-full h-full p-2" viewBox="0 0 100 100">
+          <circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
+          <circle class="text-secondary-container stroke-current progress-ring" cx="50" cy="50" fill="transparent"
+            id="progress-circle" r="46" stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round" stroke-width="4"></circle>
+        </svg>
+        <button class="w-[85%] h-[85%] rounded-full bg-surface-container-lowest counter-glow flex flex-col items-center justify-center border border-surface-container-high z-10 hover:shadow-xl transition-all duration-300 active:scale-95"
+          id="tap-target">
+          <span class="font-display-lg text-[72px] leading-none text-primary-container" id="counter-value">0</span>
+          <span class="font-label-md text-label-md text-outline mt-2 tracking-[0.2em]" id="target-display">/ 33</span>
+        </button>
+      </div>
+      <!-- Target chips -->
+      <div class="w-full flex flex-col gap-6">
+        <div class="flex justify-center gap-base">
+          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-primary-container bg-primary-container text-white" onclick="setTarget(33)">33</button>
+          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-outline-variant text-on-surface-variant hover:bg-surface-container" onclick="setTarget(99)">99</button>
+          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-outline-variant text-on-surface-variant hover:bg-surface-container" onclick="setTarget(1000)">1000</button>
+        </div>
+        <div class="flex justify-center items-center gap-lg">
+          <button class="flex flex-col items-center gap-base group" id="reset-btn">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors">
+              <span class="material-symbols-outlined text-on-surface-variant">refresh</span>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface-variant">Reset</span>
+          </button>
+          <button class="flex flex-col items-center gap-base group" id="haptic-btn">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors" id="hapticIcon">
+              <span class="material-symbols-outlined text-on-surface-variant">vibration</span>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface-variant">Haptic</span>
+          </button>
+          <button onclick="navigateTo('library')" class="flex flex-col items-center gap-base group">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors">
+              <span class="material-symbols-outlined text-on-surface-variant">list_alt</span>
+            </div>
+            <span class="font-label-md text-label-md text-on-surface-variant">Dhikr</span>
+          </button>
+        </div>
+      </div>
+      <!-- Completion toast -->
+      <div id="completionToast" class="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md text-label-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none">
+        🎉 Target reached! MashaAllah!
+      </div>
+    </main>
+  </div>
+
+  <!-- PAGE: PROGRESS -->
+  <div class="page" id="page-progress">
+    <main class="pt-10 pb-4 px-margin-mobile space-y-md">
+      <!-- Streak Hero -->
+      <section class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-md shadow-lg">
+        <div class="relative z-10 flex flex-col items-center text-center">
+          <span class="font-label-md text-label-md text-on-primary-container mb-xs">CURRENT STREAK</span>
+          <div class="flex items-center gap-base">
+            <span class="material-symbols-outlined text-[40px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+            <span class="font-display-lg text-display-lg text-surface-container-lowest" id="streakDisplay">0 Days</span>
+          </div>
+          <p class="font-body-md text-body-md text-primary-fixed-dim mt-xs opacity-90">Keep the flame of remembrance alive.</p>
+        </div>
+        <div class="absolute top-0 right-0 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
+          <span class="material-symbols-outlined text-[160px]">diamond</span>
+        </div>
+      </section>
+      <!-- Stats -->
+      <div class="grid grid-cols-2 gap-gutter">
+        <div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col justify-between">
+          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Lifetime Count</span>
+          <div class="mt-sm">
+            <span class="font-headline-lg text-headline-lg text-primary" id="lifetimeCount">0</span>
+            <p class="text-xs text-on-surface-variant mt-1">Total Dhikr</p>
+          </div>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col justify-between">
+          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Today</span>
+          <div class="mt-sm">
+            <span class="font-headline-lg text-headline-lg text-secondary" id="todayCount">0</span>
+            <p class="text-xs text-on-surface-variant mt-1">Counted today</p>
+          </div>
+        </div>
+      </div>
+      <!-- Weekly Chart -->
+      <section class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
+        <div class="flex justify-between items-center mb-lg">
+          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Weekly Activity</h2>
+          <div class="flex gap-xs items-center">
+            <div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
+            <span class="text-[10px] text-on-surface-variant font-bold uppercase">Goal Reached</span>
+          </div>
+        </div>
+        <div class="flex items-end justify-between h-32 gap-xs px-xs" id="weeklyChart"></div>
+      </section>
+      <!-- Milestones -->
+      <section class="space-y-sm">
+        <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Milestones</h2>
+        <div class="grid grid-cols-3 gap-gutter">
+          <div class="achievement-card flex flex-col items-center p-base bg-surface-container-lowest rounded-xl border border-outline-variant transition-all hover:border-secondary shadow-sm" id="badge7">
+            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
+              <div class="badge-glow absolute inset-0 bg-secondary-container opacity-20 rounded-full blur-xl transition-all duration-500 scale-75"></div>
+              <div class="relative w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-full border-2 border-secondary shadow-inner">
+                <span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+              </div>
+            </div>
+            <span class="font-label-md text-[10px] text-center text-primary uppercase">Consistent</span>
+            <span class="text-[9px] text-on-surface-variant text-center">7 Day Streak</span>
+          </div>
+          <div class="achievement-card flex flex-col items-center p-base bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm" id="badge100">
+            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
+              <div class="relative w-12 h-12 bg-primary-fixed flex items-center justify-center rounded-full border-2 border-primary shadow-inner">
+                <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+              </div>
+            </div>
+            <span class="font-label-md text-[10px] text-center text-primary uppercase">Centurion</span>
+            <span class="text-[9px] text-on-surface-variant text-center">100 Dhikr Daily</span>
+          </div>
+          <div class="achievement-card flex flex-col items-center p-base bg-surface-container rounded-xl border border-dashed border-outline shadow-sm grayscale opacity-50" id="badge30">
+            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
+              <div class="relative w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full">
+                <span class="material-symbols-outlined text-outline text-2xl">lock</span>
+              </div>
+            </div>
+            <span class="font-label-md text-[10px] text-center text-on-surface-variant uppercase">Devoted</span>
+            <span class="text-[9px] text-on-surface-variant text-center">30 Day Streak</span>
+          </div>
+        </div>
+      </section>
+      <!-- Insight -->
+      <section class="bg-primary-container text-on-primary-container p-md rounded-xl flex items-start gap-md border-b-2 border-secondary-container">
+        <div class="bg-surface-container-lowest/10 p-base rounded-lg">
+          <span class="material-symbols-outlined text-on-primary-container">lightbulb</span>
+        </div>
+        <div class="space-y-xs">
+          <h3 class="font-label-md text-label-md text-primary-fixed-dim">Spiritual Insight</h3>
+          <p class="text-sm leading-relaxed text-surface-container-lowest">Your journey of remembrance is growing. Stay consistent and let each Dhikr bring you closer to inner peace.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- PAGE: SETTINGS -->
+  <div class="page" id="page-settings">
+    <main class="pt-10 pb-4 px-margin-mobile max-w-[640px] mx-auto space-y-md">
+      <!-- Appearance -->
+      <section class="space-y-sm">
+        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-xs">Appearance</h2>
+        <div class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-container-highest">
+          <div class="flex items-center justify-between mb-gutter">
+            <div class="flex items-center gap-sm">
+              <span class="material-symbols-outlined text-primary">palette</span>
+              <span class="font-body-lg text-body-lg text-on-surface">Visual Theme</span>
+            </div>
+          </div>
+          <div class="relative flex bg-surface-dim p-1 rounded-full w-full h-12 items-center">
+            <div class="active-tab-indicator w-1/2 left-1" id="theme-indicator"></div>
+            <button class="relative z-10 flex-1 flex items-center justify-center gap-xs font-label-md text-label-md text-primary transition-colors duration-300" onclick="setTheme('light')">
+              <span class="material-symbols-outlined text-[20px]">light_mode</span> Light
+            </button>
+            <button class="relative z-10 flex-1 flex items-center justify-center gap-xs font-label-md text-label-md text-on-surface-variant transition-colors duration-300" onclick="setTheme('dark')">
+              <span class="material-symbols-outlined text-[20px]">dark_mode</span> Dark
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- General -->
+      <section class="space-y-sm">
+        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-xs">General</h2>
+        <div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden">
+          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
+            <div class="flex items-center gap-sm">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">vibration</span>
+              </div>
+              <div>
+                <p class="font-body-lg text-body-lg text-on-surface">Haptic Feedback</p>
+                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Vibrate on each tasbeeh count</p>
+              </div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input id="hapticToggle" checked class="sr-only peer" type="checkbox"/>
+              <div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            </label>
+          </div>
+          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
+            <div class="flex items-center gap-sm">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">notifications_active</span>
+              </div>
+              <div>
+                <p class="font-body-lg text-body-lg text-on-surface">Daily Reminders</p>
+                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Daily goals and prayer times</p>
+              </div>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input class="sr-only peer" type="checkbox"/>
+              <div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+            </label>
+          </div>
+          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
+            <div class="flex items-center gap-sm">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">track_changes</span>
+              </div>
+              <div>
+                <p class="font-body-lg text-body-lg text-on-surface">Daily Goal</p>
+                <p class="font-label-md text-label-md text-on-surface-variant opacity-70" id="goalLabel">33 Dhikr per day</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-xs">
+              <button onclick="adjustGoal(-1)" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container">
+                <span class="material-symbols-outlined text-[18px]">remove</span>
+              </button>
+              <span class="font-label-md text-label-md text-primary w-8 text-center" id="goalDisplay">33</span>
+              <button onclick="adjustGoal(1)" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container">
+                <span class="material-symbols-outlined text-[18px]">add</span>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer">
+            <div class="flex items-center gap-sm">
+              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
+                <span class="material-symbols-outlined text-primary">delete_sweep</span>
+              </div>
+              <div>
+                <p class="font-body-lg text-body-lg text-on-surface">Reset All Progress</p>
+                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Clear all counts and streaks</p>
+              </div>
+            </div>
+            <button onclick="resetAllProgress()" class="px-4 py-1 rounded-full border border-error text-error font-label-md text-label-md hover:bg-error-container transition-colors">
+              Reset
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- About -->
+      <section class="pt-lg pb-base text-center">
+        <div class="flex justify-center mb-md">
+          <div class="relative w-20 h-20 bg-primary rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
+            <span class="material-symbols-outlined text-[40px] text-white">mosque</span>
+          </div>
+        </div>
+        <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Sacred Devotion</h3>
+        <p class="font-label-md text-label-md text-on-surface-variant mb-md">Version 1.0.0</p>
+        <p class="mt-lg text-on-surface-variant font-label-md text-label-md opacity-60">
+          Designed for Mindfulness &amp; Presence.<br/>
+          © 2024 Sacred Devotion
+        </p>
+      </section>
+    </main>
+  </div>
+
+</div>
+
+<!-- ===== ADD ZIKR MODAL ===== -->
+<div id="addZikrModal" class="fixed inset-0 z-[100] flex items-end justify-center" style="display:none !important">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeAddZikrModal()"></div>
+  <!-- Sheet -->
+  <div class="relative w-full max-w-[640px] bg-surface-container-lowest rounded-t-2xl shadow-2xl p-md pb-8 space-y-md" style="max-height:92dvh;overflow-y:auto">
+    <div class="flex items-center justify-between mb-sm">
+      <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Add New Zikr</h2>
+      <button onclick="closeAddZikrModal()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+
+    <!-- Arabic text -->
+    <div class="space-y-xs">
+      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Arabic Text <span class="text-outline">(optional)</span></label>
+      <textarea id="newArabic" dir="rtl" rows="2" placeholder="اكتب النص العربي هنا..."
+        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-arabic-display text-right text-2xl focus:ring-2 focus:ring-primary-fixed outline-none transition-all resize-none placeholder:text-on-surface-variant/40"></textarea>
+    </div>
+
+    <!-- Transliteration -->
+    <div class="space-y-xs">
+      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Transliteration <span class="text-error text-xs">*</span></label>
+      <input id="newTranslit" type="text" placeholder="e.g. Astaghfirullah"
+        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all"/>
+      <p id="translitError" class="text-xs text-error hidden">Transliteration is required.</p>
+    </div>
+
+    <!-- Translation / Meaning -->
+    <div class="space-y-xs">
+      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Meaning <span class="text-outline">(optional)</span></label>
+      <textarea id="newMeaning" rows="2" placeholder="e.g. I seek forgiveness from Allah"
+        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all resize-none placeholder:text-on-surface-variant/40"></textarea>
+    </div>
+
+    <!-- Category + Count row -->
+    <div class="grid grid-cols-2 gap-gutter">
+      <div class="space-y-xs">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Category</label>
+        <select id="newCategory"
+          class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all">
+          <option value="Custom">My Zikr</option>
+          <option value="Morning">Morning</option>
+          <option value="Evening">Evening</option>
+          <option value="After Prayer">After Prayer</option>
+          <option value="Protection">Protection</option>
+        </select>
+      </div>
+      <div class="space-y-xs">
+        <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Target Count</label>
+        <input id="newCount" type="number" min="1" max="9999" value="33"
+          class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all"/>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button onclick="saveNewZikr()" class="w-full py-4 rounded-xl bg-primary-container text-on-primary-container font-label-md text-label-md tracking-widest hover:brightness-110 active:scale-95 transition-all duration-200 flex items-center justify-center gap-sm">
+      <span class="material-symbols-outlined">check_circle</span>
+      Save Zikr
+    </button>
+  </div>
+</div>
+
+<!-- ===== BOTTOM NAVIGATION ===== -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.06)] rounded-t-xl">
+  <div class="flex justify-around items-center py-base px-sm">
+    <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="home">
+      <span class="material-symbols-outlined nav-icon">home</span>
+      <span class="font-label-md text-label-md">Home</span>
+    </button>
+    <button onclick="navigateTo('library')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="library">
+      <span class="material-symbols-outlined nav-icon">menu_book</span>
+      <span class="font-label-md text-label-md">Library</span>
+    </button>
+    <button onclick="navigateTo('counter')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="counter">
+      <span class="material-symbols-outlined nav-icon">fingerprint</span>
+      <span class="font-label-md text-label-md">Counter</span>
+    </button>
+    <button onclick="navigateTo('progress')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="progress">
+      <span class="material-symbols-outlined nav-icon">query_stats</span>
+      <span class="font-label-md text-label-md">Progress</span>
+    </button>
+  </div>
+</nav>
+
+<script>
+// ===== APP STATE =====
+const state = {
+  count: 0,
+  target: 33,
+  dailyGoal: 33,
+  lifetimeCount: 0,
+  todayCount: 0,
+  streak: 0,
+  lastCountDate: null,
+  hapticEnabled: true,
+  theme: 'light',
+  weeklyData: [0, 0, 0, 0, 0, 0, 0],
+  bookmarks: [],
+};
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('thasbeeh_state');
+    if (saved) Object.assign(state, JSON.parse(saved));
+    // Check if it's a new day
+    const today = new Date().toDateString();
+    if (state.lastCountDate !== today) {
+      if (state.todayCount > 0) {
+        // Was counting yesterday, update streak
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        if (state.lastCountDate === yesterday.toDateString()) {
+          state.streak = (state.streak || 0) + 1;
+        } else {
+          state.streak = 0;
+        }
+        // Shift weekly data
+        state.weeklyData = [...state.weeklyData.slice(1), state.todayCount];
+      }
+      state.todayCount = 0;
+      state.count = 0;
+      state.lastCountDate = today;
+      saveState();
+    }
+  } catch(e) {}
+}
+
+function saveState() {
+  try { localStorage.setItem('thasbeeh_state', JSON.stringify(state)); } catch(e) {}
+}
+
+// ===== NAVIGATION =====
+let currentPage = 'home';
+
+function navigateTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  // Update nav buttons
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    const isActive = btn.dataset.page === page;
+    btn.classList.toggle('nav-active', isActive);
+    btn.classList.toggle('text-on-surface-variant', !isActive);
+    const icon = btn.querySelector('.nav-icon');
+    if (isActive) {
+      icon.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+    } else {
+      icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
+    }
+  });
+  currentPage = page;
+  const fab = document.getElementById('addZikrFab');
+  fab.style.display = page === 'library' ? 'flex' : 'none';
+  if (page === 'home') updateHomeUI();
+  if (page === 'progress') updateProgressUI();
+  if (page === 'settings') updateSettingsUI();
+}
+
+// ===== THEME =====
+function setTheme(mode) {
+  state.theme = mode;
+  const html = document.documentElement;
+  const indicator = document.getElementById('theme-indicator');
+  const themeIcon = document.getElementById('themeIcon');
+  if (mode === 'dark') {
+    html.classList.add('dark');
+    if (indicator) { indicator.style.left = 'calc(50% - 4px)'; }
+    themeIcon.textContent = 'light_mode';
+  } else {
+    html.classList.remove('dark');
+    if (indicator) { indicator.style.left = '4px'; }
+    themeIcon.textContent = 'dark_mode';
+  }
+  saveState();
+}
+
+document.getElementById('themeBtn').addEventListener('click', () => {
+  setTheme(state.theme === 'light' ? 'dark' : 'light');
+});
+
+document.getElementById('settingsBtn').addEventListener('click', () => navigateTo('settings'));
+
+// ===== COUNTER =====
+const circleLength = 289.02;
+
+function updateCounterUI() {
+  const pct = Math.min(state.count, state.target) / state.target;
+  const offset = circleLength - pct * circleLength;
+  document.getElementById('progress-circle').style.strokeDashoffset = offset;
+  document.getElementById('counter-value').textContent = state.count;
+  document.getElementById('target-display').textContent = '/ ' + state.target;
+  updateHomeUI();
+}
+
+const tapTarget = document.getElementById('tap-target');
+tapTarget.addEventListener('pointerdown', () => {
+  tapTarget.classList.add('tap-active');
+  state.count++;
+  state.todayCount++;
+  state.lifetimeCount++;
+  state.lastCountDate = new Date().toDateString();
+  if (state.streak === 0 && state.todayCount === 1) state.streak = 1;
+  saveState();
+  updateCounterUI();
+
+  if (state.hapticEnabled && navigator.vibrate) navigator.vibrate(20);
+
+  if (state.count === state.target) {
+    if (state.hapticEnabled && navigator.vibrate) navigator.vibrate([100, 50, 100]);
+    showToast();
+  }
+});
+tapTarget.addEventListener('pointerup', () => tapTarget.classList.remove('tap-active'));
+tapTarget.addEventListener('pointerleave', () => tapTarget.classList.remove('tap-active'));
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  state.count = 0;
+  saveState();
+  updateCounterUI();
+});
+
+document.getElementById('haptic-btn').addEventListener('click', () => {
+  state.hapticEnabled = !state.hapticEnabled;
+  const icon = document.getElementById('hapticIcon');
+  icon.style.backgroundColor = state.hapticEnabled ? '' : '#e1e3e4';
+  saveState();
+});
+
+function setTarget(val) {
+  state.target = val;
+  saveState();
+  document.querySelectorAll('.target-chip').forEach(chip => {
+    const v = parseInt(chip.textContent.trim());
+    if (v === val) {
+      chip.classList.add('bg-primary-container', 'text-white', 'border-primary-container');
+      chip.classList.remove('border-outline-variant', 'text-on-surface-variant');
+    } else {
+      chip.classList.remove('bg-primary-container', 'text-white', 'border-primary-container');
+      chip.classList.add('border-outline-variant', 'text-on-surface-variant');
+    }
+  });
+  updateCounterUI();
+}
+
+// Zikr switcher
+document.querySelectorAll('.zikr-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.getElementById('counterArabic').textContent = btn.dataset.arabic;
+    document.getElementById('counterEnglish').textContent = btn.dataset.english;
+    document.getElementById('counterMeaning').textContent = btn.dataset.meaning;
+    state.count = 0;
+    saveState();
+    updateCounterUI();
+    document.querySelectorAll('.zikr-btn').forEach(b => {
+      b.classList.toggle('bg-primary-container', b === btn);
+      b.classList.toggle('text-on-primary-container', b === btn);
+      b.classList.toggle('bg-surface-container', b !== btn);
+      b.classList.toggle('text-on-surface-variant', b !== btn);
+    });
+  });
+});
+
+function showToast() {
+  const toast = document.getElementById('completionToast');
+  toast.style.opacity = '1';
+  setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+}
+
+// ===== HOME UI =====
+function updateHomeUI() {
+  const count = state.todayCount;
+  const goal = state.dailyGoal;
+  document.getElementById('homeDailyCount').textContent = count;
+  document.getElementById('homeDailyTarget').textContent = goal;
+  const pct = goal > 0 ? Math.round(Math.min(count, goal) / goal * 100) : 0;
+  document.getElementById('homeProgressPct').textContent = pct + '% of your daily goal achieved';
+  const offset = 251.2 - (pct / 100) * 251.2;
+  document.getElementById('homeProgressCircle').style.strokeDashoffset = offset;
+  document.getElementById('homeStreakLabel').textContent = state.streak + ' day streak 🔥';
+  // Time-based greeting
+  const hour = new Date().getHours();
+  let msg = 'May your day be filled with remembrance and peace.';
+  if (hour < 12) msg = 'May your morning be filled with Dhikr and blessings.';
+  else if (hour < 18) msg = 'May your afternoon be peaceful and reflective.';
+  else msg = 'May your evening be tranquil and blessed.';
+  document.getElementById('greetingSubtitle').textContent = msg;
+}
+
+// ===== PROGRESS UI =====
+function updateProgressUI() {
+  document.getElementById('streakDisplay').textContent = state.streak + ' Days';
+  document.getElementById('lifetimeCount').textContent = state.lifetimeCount.toLocaleString();
+  document.getElementById('todayCount').textContent = state.todayCount.toLocaleString();
+  renderWeeklyChart();
+  updateBadges();
+}
+
+function renderWeeklyChart() {
+  const days = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  const data = [...state.weeklyData];
+  // Replace last entry with today
+  data[6] = state.todayCount;
+  const maxVal = Math.max(...data, 1);
+  const today = new Date().getDay(); // 0=Sun
+  const dayOffset = today === 0 ? 6 : today - 1;
+
+  const chart = document.getElementById('weeklyChart');
+  chart.innerHTML = '';
+  data.forEach((val, i) => {
+    const heightPct = Math.round((val / maxVal) * 100);
+    const heightPx = Math.max(4, Math.round((heightPct / 100) * 128));
+    const isToday = i === dayOffset;
+    const reachedGoal = val >= state.dailyGoal && val > 0;
+    const barColor = reachedGoal ? 'bg-primary-container' : 'bg-surface-container';
+    const labelColor = isToday ? 'text-primary font-bold' : 'text-on-surface-variant';
+    chart.innerHTML += `
+      <div class="flex flex-col items-center flex-1 gap-base">
+        <div class="w-full ${barColor} rounded-t-sm group relative" style="height:${heightPx}px">
+          <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">${val}</div>
+        </div>
+        <span class="font-label-md text-[10px] ${labelColor}">${days[i]}</span>
+      </div>`;
+  });
+}
+
+function updateBadges() {
+  // 7-day badge
+  if (state.streak >= 7) {
+    document.getElementById('badge7').classList.remove('grayscale','opacity-50');
+  }
+  // 100/day badge
+  if (state.todayCount >= 100) {
+    document.getElementById('badge100').classList.remove('grayscale','opacity-50');
+  }
+  // 30-day badge
+  if (state.streak >= 30) {
+    const b = document.getElementById('badge30');
+    b.classList.remove('grayscale','opacity-50','border-dashed');
+  }
+}
+
+// ===== SETTINGS UI =====
+function updateSettingsUI() {
+  document.getElementById('goalDisplay').textContent = state.dailyGoal;
+  document.getElementById('goalLabel').textContent = state.dailyGoal + ' Dhikr per day';
+  document.getElementById('hapticToggle').checked = state.hapticEnabled;
+  const indicator = document.getElementById('theme-indicator');
+  if (state.theme === 'dark') {
+    indicator.style.left = 'calc(50% - 4px)';
+  } else {
+    indicator.style.left = '4px';
+  }
+}
+
+function adjustGoal(delta) {
+  const goals = [33, 99, 100, 500, 1000];
+  let idx = goals.indexOf(state.dailyGoal);
+  if (idx === -1) idx = 0;
+  idx = Math.max(0, Math.min(goals.length - 1, idx + delta));
+  state.dailyGoal = goals[idx];
+  state.target = state.dailyGoal;
+  saveState();
+  updateSettingsUI();
+  setTarget(state.dailyGoal);
+}
+
+function resetAllProgress() {
+  if (!confirm('Are you sure you want to reset all your progress? This cannot be undone.')) return;
+  state.count = 0;
+  state.lifetimeCount = 0;
+  state.todayCount = 0;
+  state.streak = 0;
+  state.weeklyData = [0,0,0,0,0,0,0];
+  saveState();
+  updateCounterUI();
+  updateHomeUI();
+}
+
+// ===== LIBRARY =====
+const zikrData = [
+  { cat: 'Morning', arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا', transliteration: 'Allahumma bika asbahna, wa bika amsayna.', translation: 'O Allah, by Your leave we have reached the morning and by Your leave we have reached the evening.', count: '3x' },
+  { cat: 'After Prayer', arabic: 'سُبْحَانَ اللَّهِ', transliteration: 'Subhan-Allah.', translation: 'Glory be to Allah.', count: '33x' },
+  { cat: 'Protection', arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ', transliteration: "Bismillahil-ladhi la yadurru ma'as-mihi shay'un.", translation: 'In the name of Allah, with Whose name nothing can cause harm in the earth or the heavens.', count: '3x' },
+  { cat: 'After Prayer', arabic: 'الْحَمْدُ لِلَّهِ', transliteration: 'Alhamdulillah.', translation: 'All praise is due to Allah.', count: '33x' },
+  { cat: 'After Prayer', arabic: 'اللَّهُ أَكْبَرُ', transliteration: 'Allahu Akbar.', translation: 'Allah is the Greatest.', count: '33x' },
+  { cat: 'Evening', arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ', transliteration: "Amsayna wa amsal-mulku lillah.", translation: 'We have reached the evening and at this very time unto Allah belongs all sovereignty.', count: '1x' },
+  { cat: 'Morning', arabic: 'أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ', transliteration: 'Asbahna ala fitratil Islam.', translation: 'We have reached the morning upon the natural religion of Islam.', count: '1x' },
+  { cat: 'Protection', arabic: 'حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ', transliteration: 'Hasbiyallahu la ilaha illa Hu.', translation: 'Allah is sufficient for me; there is no god but He.', count: '7x' },
+];
+
+let currentCategory = 'All';
+
+function renderLibrary(filter = '', cat = 'All') {
+  const list = document.getElementById('zikrList');
+  let items = allZikr().map((z, i) => ({ ...z, _idx: i }));
+  if (cat !== 'All') items = items.filter(z => z.cat === cat);
+  if (filter) items = items.filter(z =>
+    (z.arabic || '').includes(filter) ||
+    z.transliteration.toLowerCase().includes(filter.toLowerCase()) ||
+    (z.translation || '').toLowerCase().includes(filter.toLowerCase())
+  );
+
+  if (items.length === 0) {
+    list.innerHTML = `<div class="flex flex-col items-center py-16 text-center gap-md">
+      <span class="material-symbols-outlined text-[48px] text-outline">auto_awesome</span>
+      <p class="font-label-md text-label-md text-on-surface-variant">No Zikr found.<br/>Tap <strong>+</strong> to add your own.</p>
+    </div>`;
+    return;
+  }
+
+  list.innerHTML = items.map(z => {
+    const bookmarkKey = z.custom ? 'c' + (z._idx - zikrData.length) : z._idx;
+    const isBookmarked = state.bookmarks.includes(bookmarkKey);
+    const deleteBtn = z.custom
+      ? `<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors"
+           onclick="event.stopPropagation();deleteCustomZikr(${z._idx - zikrData.length})">delete</button>`
+      : '';
+    return `
+    <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer active:scale-[0.99]"
+      onclick="startZikrFromLibrary(${z._idx})">
+      <div class="flex justify-between items-start mb-sm">
+        <div class="flex items-center gap-xs">
+          <span class="text-label-md font-label-md text-primary uppercase tracking-widest bg-primary-fixed/30 px-2 py-0.5 rounded">${z.cat}</span>
+          ${z.custom ? '<span class="text-[10px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold">CUSTOM</span>' : ''}
+        </div>
+        <div class="flex items-center gap-xs">
+          ${deleteBtn}
+          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
+            onclick="event.stopPropagation();toggleBookmark('${bookmarkKey}',this)">
+            ${isBookmarked ? 'bookmark' : 'bookmark_add'}
+          </button>
+        </div>
+      </div>
+      ${z.arabic ? `<div class="text-right mb-md"><p class="font-arabic-display text-arabic-display text-on-surface leading-loose" dir="rtl">${z.arabic}</p></div>` : ''}
+      <div class="space-y-xs">
+        <p class="text-body-md font-medium text-primary italic leading-relaxed">${z.transliteration}</p>
+        ${z.translation ? `<p class="text-label-md font-label-md text-on-surface-variant leading-normal">${z.translation}</p>` : ''}
+      </div>
+      <div class="mt-md flex justify-end gap-base">
+        <div class="flex items-center gap-xs px-3 py-1 bg-surface-container rounded-full">
+          <span class="material-symbols-outlined text-[18px] text-on-surface-variant">repeat</span>
+          <span class="text-label-md font-label-md text-on-surface-variant">${z.count}</span>
+        </div>
+        <div class="flex items-center gap-xs px-3 py-1 bg-primary-fixed/30 rounded-full text-primary font-label-md text-label-md">
+          <span class="material-symbols-outlined text-[16px]">fingerprint</span> Count
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function deleteCustomZikr(customIdx) {
+  if (!confirm('Remove this Zikr?')) return;
+  customZikr.splice(customIdx, 1);
+  saveCustomZikr();
+  renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+}
+
+function toggleBookmark(idx, btn) {
+  if (state.bookmarks.includes(idx)) {
+    state.bookmarks = state.bookmarks.filter(b => b !== idx);
+    btn.textContent = 'bookmark_add';
+  } else {
+    state.bookmarks.push(idx);
+    btn.textContent = 'bookmark';
+  }
+  saveState();
+}
+
+function startZikrFromLibrary(i) {
+  const z = allZikr()[i];
+  document.getElementById('counterArabic').textContent = z.arabic || z.transliteration;
+  document.getElementById('counterEnglish').textContent = z.transliteration;
+  document.getElementById('counterMeaning').textContent = z.translation || '';
+  state.count = 0;
+  state.target = parseInt(z.count) || 33;
+  saveState();
+  updateCounterUI();
+  navigateTo('counter');
+}
+
+document.querySelectorAll('.category-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    currentCategory = chip.dataset.cat;
+    document.querySelectorAll('.category-chip').forEach(c => {
+      const isActive = c === chip;
+      c.classList.toggle('bg-primary-container', isActive);
+      c.classList.toggle('text-on-primary-container', isActive);
+      c.classList.toggle('bg-surface-container-highest', !isActive);
+      c.classList.toggle('text-on-surface-variant', !isActive);
+    });
+    renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+  });
+});
+
+document.getElementById('librarySearch').addEventListener('input', e => {
+  renderLibrary(e.target.value, currentCategory);
+});
+
+// ===== CUSTOM ZIKR =====
+let customZikr = [];
+
+function loadCustomZikr() {
+  try {
+    customZikr = JSON.parse(localStorage.getItem('thasbeeh_custom') || '[]');
+  } catch(e) { customZikr = []; }
+}
+
+function saveCustomZikr() {
+  localStorage.setItem('thasbeeh_custom', JSON.stringify(customZikr));
+}
+
+function allZikr() {
+  return [
+    ...zikrData.map(z => ({ ...z, custom: false })),
+    ...customZikr.map(z => ({ ...z, custom: true })),
+  ];
+}
+
+function openAddZikrModal() {
+  const modal = document.getElementById('addZikrModal');
+  modal.style.display = 'flex';
+  // clear fields
+  ['newArabic','newTranslit','newMeaning'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('newCount').value = 33;
+  document.getElementById('newCategory').value = 'Custom';
+  document.getElementById('translitError').classList.add('hidden');
+}
+
+function closeAddZikrModal() {
+  document.getElementById('addZikrModal').style.display = 'none';
+}
+
+function saveNewZikr() {
+  const translit = document.getElementById('newTranslit').value.trim();
+  if (!translit) {
+    document.getElementById('translitError').classList.remove('hidden');
+    document.getElementById('newTranslit').focus();
+    return;
+  }
+  document.getElementById('translitError').classList.add('hidden');
+
+  const entry = {
+    arabic: document.getElementById('newArabic').value.trim(),
+    transliteration: translit,
+    translation: document.getElementById('newMeaning').value.trim(),
+    cat: document.getElementById('newCategory').value,
+    count: document.getElementById('newCount').value + 'x',
+  };
+  customZikr.push(entry);
+  saveCustomZikr();
+  closeAddZikrModal();
+  // Switch to My Zikr category to show new entry
+  currentCategory = entry.cat === 'Custom' ? 'Custom' : entry.cat;
+  document.querySelectorAll('.category-chip').forEach(c => {
+    const isActive = c.dataset.cat === currentCategory;
+    c.classList.toggle('bg-primary-container', isActive);
+    c.classList.toggle('text-on-primary-container', isActive);
+    c.classList.toggle('bg-surface-container-highest', !isActive);
+    c.classList.toggle('text-on-surface-variant', !isActive);
+  });
+  renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+}
+
+// ===== SERVICE WORKER =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+
+// ===== INIT =====
+loadState();
+loadCustomZikr();
+setTheme(state.theme);
+setTarget(state.target);
+updateCounterUI();
+updateHomeUI();
+renderLibrary();
+navigateTo('home');
+</script>
+</body>
+</html>
