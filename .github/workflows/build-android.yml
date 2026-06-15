@@ -37,32 +37,29 @@ jobs:
       - name: Install Bubblewrap CLI
         run: npm install -g @bubblewrap/cli
 
-      - name: Configure Bubblewrap (skip JDK/SDK prompts)
+      - name: Configure Bubblewrap (JDK + SDK paths, no prompts)
         run: |
           mkdir -p ~/.bubblewrap
-          cat > ~/.bubblewrap/config.json <<EOF
+          cat > ~/.bubblewrap/config.json << EOF
           {
             "jdkPath": "$JAVA_HOME",
             "androidSdkPath": "$ANDROID_SDK_ROOT"
           }
           EOF
 
-      - name: Generate Android project
+      - name: Build Android project from twa-manifest.json
         run: |
-          bubblewrap init \
-            --manifest https://anashath.github.io/thasbeeh/manifest.json \
-            --directory ./android-twa
-        env:
-          BUBBLEWRAP_NON_INTERACTIVE: true
+          # bubblewrap build reads twa-manifest.json in the current directory
+          # and generates + compiles the Android project without interactive prompts
+          bubblewrap build
 
-      - name: Build debug APK
-        working-directory: ./android-twa
+      - name: Locate and sign APK
         run: |
-          chmod +x gradlew
-          ./gradlew assembleDebug --no-daemon
+          # Find the unsigned/debug APK produced by Gradle
+          APK=$(find . -name "*.apk" ! -path "*/intermediates/*" | head -1)
+          echo "Found APK: $APK"
 
-      - name: Sign APK with debug key
-        run: |
+          # Generate a debug signing keystore
           keytool -genkeypair -v \
             -keystore debug.keystore \
             -storepass android \
@@ -72,44 +69,39 @@ jobs:
             -keyalg RSA -keysize 2048 \
             -validity 10000 2>/dev/null
 
-          APK=$(find android-twa -name "*.apk" | head -1)
-          cp "$APK" Thasbeeh.apk
-
+          # Align and sign
+          $ANDROID_SDK_ROOT/build-tools/34.0.0/zipalign -f 4 "$APK" Thasbeeh-aligned.apk
           $ANDROID_SDK_ROOT/build-tools/34.0.0/apksigner sign \
             --ks debug.keystore \
             --ks-pass pass:android \
             --ks-key-alias androiddebugkey \
             --key-pass pass:android \
-            --out Thasbeeh-signed.apk \
-            Thasbeeh.apk
+            --out Thasbeeh.apk \
+            Thasbeeh-aligned.apk
 
-          echo "✅ APK built and signed: Thasbeeh-signed.apk"
-          ls -lh Thasbeeh-signed.apk
+          echo "✅ Signed APK ready: $(ls -lh Thasbeeh.apk)"
 
-      - name: Upload APK as artifact
+      - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: Thasbeeh-Android-APK
-          path: Thasbeeh-signed.apk
-          retention-days: 30
+          path: Thasbeeh.apk
+          retention-days: 90
 
-      - name: Create GitHub Release
+      - name: Create GitHub Release with APK
         uses: softprops/action-gh-release@v2
-        if: github.ref == 'refs/heads/master'
         with:
-          tag_name: apk-${{ github.run_number }}
-          name: "Thasbeeh Android APK (Build ${{ github.run_number }})"
+          tag_name: v1.0.${{ github.run_number }}
+          name: "Thasbeeh Android v1.0.${{ github.run_number }}"
           body: |
-            ## Sacred Devotion – Thasbeeh Android App
+            ## 📱 Sacred Devotion – Thasbeeh Android App
 
-            ### Install Instructions
-            1. Download `Thasbeeh-signed.apk` below
-            2. On your Android phone: Settings → Security → **Allow unknown sources** (or "Install unknown apps")
-            3. Open the downloaded APK file and tap **Install**
-            4. Open **Thasbeeh** from your home screen
-
-            > Built from commit ${{ github.sha }}
-          files: Thasbeeh-signed.apk
+            ### How to install on Android
+            1. **Download** `Thasbeeh.apk` below
+            2. On your phone: **Settings → Security → Install unknown apps** → allow your browser or file manager
+            3. Open the downloaded file and tap **Install**
+            4. Open **Thasbeeh** from your home screen — no browser bar, works offline ✅
+          files: Thasbeeh.apk
           draft: false
           prerelease: false
         env:
