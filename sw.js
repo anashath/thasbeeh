@@ -1,4 +1,4 @@
-const CACHE = 'thasbeeh-v3';
+const CACHE = 'thasbeeh-v4';
 const ASSETS = [
   './',
   './index.html',

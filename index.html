@@ -1,715 +1,760 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="dark" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<title>Thasbeeh</title>
+<title>Sacred Devotion – Thasbeeh</title>
 <link rel="manifest" href="./manifest.json"/>
-<meta name="theme-color" content="#059669"/>
+<meta name="theme-color" content="#131411"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Thasbeeh"/>
 <link rel="apple-touch-icon" href="./icons/icon-192.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet"/>
-<style>
-/* ── Variables ── */
-:root {
-  --bg:      #f2f7f4;
-  --surface: #ffffff;
-  --card:    #ffffff;
-  --surface2:#e8f0eb;
-  --accent:  #059669;
-  --accent2: #d1fae5;
-  --text:    #0f1f18;
-  --muted:   #4d7a66;
-  --border:  #d4e4db;
-  --danger:  #dc2626;
-  --nav-h:   68px;
-  --r:       16px;
+<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        /* Dark palette (default – matches Sacred Devotion mockups) */
+        "sd-bg":          "#131411",
+        "sd-surface":     "#131411",
+        "sd-sc-low":      "#1c1c19",
+        "sd-sc":          "#20201d",
+        "sd-sc-high":     "#2a2a27",
+        "sd-sc-highest":  "#353532",
+        "sd-primary":     "#b3cbc8",
+        "sd-primary-c":   "#2d4341",
+        "sd-on-pc":       "#97afac",
+        "sd-secondary":   "#e1c19d",
+        "sd-on-secondary":"#402d13",
+        "sd-secondary-c": "#594327",
+        "sd-on-surface":  "#e5e2dd",
+        "sd-on-sv":       "#c2c8c6",
+        "sd-outline":     "#8c9291",
+        "sd-outline-v":   "#424847",
+        "sd-error":       "#ffb4ab",
+      },
+      fontFamily: {
+        serif:  ["Noto Serif", "serif"],
+        sans:   ["Manrope", "system-ui", "sans-serif"],
+      },
+    }
+  }
 }
-.dark {
-  --bg:      #0d1512;
-  --surface: #131f1a;
-  --card:    #1a2920;
-  --surface2:#1f3028;
-  --accent:  #34d399;
-  --accent2: #064e3b;
-  --text:    #e2ede8;
-  --muted:   #6aad90;
-  --border:  #243d30;
-  --danger:  #f87171;
+</script>
+<style>
+/* ── Light mode overrides ── */
+html:not(.dark) {
+  --bg:      #f4f3ee;
+  --surface: #ffffff;
+  --sc-low:  #ece9e3;
+  --sc:      #e4e1db;
+  --sc-high: #d9d6d0;
+  --sc-hst:  #ccc9c3;
+  --primary: #2d4341;
+  --primary-c:#d5e6e3;
+  --on-pc:   #2d4341;
+  --secondary:#7c4a1e;
+  --on-sec:  #ffffff;
+  --sec-c:   #fde8d4;
+  --on-surf: #1c1b17;
+  --on-sv:   #49484a;
+  --outline: #79747e;
+  --outl-v:  #cac4d0;
+}
+html.dark {
+  --bg:      #131411;
+  --surface: #131411;
+  --sc-low:  #1c1c19;
+  --sc:      #20201d;
+  --sc-high: #2a2a27;
+  --sc-hst:  #353532;
+  --primary: #b3cbc8;
+  --primary-c:#2d4341;
+  --on-pc:   #97afac;
+  --secondary:#e1c19d;
+  --on-sec:  #402d13;
+  --sec-c:   #594327;
+  --on-surf: #e5e2dd;
+  --on-sv:   #c2c8c6;
+  --outline: #8c9291;
+  --outl-v:  #424847;
 }
 
-/* ── Reset ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{height:100%}
+html,body{height:100%}
 body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);color:var(--text);
+  font-family:'Manrope',system-ui,sans-serif;
+  background:var(--bg);color:var(--on-surf);
   min-height:100dvh;
   -webkit-tap-highlight-color:transparent;
+  -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
-input,select,textarea{
-  font:inherit;color:var(--text);
-  background:var(--surface2);
-  border:1.5px solid var(--border);
-  border-radius:12px;outline:none;
-  transition:border-color .15s,box-shadow .15s;
+input,select,textarea{font:inherit;color:var(--on-surf)}
+
+.material-symbols-outlined{
+  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+  user-select:none;
 }
-input:focus,select:focus,textarea:focus{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent);
-}
+.fill-icon{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
 
 /* ── Layout ── */
-#app{max-width:480px;margin:0 auto;padding-bottom:var(--nav-h);min-height:100dvh}
+#app{max-width:720px;margin:0 auto;padding-bottom:88px;min-height:100dvh}
 
 /* ── Pages ── */
-.page{display:none;flex-direction:column;gap:16px;padding:20px 18px}
-.page.active{display:flex;animation:fadeUp .2s ease-out}
-#page-counter.active{
-  align-items:center;justify-content:center;
-  min-height:calc(100dvh - var(--nav-h));
-  padding:16px 18px;
-}
+.page{display:none}
+.page.active{display:block;animation:fadeUp .2s ease-out}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── Bottom nav ── */
+/* ── Top Progress Bar ── */
+#top-progress-bar{
+  position:fixed;top:0;left:0;width:100%;height:3px;
+  background:var(--sc);z-index:200;
+}
+#top-progress-fill{
+  height:100%;background:var(--secondary);
+  transition:width .4s cubic-bezier(.65,0,.35,1);width:0%;
+}
+
+/* ── Bottom Nav ── */
 nav{
   position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:480px;height:var(--nav-h);
-  background:var(--surface);border-top:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-around;
-  z-index:100;padding-bottom:env(safe-area-inset-bottom);
+  width:100%;max-width:720px;
+  background:var(--sc-high);border-radius:16px 16px 0 0;
+  box-shadow:0 -2px 16px rgba(0,0,0,.25);
+  display:flex;justify-content:space-around;align-items:center;
+  padding:12px 20px 20px;padding-bottom:calc(20px + env(safe-area-inset-bottom));
+  z-index:100;
 }
-.nav-item{
-  display:flex;flex-direction:column;align-items:center;gap:2px;
-  padding:8px 12px;border-radius:12px;
-  font-size:11px;font-weight:600;color:var(--muted);
-  transition:color .2s;
+.nav-btn{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:8px 12px;border-radius:999px;
+  font-size:11px;font-weight:600;
+  color:var(--on-sv);
+  transition:all .2s;
 }
-.nav-item.active{color:var(--accent)}
-.nav-item svg{width:22px;height:22px;transition:transform .2s}
-.nav-item.active svg{transform:scale(1.1)}
-
-/* ── Card ── */
-.card{background:var(--card);border-radius:var(--r);padding:18px;border:1px solid var(--border)}
-
-/* ── Home ── */
-.home-header{display:flex;justify-content:space-between;align-items:center;padding-top:6px}
-.home-title{font-size:24px;font-weight:700;color:var(--accent)}
-.home-sub{font-size:13px;color:var(--muted);margin-top:3px}
-.icon-btn{
-  width:38px;height:38px;border-radius:50%;
-  background:var(--surface2);border:1px solid var(--border);
+.nav-btn.active{background:var(--primary-c);color:var(--on-pc)}
+.nav-btn.active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+.nav-center{position:relative;top:-20px}
+.nav-center-btn{
+  width:60px;height:60px;border-radius:50%;
+  background:var(--secondary);color:var(--on-sec);
   display:flex;align-items:center;justify-content:center;
-  transition:background .15s;
+  box-shadow:0 6px 20px rgba(0,0,0,.35);
+  transition:transform .2s;
 }
-.icon-btn:active{background:var(--border)}
+.nav-center-btn:active{transform:scale(.92)}
+.nav-center-btn.active{background:var(--primary);color:var(--primary-c)}
+.nav-center-lbl{font-size:11px;font-weight:600;color:var(--on-sv);text-align:center;margin-top:4px}
+.nav-center-lbl.active{color:var(--on-pc)}
 
-.ring-card{
-  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
-  padding:20px;display:flex;align-items:center;gap:20px;
-}
-.ring-info{flex:1}
-.ring-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
-.ring-count{font-size:40px;font-weight:700;line-height:1;margin-top:4px}
-.ring-sub{font-size:13px;color:var(--muted);margin-top:4px}
-
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
-.stat-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.stat-val{font-size:28px;font-weight:700;margin-top:4px}
-.stat-sub{font-size:12px;color:var(--muted);margin-top:2px}
-
-.btn-primary{
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  padding:14px;border-radius:var(--r);
-  background:var(--accent);color:#fff;
-  font-size:15px;font-weight:600;
-  transition:opacity .15s;
-}
-.btn-primary:active{opacity:.85}
-
-.quote-card{
-  background:var(--accent2);border-radius:var(--r);padding:16px;
-  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
-}
-.quote-text{font-size:14px;font-style:italic;color:var(--accent);line-height:1.6}
-.quote-ref{font-size:11px;color:var(--muted);margin-top:6px}
-
-/* ── Counter ── */
-.zikr-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.zikr-chip{
-  padding:6px 14px;border-radius:999px;
-  font-size:12px;font-weight:600;
-  background:var(--surface2);color:var(--muted);
-  border:1.5px solid var(--border);transition:all .15s;
-}
-.zikr-chip.active{background:var(--accent2);color:var(--accent);border-color:var(--accent)}
-
-.counter-arabic{
-  font-family:'Noto Naskh Arabic',serif;
-  font-size:40px;font-weight:500;
-  color:var(--text);text-align:center;
-  line-height:1.5;direction:rtl;
-}
-.counter-latin{font-size:15px;font-weight:600;color:var(--muted);text-align:center;letter-spacing:.07em;text-transform:uppercase}
-.counter-meaning{font-size:13px;color:var(--muted);text-align:center;margin-top:2px}
-
-.tap-btn{
-  width:min(72vw,270px);height:min(72vw,270px);
-  border-radius:50%;background:var(--card);
-  border:2px solid var(--border);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  box-shadow:0 8px 32px color-mix(in srgb,var(--accent) 12%,transparent),0 2px 8px rgba(0,0,0,.06);
-  transition:transform .1s ease,box-shadow .1s ease;
-  position:relative;overflow:hidden;
-  margin:12px 0;
-}
-.tap-btn:active{transform:scale(0.96)}
-.tap-btn svg{position:absolute;inset:0;width:100%;height:100%}
-.tap-count{font-size:68px;font-weight:700;color:var(--text);line-height:1;position:relative}
-.tap-sub{font-size:14px;color:var(--muted);position:relative}
-
-.target-chips{display:flex;gap:8px;justify-content:center}
-.target-chip{
-  padding:8px 20px;border-radius:999px;
-  font-size:13px;font-weight:600;
-  background:var(--surface2);color:var(--muted);
-  border:1.5px solid var(--border);transition:all .15s;
-}
-.target-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-.counter-actions{display:flex;gap:28px;justify-content:center}
-.action-btn{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted)}
-.action-icon{
-  width:44px;height:44px;border-radius:50%;
-  border:1.5px solid var(--border);background:var(--card);
-  display:flex;align-items:center;justify-content:center;
+/* ── Tonal gradient bg ── */
+.tonal-layer{
+  background:linear-gradient(145deg,var(--primary-c) 0%,var(--sc-low) 100%);
 }
 
-/* ── Library ── */
-.search-box{
-  display:flex;align-items:center;gap:10px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:14px;padding:12px 14px;
+/* ── Prayer card in library ── */
+.prayer-card{
+  background:var(--sc-high);border-radius:16px;
+  border:1px solid rgba(255,255,255,.04);
+  transition:background .25s;
+  cursor:pointer;overflow:hidden;
+  position:relative;
 }
-.search-box input{flex:1;border:none;background:none;font-size:15px;color:var(--text)}
-.search-box input::placeholder{color:var(--muted)}
-.search-box input:focus{box-shadow:none;border-color:transparent}
+.prayer-card:active{background:var(--sc-hst)}
 
-.cat-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
-.cat-chips::-webkit-scrollbar{display:none}
-.cat-chip{
-  flex-shrink:0;padding:7px 16px;border-radius:999px;
-  font-size:12px;font-weight:600;
-  background:var(--card);color:var(--muted);
-  border:1.5px solid var(--border);transition:all .15s;
+/* ── Form inputs ── */
+.field{
+  width:100%;padding:12px 14px;font-size:15px;
+  background:var(--sc);border:1.5px solid var(--outl-v);
+  border-radius:12px;color:var(--on-surf);
+  outline:none;transition:border-color .15s,box-shadow .15s;
 }
-.cat-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.field:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(179,203,200,.18)}
+.field::placeholder{color:var(--on-sv)}
+.field-arabic{font-family:'Noto Serif',serif;font-size:22px;direction:rtl;text-align:right}
 
-.zikr-card{
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--r);padding:14px 16px;
-  display:flex;align-items:center;gap:12px;
-}
-.zikr-body{flex:1;min-width:0}
-.zikr-arabic{font-family:'Noto Naskh Arabic',serif;font-size:20px;text-align:right;direction:rtl;margin-bottom:4px;color:var(--text)}
-.zikr-name{font-size:14px;font-weight:600;color:var(--text)}
-.zikr-meaning{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.zikr-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
-.zikr-badge{
-  background:var(--accent2);color:var(--accent);
-  font-size:11px;font-weight:700;
-  padding:3px 10px;border-radius:999px;
-  white-space:nowrap;
-}
-.start-btn{
-  width:34px;height:34px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .15s;
-}
-.start-btn:active{opacity:.8}
-
-.fab{
-  position:fixed;bottom:calc(var(--nav-h)+14px);right:18px;
-  width:50px;height:50px;border-radius:50%;
-  background:var(--accent);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 16px color-mix(in srgb,var(--accent) 40%,transparent);
-  z-index:50;transition:opacity .2s,transform .2s;
-}
-.fab.hidden{opacity:0;pointer-events:none;transform:scale(0.8)}
-
-/* ── Progress ── */
-.streak-hero{
-  background:var(--accent);color:#fff;
-  border-radius:var(--r);padding:28px;text-align:center;
-}
-.streak-num{font-size:56px;font-weight:700;line-height:1}
-.streak-lbl{font-size:12px;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
-
-.bar-chart{display:flex;align-items:flex-end;gap:6px;height:96px;padding:0 2px}
-.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
-.bar-fill{width:100%;border-radius:5px 5px 0 0;min-height:4px;background:var(--surface2);transition:height .5s cubic-bezier(.4,0,.2,1)}
-.bar-fill.reached{background:var(--accent)}
-.bar-fill.today{background:var(--accent);opacity:.65}
-.bar-day{font-size:10px;font-weight:600;color:var(--muted)}
-.bar-day.today{color:var(--accent)}
-
-/* ── Settings ── */
-.settings-section{display:flex;flex-direction:column;gap:8px}
-.settings-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding-left:2px}
-.settings-group{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.settings-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
-.settings-row:last-child{border-bottom:none}
-.row-icon{
-  width:36px;height:36px;border-radius:10px;flex-shrink:0;
-  background:var(--accent2);color:var(--accent);
-  display:flex;align-items:center;justify-content:center;
-}
-.row-title{font-size:15px;font-weight:500;flex:1}
-.row-sub{font-size:12px;color:var(--muted);margin-top:1px}
-
-/* Toggle */
-.toggle{position:relative;width:44px;height:24px;flex-shrink:0;display:block}
+/* ── Toggle ── */
+.toggle{position:relative;width:44px;height:24px;display:block;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0;position:absolute}
 .toggle-track{
   position:absolute;inset:0;border-radius:12px;
-  background:var(--surface2);border:1.5px solid var(--border);
+  background:var(--sc-hst);border:1.5px solid var(--outl-v);
   transition:background .2s,border-color .2s;
 }
-.toggle input:checked~.toggle-track{background:var(--accent);border-color:var(--accent)}
+.toggle input:checked~.toggle-track{background:var(--primary);border-color:var(--primary)}
 .toggle-thumb{
-  position:absolute;top:3px;left:3px;
-  width:18px;height:18px;border-radius:50%;
-  background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);
-  transition:transform .2s;
+  position:absolute;top:3px;left:3px;width:18px;height:18px;
+  border-radius:50%;background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .2s;
 }
 .toggle input:checked~.toggle-thumb{transform:translateX(20px)}
 
-/* Theme switch */
-.theme-sw{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--surface2);padding:3px;border-radius:10px}
-.theme-btn{
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  padding:7px;border-radius:8px;
-  font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;
-}
-.theme-btn.active{background:var(--card);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
-
-/* Stepper */
-.stepper{display:flex;align-items:center;gap:8px}
-.step-btn{
-  width:28px;height:28px;border-radius:50%;
-  border:1.5px solid var(--border);background:var(--surface2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;font-weight:700;
-}
-.step-val{font-size:15px;font-weight:700;color:var(--accent);min-width:28px;text-align:center}
-
-/* About */
-.about{text-align:center;padding:20px 0 8px;color:var(--muted);font-size:13px}
-.about-logo{
-  width:68px;height:68px;border-radius:18px;
-  background:var(--accent);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 12px;
-}
-.about-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
-
 /* ── Modal ── */
 .modal-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
   backdrop-filter:blur(4px);z-index:200;
   display:none;align-items:flex-end;justify-content:center;
 }
 .modal-bg.open{display:flex}
 .modal-sheet{
-  width:100%;max-width:480px;
-  background:var(--surface);border-radius:20px 20px 0 0;
-  padding:22px 18px 36px;max-height:90dvh;overflow-y:auto;
+  width:100%;max-width:720px;
+  background:var(--sc-low);border-radius:24px 24px 0 0;
+  padding:24px 20px 40px;max-height:90dvh;overflow-y:auto;
   display:flex;flex-direction:column;gap:16px;
 }
-.modal-hdr{display:flex;align-items:center;justify-content:space-between}
-.modal-title{font-size:18px;font-weight:700}
-.modal-close{
-  width:32px;height:32px;border-radius:50%;
-  background:var(--surface2);color:var(--muted);
-  display:flex;align-items:center;justify-content:center;
-}
-.form-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px}
-.form-input{width:100%;padding:11px 13px;font-size:15px}
-.form-arabic{font-family:'Noto Naskh Arabic',serif;font-size:22px;direction:rtl;text-align:right}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.error-txt{font-size:12px;color:var(--danger);margin-top:4px;display:none}
+.modal-bg.open .modal-sheet{animation:slideUp .3s cubic-bezier(.32,.72,0,1)}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
 
 /* ── Toast ── */
 .toast{
-  position:fixed;top:20px;left:50%;transform:translateX(-50%);
-  background:var(--accent);color:#fff;
+  position:fixed;top:24px;left:50%;transform:translateX(-50%);
+  background:var(--secondary);color:var(--on-sec);
   padding:10px 22px;border-radius:999px;
-  font-size:14px;font-weight:600;
+  font-size:14px;font-weight:600;white-space:nowrap;
   opacity:0;pointer-events:none;transition:opacity .3s;z-index:300;
-  white-space:nowrap;
 }
 .toast.show{opacity:1}
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+::-webkit-scrollbar-thumb{background:var(--outl-v);border-radius:4px}
+.no-scrollbar::-webkit-scrollbar{display:none}
 </style>
 </head>
-<body>
+<body class="font-sans">
+
+<!-- Top progress bar -->
+<div id="top-progress-bar"><div id="top-progress-fill"></div></div>
 
 <div id="app">
 
-<!-- ═══════════════════════════ HOME ═════════════════════════════ -->
+<!-- ══════════════════════════ HOME ═══════════════════════════════ -->
 <div class="page active" id="page-home">
-  <div class="home-header">
-    <div>
-      <div class="home-title">Thasbeeh</div>
-      <div class="home-sub" id="greetingText">Assalamu Alaikum</div>
-    </div>
-    <button class="icon-btn" id="themeBtn" title="Toggle theme">
-      <svg id="themeIcon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-      </svg>
-    </button>
-  </div>
+  <main class="px-6 pt-8 pb-4 space-y-8 max-w-[720px] mx-auto">
 
-  <!-- Ring progress -->
-  <div class="ring-card">
-    <div class="ring-info">
-      <div class="ring-label">Daily Progress</div>
-      <div class="ring-count"><span id="homeDailyCount">0</span><span style="font-size:18px;color:var(--muted)"> / <span id="homeDailyTarget">33</span></span></div>
-      <div class="ring-sub" id="homeProgressPct">0% of daily goal</div>
-    </div>
-    <svg width="88" height="88" viewBox="0 0 88 88">
-      <circle cx="44" cy="44" r="38" fill="none" stroke="var(--surface2)" stroke-width="8"/>
-      <circle id="homeRing" cx="44" cy="44" r="38" fill="none" stroke="var(--accent)" stroke-width="8"
-        stroke-linecap="round" stroke-dasharray="238.76" stroke-dashoffset="238.76"
-        transform="rotate(-90 44 44)"/>
-    </svg>
-  </div>
+    <!-- Header -->
+    <header class="flex justify-between items-center">
+      <div>
+        <h1 class="font-serif text-2xl font-semibold text-[color:var(--primary)]">Sacred Devotion</h1>
+        <p class="text-sm text-[color:var(--on-sv)] mt-0.5" id="greetingText">Assalamu Alaikum</p>
+      </div>
+      <button id="themeBtn" class="w-10 h-10 rounded-full flex items-center justify-center"
+        style="background:var(--sc-high);color:var(--primary)">
+        <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+      </button>
+    </header>
 
-  <!-- Stats -->
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-label">Streak</div>
-      <div class="stat-val" id="homeStreak">0</div>
-      <div class="stat-sub">days 🔥</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">Lifetime</div>
-      <div class="stat-val" id="homeLifetime">0</div>
-      <div class="stat-sub">total dhikr</div>
-    </div>
-  </div>
+    <!-- Featured Athkar Grid -->
+    <section>
+      <div class="flex justify-between items-end mb-4">
+        <h2 class="font-serif text-xl font-medium text-[color:var(--on-surf)]">Daily Athkar</h2>
+        <button onclick="navigateTo('library')" class="text-sm font-semibold text-[color:var(--secondary)]">View All</button>
+      </div>
+      <div class="grid grid-cols-1 gap-3">
+        <!-- SubhanAllah -->
+        <div onclick="loadAndCount('سُبْحَانَ اللهِ','SubhanAllah','Glory be to Allah',33)"
+          class="prayer-card p-5 flex justify-between items-center group">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center"
+              style="background:var(--primary-c)">
+              <span class="material-symbols-outlined fill-icon text-[color:var(--primary)]">auto_awesome</span>
+            </div>
+            <div>
+              <h3 class="font-medium text-[color:var(--on-surf)]">SubhanAllah</h3>
+              <p class="font-serif text-lg text-[color:var(--primary)] leading-none mt-0.5">سُبْحَانَ اللهِ</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full"
+              style="background:var(--sc);color:var(--on-sv)">33×</span>
+            <div class="w-9 h-9 rounded-full flex items-center justify-center"
+              style="background:var(--secondary);color:var(--on-sec)">
+              <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+            </div>
+          </div>
+        </div>
+        <!-- Alhamdulillah -->
+        <div onclick="loadAndCount('الْحَمْدُ للهِ','Alhamdulillah','All praise is due to Allah',33)"
+          class="prayer-card p-5 flex justify-between items-center">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-2xl flex items-center justify-center"
+              style="background:rgba(225,193,157,.15)">
+              <span class="material-symbols-outlined fill-icon text-[color:var(--secondary)]">favorite</span>
+            </div>
+            <div>
+              <h3 class="font-medium text-[color:var(--on-surf)]">Alhamdulillah</h3>
+              <p class="font-serif text-lg text-[color:var(--secondary)] leading-none mt-0.5">الْحَمْدُ للهِ</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold px-3 py-1 rounded-full"
+              style="background:var(--sc);color:var(--on-sv)">33×</span>
+            <div class="w-9 h-9 rounded-full flex items-center justify-center"
+              style="background:var(--secondary);color:var(--on-sec)">
+              <span class="material-symbols-outlined text-[18px]">play_arrow</span>
+            </div>
+          </div>
+        </div>
+        <!-- Allahu Akbar (wide) -->
+        <div onclick="loadAndCount('اللهُ أَكْبَرُ','Allahu Akbar','Allah is the Greatest',33)"
+          class="prayer-card p-6 flex justify-between items-center">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center"
+                style="background:var(--primary-c)">
+                <span class="material-symbols-outlined fill-icon text-[color:var(--primary)]">flare</span>
+              </div>
+              <span class="text-xs font-semibold text-[color:var(--on-sv)]">33 Times</span>
+            </div>
+            <h3 class="font-medium text-[color:var(--on-surf)]">Allahu Akbar</h3>
+            <p class="text-sm text-[color:var(--on-sv)] mt-0.5">Allah is the Greatest</p>
+          </div>
+          <div class="text-right flex flex-col items-end gap-3">
+            <p class="font-serif text-2xl text-[color:var(--primary)]">اللهُ أَكْبَرُ</p>
+            <button class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
+              style="background:var(--primary);color:var(--sc-low)">
+              Start <span class="material-symbols-outlined text-[16px]">double_arrow</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <button class="btn-primary" onclick="navigateTo('counter')">
-    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-    Start Counting
-  </button>
+    <!-- Stats row -->
+    <div class="grid grid-cols-3 gap-3">
+      <div class="rounded-2xl p-4" style="background:var(--sc-high)">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-[color:var(--on-sv)] mb-1">Today</p>
+        <p class="text-2xl font-bold text-[color:var(--on-surf)]" id="homeTodayCount">0</p>
+        <p class="text-[11px] text-[color:var(--on-sv)] mt-0.5">/<span id="homeDailyTarget">33</span> goal</p>
+      </div>
+      <div class="rounded-2xl p-4" style="background:var(--sc-high)">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-[color:var(--on-sv)] mb-1">Streak</p>
+        <p class="text-2xl font-bold text-[color:var(--secondary)]" id="homeStreak">0</p>
+        <p class="text-[11px] text-[color:var(--on-sv)] mt-0.5">days 🔥</p>
+      </div>
+      <div class="rounded-2xl p-4" style="background:var(--sc-high)">
+        <p class="text-[10px] font-semibold uppercase tracking-widest text-[color:var(--on-sv)] mb-1">Lifetime</p>
+        <p class="text-2xl font-bold text-[color:var(--primary)]" id="homeLifetime">0</p>
+        <p class="text-[11px] text-[color:var(--on-sv)] mt-0.5">total</p>
+      </div>
+    </div>
 
-  <div class="quote-card">
-    <div class="quote-text">"Verily, in the remembrance of Allah do hearts find rest."</div>
-    <div class="quote-ref">— Surah Ar-Ra'd 13:28</div>
-  </div>
+    <!-- Quran verse -->
+    <section class="rounded-2xl p-6 relative overflow-hidden"
+      style="background:linear-gradient(135deg,var(--primary-c) 0%,var(--sc-low) 100%);border:1px solid rgba(255,255,255,.06)">
+      <div class="absolute -top-8 -right-8 w-32 h-32 opacity-10"
+        style="background:var(--secondary);border-radius:50%;filter:blur(30px)"></div>
+      <p class="text-xs font-bold uppercase tracking-[.2em] text-[color:var(--secondary)] mb-4">Verse of the Day</p>
+      <p class="font-serif text-2xl text-[color:var(--primary)] text-right leading-loose dir-rtl mb-4">
+        أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ
+      </p>
+      <p class="text-sm italic text-[color:var(--on-surf)] mb-1 leading-relaxed">
+        "Verily, in the remembrance of Allah do hearts find rest."
+      </p>
+      <p class="text-xs text-[color:var(--on-sv)]">Surah Ar-Ra'd [13:28]</p>
+    </section>
+
+    <!-- Mini week chart -->
+    <section class="rounded-2xl p-5" style="background:var(--sc-low);border:1px solid rgba(255,255,255,.04)">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-sm font-semibold text-[color:var(--on-sv)]">Your Devotion This Week</h3>
+        <span class="material-symbols-outlined text-[color:var(--on-sv)]">insights</span>
+      </div>
+      <div class="flex items-end justify-between h-20 gap-1.5" id="homeWeekChart"></div>
+    </section>
+
+  </main>
 </div>
 
-<!-- ═══════════════════════════ COUNTER ══════════════════════════ -->
-<div class="page" id="page-counter">
-  <div class="zikr-chips">
-    <button class="zikr-chip active" data-arabic="سُبْحَانَ ٱللَّٰهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
-    <button class="zikr-chip" data-arabic="الْحَمْدُ لِلَّهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
-    <button class="zikr-chip" data-arabic="اللَّهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
-  </div>
-
-  <div class="counter-arabic" id="counterArabic">سُبْحَانَ ٱللَّٰهِ</div>
-  <div class="counter-latin" id="counterEnglish">SubhanAllah</div>
-  <div class="counter-meaning" id="counterMeaning">Glory be to Allah</div>
-
-  <button class="tap-btn" id="tap-target">
-    <svg viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="135" cy="135" r="130" fill="none" stroke="var(--surface2)" stroke-width="5"/>
-      <circle id="progress-circle" cx="135" cy="135" r="130" fill="none" stroke="var(--accent)" stroke-width="5"
-        stroke-linecap="round" stroke-dasharray="816.81" stroke-dashoffset="816.81"
-        transform="rotate(-90 135 135)"/>
-    </svg>
-    <span class="tap-count" id="counter-value">0</span>
-    <span class="tap-sub" id="target-display">/ 33</span>
-  </button>
-
-  <div class="target-chips">
-    <button class="target-chip active" onclick="setTarget(33)">33</button>
-    <button class="target-chip" onclick="setTarget(99)">99</button>
-    <button class="target-chip" onclick="setTarget(1000)">1000</button>
-  </div>
-
-  <div class="counter-actions">
-    <button class="action-btn" id="reset-btn">
-      <div class="action-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
-        </svg>
-      </div>
-      Reset
-    </button>
-    <button class="action-btn" id="haptic-btn">
-      <div class="action-icon" id="hapticIcon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M5 9v6"/><path d="M9 5v14"/><path d="M13 5v14"/><path d="M17 9v6"/><path d="M21 11v2"/>
-        </svg>
-      </div>
-      Haptic
-    </button>
-    <button class="action-btn" onclick="navigateTo('library')">
-      <div class="action-icon">
-        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-        </svg>
-      </div>
-      Library
-    </button>
-  </div>
-</div>
-
-<!-- ═══════════════════════════ LIBRARY ══════════════════════════ -->
+<!-- ══════════════════════════ LIBRARY ════════════════════════════ -->
 <div class="page" id="page-library">
-  <div class="search-box">
-    <svg width="17" height="17" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input id="librarySearch" placeholder="Search Adhkar…" type="text"/>
-  </div>
+  <main class="px-6 pt-8 pb-4 space-y-6 max-w-[720px] mx-auto">
 
-  <div class="cat-chips">
-    <button class="cat-chip active" data-cat="All">All</button>
-    <button class="cat-chip" data-cat="Morning">Morning</button>
-    <button class="cat-chip" data-cat="Evening">Evening</button>
-    <button class="cat-chip" data-cat="After Prayer">After Prayer</button>
-    <button class="cat-chip" data-cat="Protection">Protection</button>
-    <button class="cat-chip" data-cat="Custom">My Zikr</button>
-  </div>
+    <section>
+      <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--secondary)] mb-1">Welcome Back</p>
+      <h2 class="font-serif text-2xl font-medium text-[color:var(--on-surf)]">Post Prayer Supplications</h2>
+      <div class="h-0.5 w-16 rounded-full mt-3" style="background:var(--secondary);opacity:.4"></div>
+    </section>
 
-  <div id="zikrList" style="display:flex;flex-direction:column;gap:10px;"></div>
+    <!-- After Prayer hero card -->
+    <div class="prayer-card p-6 relative"
+      style="border:1px solid rgba(179,203,200,.12)">
+      <div class="flex justify-between items-start mb-4">
+        <span class="material-symbols-outlined fill-icon text-4xl text-[color:var(--secondary)]">auto_awesome</span>
+        <span class="text-xs font-semibold px-3 py-1 rounded-full"
+          style="background:var(--primary-c);color:var(--on-pc)">Recommended</span>
+      </div>
+      <h3 class="font-serif text-xl font-medium text-[color:var(--primary)] mb-1">After Fard Salah</h3>
+      <p class="text-sm text-[color:var(--on-sv)] mb-4 max-w-xs">
+        Authentic remembrances to recite immediately after each obligatory prayer.
+      </p>
+      <div class="flex justify-between items-end">
+        <span class="text-sm font-semibold text-[color:var(--secondary)] opacity-80">9 Supplications</span>
+        <button class="material-symbols-outlined rounded-full p-2"
+          style="background:var(--secondary);color:var(--on-sec)">arrow_forward</button>
+      </div>
+    </div>
+
+    <!-- Supplication list -->
+    <div id="zikrList" class="space-y-3"></div>
+
+  </main>
 </div>
 
-<!-- ═══════════════════════════ PROGRESS ═════════════════════════ -->
+<!-- ══════════════════════════ COUNTER ════════════════════════════ -->
+<div class="page" id="page-counter">
+  <main class="max-w-[720px] mx-auto px-6 pt-8 pb-4 flex flex-col items-center min-h-[calc(100dvh-88px)]">
+
+    <!-- Zikr selector chips -->
+    <div class="flex gap-2 flex-wrap justify-center mb-6">
+      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
+        style="background:var(--primary-c);color:var(--on-pc);border:1.5px solid var(--primary)"
+        data-arabic="سُبْحَانَ اللهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
+      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
+        style="background:var(--sc-high);color:var(--on-sv);border:1.5px solid var(--outl-v)"
+        data-arabic="الْحَمْدُ للهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
+      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
+        style="background:var(--sc-high);color:var(--on-sv);border:1.5px solid var(--outl-v)"
+        data-arabic="اللهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
+    </div>
+
+    <!-- Arabic text -->
+    <div class="w-full rounded-2xl p-6 flex flex-col items-center space-y-3 text-center mb-8"
+      style="background:var(--sc-low)">
+      <span class="text-xs font-bold uppercase tracking-widest text-[color:var(--on-sv)]" id="counterCategory">Tasbih</span>
+      <h2 class="font-serif text-4xl text-[color:var(--primary)] leading-relaxed" id="counterArabic" dir="rtl">
+        سُبْحَانَ ٱللَّٰهِ
+      </h2>
+      <p class="text-sm text-[color:var(--on-surf)]" id="counterEnglish">Glory be to Allah.</p>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--secondary)"></span>
+        <span class="text-xs text-[color:var(--on-sv)]" id="counterRecommended">Recommended: 33 times</span>
+      </div>
+    </div>
+
+    <!-- Counter display + tap area -->
+    <div class="relative flex flex-col items-center justify-center mb-8">
+      <!-- Decorative ring -->
+      <div class="absolute w-60 h-60 rounded-full"
+        style="border:1px solid rgba(225,193,157,.1);animation:pulse-ring 4s infinite ease-in-out"></div>
+      <style>
+        @keyframes pulse-ring{
+          0%{opacity:.6;transform:scale(1)}
+          50%{opacity:1;transform:scale(1.03)}
+          100%{opacity:.6;transform:scale(1)}
+        }
+      </style>
+      <!-- Count display -->
+      <div class="relative z-10 flex flex-col items-center mb-10">
+        <span class="font-serif text-[88px] leading-none text-[color:var(--primary)]" id="counter-value">0</span>
+        <span class="text-sm font-semibold text-[color:var(--on-sv)] opacity-70 tracking-widest uppercase" id="target-display">OF 33</span>
+      </div>
+      <!-- Fingerprint tap button -->
+      <button id="tap-target"
+        class="w-48 h-48 rounded-full flex items-center justify-center transition-all duration-300 active:scale-95"
+        style="background:rgba(45,67,65,.25);border:2px solid rgba(225,193,157,.2);
+               box-shadow:0 0 40px rgba(232,200,163,.05)">
+        <span class="material-symbols-outlined text-[color:var(--secondary)] transition-transform group-active:scale-125"
+          style="font-size:80px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 48">fingerprint</span>
+      </button>
+    </div>
+
+    <!-- Target chips -->
+    <div class="flex gap-2 justify-center mb-6">
+      <button class="target-chip px-6 py-2 rounded-full text-sm font-bold active"
+        style="background:var(--secondary);color:var(--on-sec)" onclick="setTarget(33)">33</button>
+      <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
+        style="background:var(--sc-high);color:var(--on-sv)" onclick="setTarget(99)">99</button>
+      <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
+        style="background:var(--sc-high);color:var(--on-sv)" onclick="setTarget(1000)">1000</button>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex gap-8 justify-center">
+      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]" id="reset-btn">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center"
+          style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
+          <span class="material-symbols-outlined text-[20px]">refresh</span>
+        </div>
+        Reset
+      </button>
+      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]" id="haptic-btn">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center" id="hapticIcon"
+          style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
+          <span class="material-symbols-outlined text-[20px]">vibration</span>
+        </div>
+        Haptic
+      </button>
+      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]"
+        onclick="navigateTo('library')">
+        <div class="w-11 h-11 rounded-full flex items-center justify-center"
+          style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
+          <span class="material-symbols-outlined text-[20px]">menu_book</span>
+        </div>
+        Library
+      </button>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══════════════════════════ PROGRESS ══════════════════════════ -->
 <div class="page" id="page-progress">
-  <div class="streak-hero">
-    <div style="font-size:32px;margin-bottom:4px;">🔥</div>
-    <div class="streak-num" id="streakDisplay">0</div>
-    <div class="streak-lbl">Day Streak</div>
-  </div>
+  <main class="px-6 pt-8 pb-4 space-y-5 max-w-[720px] mx-auto">
 
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-label">Lifetime</div>
-      <div class="stat-val" id="lifetimeCount">0</div>
-      <div class="stat-sub">total dhikr</div>
+    <!-- Streak hero -->
+    <div class="tonal-layer rounded-3xl p-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-40 h-40 pointer-events-none opacity-10">
+        <span class="material-symbols-outlined fill-icon text-[160px] text-[color:var(--secondary)]">local_fire_department</span>
+      </div>
+      <p class="text-xs font-bold uppercase tracking-widest text-[color:var(--on-pc)] mb-2">Current Streak</p>
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined fill-icon text-[color:var(--secondary)] text-4xl">local_fire_department</span>
+        <span class="font-serif text-5xl font-semibold text-[color:var(--primary)]" id="streakDisplay">0</span>
+        <span class="font-serif text-xl text-[color:var(--on-pc)]">Days</span>
+      </div>
+      <p class="text-sm text-[color:var(--on-pc)] mt-2 opacity-80">Keep the flame of remembrance alive.</p>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">Today</div>
-      <div class="stat-val" id="todayCount">0</div>
-      <div class="stat-sub">counted today</div>
-    </div>
-  </div>
 
-  <div class="card">
-    <div style="font-size:14px;font-weight:700;margin-bottom:14px;">This Week</div>
-    <div class="bar-chart" id="weeklyChart"></div>
-  </div>
+    <!-- Stats -->
+    <div class="grid grid-cols-2 gap-3">
+      <div class="rounded-2xl p-5" style="background:var(--sc-high)">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">Lifetime Count</p>
+        <p class="font-serif text-3xl font-semibold text-[color:var(--primary)]" id="lifetimeCount">0</p>
+        <p class="text-xs text-[color:var(--on-sv)] mt-1">Total Dhikr</p>
+      </div>
+      <div class="rounded-2xl p-5" style="background:var(--sc-high)">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">Today</p>
+        <p class="font-serif text-3xl font-semibold text-[color:var(--secondary)]" id="todayCount">0</p>
+        <p class="text-xs text-[color:var(--on-sv)] mt-1">Counted Today</p>
+      </div>
+    </div>
+
+    <!-- Weekly chart -->
+    <div class="rounded-2xl p-5" style="background:var(--sc-low);border:1px solid rgba(255,255,255,.04)">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="font-serif text-lg font-medium text-[color:var(--primary)]">Weekly Activity</h2>
+        <div class="flex items-center gap-1.5">
+          <div class="w-2 h-2 rounded-full" style="background:var(--secondary)"></div>
+          <span class="text-[10px] font-bold text-[color:var(--on-sv)] uppercase">Goal Reached</span>
+        </div>
+      </div>
+      <div class="flex items-end justify-between h-28 gap-1.5" id="weeklyChart"></div>
+    </div>
+
+    <!-- Insight card -->
+    <div class="rounded-2xl p-5 flex items-start gap-4"
+      style="background:rgba(45,67,65,.35);border:1px solid rgba(179,203,200,.12)">
+      <span class="material-symbols-outlined text-[color:var(--secondary)] mt-0.5">lightbulb</span>
+      <div>
+        <p class="text-xs font-bold uppercase tracking-wider text-[color:var(--secondary)] mb-1">Spiritual Insight</p>
+        <p class="text-sm text-[color:var(--on-sv)] leading-relaxed">
+          Your journey of remembrance is growing. Stay consistent and let each Dhikr bring you closer to inner peace.
+        </p>
+      </div>
+    </div>
+
+  </main>
 </div>
 
-<!-- ═══════════════════════════ SETTINGS ═════════════════════════ -->
+<!-- ══════════════════════════ SETTINGS ══════════════════════════ -->
 <div class="page" id="page-settings">
-  <div style="padding-top:4px;">
-    <h2 style="font-size:22px;font-weight:700;">Settings</h2>
-  </div>
+  <main class="px-6 pt-8 pb-4 space-y-6 max-w-[720px] mx-auto">
 
-  <div class="settings-section">
-    <div class="settings-lbl">Appearance</div>
-    <div class="settings-group">
-      <div class="settings-row">
-        <div class="row-icon">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </div>
-        <div class="row-title">Theme</div>
-        <div class="theme-sw">
-          <button class="theme-btn active" id="lightBtn" onclick="setTheme('light')">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-            Light
-          </button>
-          <button class="theme-btn" id="darkBtn" onclick="setTheme('dark')">
-            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
-            Dark
-          </button>
+    <h2 class="font-serif text-2xl font-medium text-[color:var(--on-surf)]">Settings</h2>
+
+    <!-- Appearance -->
+    <div>
+      <p class="text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-3 px-1">Appearance</p>
+      <div class="rounded-2xl overflow-hidden" style="background:var(--sc-high)">
+        <div class="flex items-center gap-3 p-4" style="border-bottom:1px solid var(--outl-v)">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+            style="background:var(--primary-c);color:var(--primary)">
+            <span class="material-symbols-outlined text-[18px]">palette</span>
+          </div>
+          <span class="flex-1 text-sm font-medium text-[color:var(--on-surf)]">Visual Theme</span>
+          <div class="flex rounded-xl overflow-hidden" style="background:var(--sc);border:1px solid var(--outl-v)">
+            <button id="lightBtn" onclick="setTheme('light')"
+              class="flex items-center gap-1.5 px-3 py-2 text-xs font-bold transition-all"
+              style="color:var(--on-sv)">
+              <span class="material-symbols-outlined text-[16px]">light_mode</span>Light
+            </button>
+            <button id="darkBtn" onclick="setTheme('dark')"
+              class="flex items-center gap-1.5 px-3 py-2 text-xs font-bold transition-all"
+              style="background:var(--primary-c);color:var(--on-pc)">
+              <span class="material-symbols-outlined text-[16px]">dark_mode</span>Dark
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="settings-section">
-    <div class="settings-lbl">General</div>
-    <div class="settings-group">
-      <div class="settings-row">
-        <div class="row-icon">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M5 9v6"/><path d="M9 5v14"/><path d="M13 5v14"/><path d="M17 9v6"/><path d="M21 11v2"/>
-          </svg>
+    <!-- General -->
+    <div>
+      <p class="text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-3 px-1">General</p>
+      <div class="rounded-2xl overflow-hidden" style="background:var(--sc-high)">
+        <!-- Haptic -->
+        <div class="flex items-center gap-3 p-4" style="border-bottom:1px solid var(--outl-v)">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+            style="background:var(--primary-c);color:var(--primary)">
+            <span class="material-symbols-outlined text-[18px]">vibration</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-medium text-[color:var(--on-surf)]">Haptic Feedback</p>
+            <p class="text-xs text-[color:var(--on-sv)] mt-0.5">Vibrate on each count</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="hapticToggle" checked/>
+            <div class="toggle-track"></div>
+            <div class="toggle-thumb"></div>
+          </label>
         </div>
-        <div>
-          <div class="row-title">Haptic Feedback</div>
-          <div class="row-sub">Vibrate on each count</div>
+        <!-- Daily goal -->
+        <div class="flex items-center gap-3 p-4" style="border-bottom:1px solid var(--outl-v)">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+            style="background:var(--primary-c);color:var(--primary)">
+            <span class="material-symbols-outlined text-[18px]">track_changes</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-medium text-[color:var(--on-surf)]">Daily Goal</p>
+            <p class="text-xs text-[color:var(--on-sv)] mt-0.5" id="goalLabel">33 dhikr per day</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="adjustGoal(-1)" class="w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold"
+              style="background:var(--sc);border:1.5px solid var(--outl-v);color:var(--on-surf)">−</button>
+            <span class="text-sm font-bold text-[color:var(--secondary)] min-w-[28px] text-center" id="goalDisplay">33</span>
+            <button onclick="adjustGoal(1)" class="w-8 h-8 rounded-full flex items-center justify-center text-lg font-bold"
+              style="background:var(--sc);border:1.5px solid var(--outl-v);color:var(--on-surf)">+</button>
+          </div>
         </div>
-        <label class="toggle" style="margin-left:auto">
-          <input type="checkbox" id="hapticToggle" checked/>
-          <div class="toggle-track"></div>
-          <div class="toggle-thumb"></div>
-        </label>
-      </div>
-
-      <div class="settings-row">
-        <div class="row-icon">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
+        <!-- Reset -->
+        <div class="flex items-center gap-3 p-4">
+          <div class="w-9 h-9 rounded-xl flex items-center justify-center"
+            style="background:rgba(255,180,171,.15);color:#ffb4ab">
+            <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+          </div>
+          <div class="flex-1">
+            <p class="text-sm font-medium text-[color:var(--on-surf)]">Reset Progress</p>
+            <p class="text-xs text-[color:var(--on-sv)] mt-0.5">Clear all counts and streaks</p>
+          </div>
+          <button onclick="resetAllProgress()"
+            class="px-4 py-1.5 rounded-full text-xs font-bold"
+            style="border:1.5px solid #ffb4ab;color:#ffb4ab">Reset</button>
         </div>
-        <div>
-          <div class="row-title">Daily Goal</div>
-          <div class="row-sub" id="goalLabel">33 dhikr per day</div>
-        </div>
-        <div class="stepper" style="margin-left:auto">
-          <button class="step-btn" onclick="adjustGoal(-1)">−</button>
-          <span class="step-val" id="goalDisplay">33</span>
-          <button class="step-btn" onclick="adjustGoal(1)">+</button>
-        </div>
-      </div>
-
-      <div class="settings-row">
-        <div class="row-icon" style="background:color-mix(in srgb,var(--danger) 15%,transparent);color:var(--danger)">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
-          </svg>
-        </div>
-        <div>
-          <div class="row-title">Reset Progress</div>
-          <div class="row-sub">Clear all counts and streaks</div>
-        </div>
-        <button onclick="resetAllProgress()" style="margin-left:auto;padding:6px 14px;border-radius:999px;border:1.5px solid var(--danger);color:var(--danger);font-size:13px;font-weight:600">Reset</button>
       </div>
     </div>
-  </div>
 
-  <div class="about">
-    <div class="about-logo">
-      <svg width="32" height="32" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
-        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
-      </svg>
+    <!-- About -->
+    <div class="text-center py-6">
+      <div class="w-16 h-16 rounded-2xl mx-auto mb-3 flex items-center justify-center"
+        style="background:linear-gradient(145deg,var(--primary-c),var(--sc-low))">
+        <span class="material-symbols-outlined fill-icon text-[color:var(--primary)] text-3xl">mosque</span>
+      </div>
+      <p class="font-serif text-lg font-medium text-[color:var(--on-surf)]">Sacred Devotion</p>
+      <p class="text-xs text-[color:var(--on-sv)] mt-1">Version 1.0.0 · Thasbeeh Counter</p>
+      <p class="text-xs text-[color:var(--on-sv)] mt-3 opacity-60">Designed for Mindfulness &amp; Presence</p>
     </div>
-    <div class="about-name">Sacred Devotion</div>
-    <div>Version 1.0.0 · Thasbeeh Counter</div>
-    <div style="margin-top:8px;">Designed for mindfulness &amp; presence</div>
-  </div>
+
+  </main>
 </div>
 
 </div><!-- /#app -->
 
-<!-- Bottom Nav -->
+<!-- ══════════════════════════ BOTTOM NAV ════════════════════════ -->
 <nav>
-  <button class="nav-item active" onclick="navigateTo('home')" data-page="home">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
+  <button class="nav-btn" data-page="home" onclick="navigateTo('home')">
+    <span class="material-symbols-outlined">home</span>
     Home
   </button>
-  <button class="nav-item" onclick="navigateTo('counter')" data-page="counter">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-    </svg>
-    Counter
-  </button>
-  <button class="nav-item" onclick="navigateTo('library')" data-page="library">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-    </svg>
+  <button class="nav-btn" data-page="library" onclick="navigateTo('library')">
+    <span class="material-symbols-outlined">menu_book</span>
     Library
   </button>
-  <button class="nav-item" onclick="navigateTo('progress')" data-page="progress">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-    </svg>
+  <!-- Elevated center counter -->
+  <div class="nav-center flex flex-col items-center">
+    <button class="nav-center-btn" data-page="counter" onclick="navigateTo('counter')">
+      <span class="material-symbols-outlined text-[28px]">fingerprint</span>
+    </button>
+    <span class="nav-center-lbl" id="nav-center-lbl">Counter</span>
+  </div>
+  <button class="nav-btn" data-page="progress" onclick="navigateTo('progress')">
+    <span class="material-symbols-outlined">insights</span>
     Progress
   </button>
-  <button class="nav-item" onclick="navigateTo('settings')" data-page="settings">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="3"/>
-      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-    </svg>
+  <button class="nav-btn" data-page="settings" onclick="navigateTo('settings')">
+    <span class="material-symbols-outlined">settings</span>
     Settings
   </button>
 </nav>
 
-<!-- FAB -->
-<button class="fab hidden" id="addZikrFab" onclick="openAddZikrModal()">
-  <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
-    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-  </svg>
+<!-- FAB (library page) -->
+<button id="addZikrFab" onclick="openAddZikrModal()"
+  class="fixed z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all"
+  style="bottom:104px;right:20px;background:var(--secondary);color:var(--on-sec);display:none">
+  <span class="material-symbols-outlined text-[28px]">add_circle</span>
 </button>
 
 <!-- Toast -->
 <div class="toast" id="toast">🎉 MashaAllah! Target reached!</div>
 
-<!-- Add Zikr Modal -->
+<!-- ══════════════════════════ ADD ZIKR MODAL ════════════════════ -->
 <div class="modal-bg" id="addZikrModal">
   <div class="modal-sheet">
-    <div class="modal-hdr">
-      <span class="modal-title">Add New Zikr</span>
-      <button class="modal-close" onclick="closeAddZikrModal()">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
+    <div class="flex items-center justify-between">
+      <h2 class="font-serif text-xl font-medium text-[color:var(--on-surf)]">Add New Zikr</h2>
+      <button onclick="closeAddZikrModal()"
+        class="w-9 h-9 rounded-full flex items-center justify-center"
+        style="background:var(--sc-high);color:var(--on-sv)">
+        <span class="material-symbols-outlined">close</span>
       </button>
     </div>
     <div>
-      <label class="form-lbl">Arabic <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-      <textarea id="newArabic" class="form-input form-arabic" rows="2" placeholder="اكتب هنا…" style="resize:none"></textarea>
+      <label class="block text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">
+        Arabic <span class="text-[color:var(--on-sv)] normal-case font-normal">(optional)</span>
+      </label>
+      <textarea id="newArabic" class="field field-arabic" rows="2" placeholder="اكتب هنا…" style="resize:none"></textarea>
     </div>
     <div>
-      <label class="form-lbl">Transliteration <span style="color:var(--danger)">*</span></label>
-      <input id="newTranslit" class="form-input" type="text" placeholder="e.g. Astaghfirullah"/>
-      <div id="translitError" class="error-txt">This field is required</div>
+      <label class="block text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">
+        Transliteration <span style="color:#ffb4ab">*</span>
+      </label>
+      <input id="newTranslit" class="field" type="text" placeholder="e.g. Astaghfirullah"/>
+      <p id="translitError" class="text-xs mt-1" style="color:#ffb4ab;display:none">This field is required</p>
     </div>
     <div>
-      <label class="form-lbl">Meaning <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-      <textarea id="newMeaning" class="form-input" rows="2" placeholder="e.g. I seek forgiveness from Allah" style="resize:none"></textarea>
+      <label class="block text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">
+        Meaning <span class="text-[color:var(--on-sv)] normal-case font-normal">(optional)</span>
+      </label>
+      <textarea id="newMeaning" class="field" rows="2" placeholder="e.g. I seek forgiveness from Allah" style="resize:none"></textarea>
     </div>
-    <div class="form-grid">
+    <div class="grid grid-cols-2 gap-3">
       <div>
-        <label class="form-lbl">Category</label>
-        <select id="newCategory" class="form-input">
+        <label class="block text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">Category</label>
+        <select id="newCategory" class="field">
           <option value="Custom">My Zikr</option>
+          <option value="After Prayer">After Prayer</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
-          <option value="After Prayer">After Prayer</option>
           <option value="Protection">Protection</option>
         </select>
       </div>
       <div>
-        <label class="form-lbl">Target Count</label>
-        <input id="newCount" class="form-input" type="number" min="1" max="9999" value="33"/>
+        <label class="block text-[11px] font-bold uppercase tracking-widest text-[color:var(--on-sv)] mb-2">Target Count</label>
+        <input id="newCount" class="field" type="number" min="1" max="9999" value="33"/>
       </div>
     </div>
-    <button class="btn-primary" onclick="saveNewZikr()">
-      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <button onclick="saveNewZikr()"
+      class="w-full py-4 rounded-2xl flex items-center justify-center gap-2 text-sm font-bold"
+      style="background:var(--secondary);color:var(--on-sec)">
+      <span class="material-symbols-outlined text-[20px]">check_circle</span>
       Save Zikr
     </button>
   </div>
@@ -720,7 +765,7 @@ nav{
 const state = {
   count:0, target:33, dailyGoal:33,
   lifetimeCount:0, todayCount:0, streak:0,
-  lastCountDate:null, hapticEnabled:true, theme:'light',
+  lastCountDate:null, hapticEnabled:true, theme:'dark',
   dailyCounts:{}, bookmarks:[],
 };
 
@@ -764,42 +809,65 @@ let currentPage='home';
 function navigateTo(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+
+  // Regular nav buttons
+  document.querySelectorAll('.nav-btn').forEach(b=>{
+    b.classList.toggle('active',b.dataset.page===page);
+  });
+  // Center counter button
+  const centerBtn=document.querySelector('.nav-center-btn');
+  const centerLbl=document.getElementById('nav-center-lbl');
+  if(page==='counter'){
+    centerBtn.style.background='var(--primary)';
+    centerBtn.style.color='var(--sc-low)';
+    centerLbl.classList.add('active');
+  }else{
+    centerBtn.style.background='var(--secondary)';
+    centerBtn.style.color='var(--on-sec)';
+    centerLbl.classList.remove('active');
+  }
+
   currentPage=page;
-  document.getElementById('addZikrFab').classList.toggle('hidden',page!=='library');
-  if(page==='home')updateHomeUI();
+  const fab=document.getElementById('addZikrFab');
+  fab.style.display=page==='library'?'flex':'none';
+  if(page==='home'){updateHomeUI();renderHomeChart();}
   if(page==='progress')updateProgressUI();
   if(page==='settings')updateSettingsUI();
-  if(page==='library')renderLibrary(activeCategory,searchQuery);
+  if(page==='library')renderLibrary();
 }
 
 // ── Theme ──
 function setTheme(mode){
   state.theme=mode;
-  document.documentElement.classList.toggle('dark',mode==='dark');
+  const html=document.documentElement;
+  html.classList.toggle('dark',mode==='dark');
   const icon=document.getElementById('themeIcon');
-  if(mode==='dark'){
-    icon.innerHTML='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-  }else{
-    icon.innerHTML='<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
+  icon.textContent=mode==='dark'?'light_mode':'dark_mode';
+  const lb=document.getElementById('lightBtn'),db=document.getElementById('darkBtn');
+  if(lb&&db){
+    if(mode==='light'){
+      lb.style.background='var(--primary-c)';lb.style.color='var(--on-pc)';
+      db.style.background='';db.style.color='var(--on-sv)';
+    }else{
+      db.style.background='var(--primary-c)';db.style.color='var(--on-pc)';
+      lb.style.background='';lb.style.color='var(--on-sv)';
+    }
   }
-  document.getElementById('lightBtn')?.classList.toggle('active',mode==='light');
-  document.getElementById('darkBtn')?.classList.toggle('active',mode==='dark');
   saveState();
 }
-document.getElementById('themeBtn').addEventListener('click',()=>setTheme(state.theme==='light'?'dark':'light'));
+document.getElementById('themeBtn').addEventListener('click',()=>setTheme(state.theme==='dark'?'light':'dark'));
 
 // ── Counter ──
-const CIRCLE=816.81;
 function updateCounterUI(){
   const pct=Math.min(state.count,state.target)/state.target;
-  document.getElementById('progress-circle').style.strokeDashoffset=CIRCLE-pct*CIRCLE;
+  document.getElementById('top-progress-fill').style.width=(pct*100)+'%';
   document.getElementById('counter-value').textContent=state.count;
-  document.getElementById('target-display').textContent='/ '+state.target;
+  document.getElementById('target-display').textContent='OF '+state.target;
   updateHomeUI();
 }
 
-document.getElementById('tap-target').addEventListener('pointerdown',()=>{
+const tapBtn=document.getElementById('tap-target');
+tapBtn.addEventListener('pointerdown',()=>{
   state.count++;state.todayCount++;state.lifetimeCount++;
   state.lastCountDate=new Date().toDateString();
   if(state.streak===0&&state.todayCount===1)state.streak=1;
@@ -822,19 +890,39 @@ document.getElementById('haptic-btn').addEventListener('click',()=>{
 
 function setTarget(val){
   state.target=val;saveState();
-  document.querySelectorAll('.target-chip').forEach(c=>c.classList.toggle('active',parseInt(c.textContent)===val));
+  document.querySelectorAll('.target-chip').forEach(c=>{
+    const isActive=parseInt(c.textContent)===val;
+    c.style.background=isActive?'var(--secondary)':'var(--sc-high)';
+    c.style.color=isActive?'var(--on-sec)':'var(--on-sv)';
+  });
   updateCounterUI();
 }
 
+// Zikr chip switching on counter page
 document.querySelectorAll('.zikr-chip').forEach(btn=>{
   btn.addEventListener('click',()=>{
     document.getElementById('counterArabic').textContent=btn.dataset.arabic;
     document.getElementById('counterEnglish').textContent=btn.dataset.english;
-    document.getElementById('counterMeaning').textContent=btn.dataset.meaning;
+    document.getElementById('counterRecommended').textContent='Recommended: '+state.target+' times';
     state.count=0;saveState();updateCounterUI();
-    document.querySelectorAll('.zikr-chip').forEach(b=>b.classList.toggle('active',b===btn));
+    document.querySelectorAll('.zikr-chip').forEach(b=>{
+      const a=b===btn;
+      b.style.background=a?'var(--primary-c)':'var(--sc-high)';
+      b.style.color=a?'var(--on-pc)':'var(--on-sv)';
+      b.style.borderColor=a?'var(--primary)':'var(--outl-v)';
+    });
   });
 });
+
+function loadAndCount(arabic,english,meaning,count){
+  document.getElementById('counterArabic').textContent=arabic;
+  document.getElementById('counterEnglish').textContent=meaning;
+  document.getElementById('counterRecommended').textContent='Recommended: '+count+' times';
+  state.count=0;state.target=count;saveState();
+  updateCounterUI();
+  setTarget(count);
+  navigateTo('counter');
+}
 
 function showToast(){
   const t=document.getElementById('toast');
@@ -845,16 +933,36 @@ function showToast(){
 // ── Home ──
 function updateHomeUI(){
   const c=state.todayCount,g=state.dailyGoal;
-  document.getElementById('homeDailyCount').textContent=c;
+  document.getElementById('homeTodayCount').textContent=c;
   document.getElementById('homeDailyTarget').textContent=g;
-  const pct=g>0?Math.round(Math.min(c,g)/g*100):0;
-  document.getElementById('homeProgressPct').textContent=pct+'% of daily goal';
-  const circ=238.76;
-  document.getElementById('homeRing').style.strokeDashoffset=circ-(pct/100)*circ;
   document.getElementById('homeStreak').textContent=state.streak;
   document.getElementById('homeLifetime').textContent=state.lifetimeCount.toLocaleString();
   const h=new Date().getHours();
-  document.getElementById('greetingText').textContent=h<12?'Good morning ☀️':h<18?'Good afternoon 🌿':'Good evening 🌙';
+  document.getElementById('greetingText').textContent=
+    h<12?'Good morning ☀️':h<18?'Good afternoon 🌿':'Good evening 🌙';
+}
+
+function renderHomeChart(){
+  const DAY=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const slots=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    slots.push({label:DAY[d.getDay()],key:k,isToday:i===0,count:state.dailyCounts[k]||0});
+  }
+  slots[6].count=state.todayCount;
+  const max=Math.max(...slots.map(s=>s.count),state.dailyGoal,1);
+  const el=document.getElementById('homeWeekChart');
+  if(!el)return;
+  el.innerHTML=slots.map(s=>{
+    const h=Math.max(3,Math.round(s.count/max*80));
+    const isGoal=s.count>=state.dailyGoal;
+    const color=s.isToday?'var(--secondary)':isGoal?'rgba(225,193,157,.6)':'rgba(179,203,200,.2)';
+    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="width:100%;height:${h}px;border-radius:5px 5px 0 0;background:${color}"></div>
+      <span style="font-size:10px;font-weight:600;color:${s.isToday?'var(--secondary)':'var(--on-sv)'}">${s.label}</span>
+    </div>`;
+  }).join('');
 }
 
 // ── Progress ──
@@ -876,11 +984,11 @@ function renderWeeklyChart(){
   slots[6].count=state.todayCount;
   const max=Math.max(...slots.map(s=>s.count),state.dailyGoal,1);
   document.getElementById('weeklyChart').innerHTML=slots.map(s=>{
-    const h=Math.max(4,Math.round(s.count/max*96));
-    const cls=s.isToday?'today':s.count>=state.dailyGoal?'reached':'';
-    return`<div class="bar-col">
-      <div class="bar-fill ${cls}" style="height:${h}px"></div>
-      <div class="bar-day ${s.isToday?'today':''}">${s.label}</div>
+    const h=Math.max(4,Math.round(s.count/max*112));
+    const color=s.isToday?'var(--secondary)':s.count>=state.dailyGoal?'rgba(225,193,157,.55)':'rgba(179,203,200,.18)';
+    return`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px">
+      <div style="width:100%;height:${h}px;border-radius:5px 5px 0 0;background:${color}"></div>
+      <span style="font-size:10px;font-weight:600;color:${s.isToday?'var(--secondary)':'var(--on-sv)'}">${s.label}</span>
     </div>`;
   }).join('');
 }
@@ -890,8 +998,14 @@ function updateSettingsUI(){
   document.getElementById('goalDisplay').textContent=state.dailyGoal;
   document.getElementById('goalLabel').textContent=state.dailyGoal+' dhikr per day';
   document.getElementById('hapticToggle').checked=state.hapticEnabled;
-  document.getElementById('lightBtn').classList.toggle('active',state.theme==='light');
-  document.getElementById('darkBtn').classList.toggle('active',state.theme==='dark');
+  const lb=document.getElementById('lightBtn'),db=document.getElementById('darkBtn');
+  if(state.theme==='light'){
+    lb.style.background='var(--primary-c)';lb.style.color='var(--on-pc)';
+    db.style.background='';db.style.color='var(--on-sv)';
+  }else{
+    db.style.background='var(--primary-c)';db.style.color='var(--on-pc)';
+    lb.style.background='';lb.style.color='var(--on-sv)';
+  }
 }
 
 function adjustGoal(d){
@@ -912,118 +1026,187 @@ function resetAllProgress(){
   saveState();updateCounterUI();updateHomeUI();
 }
 
-// ── Library ──
-const zikrData=[
-  {arabic:'سُبْحَانَ اللَّهِ',english:'SubhanAllah',meaning:'Glory be to Allah',count:33,category:'Morning'},
-  {arabic:'الْحَمْدُ لِلَّهِ',english:'Alhamdulillah',meaning:'All praise is due to Allah',count:33,category:'Morning'},
-  {arabic:'اللَّهُ أَكْبَرُ',english:'Allahu Akbar',meaning:'Allah is the Greatest',count:34,category:'Morning'},
-  {arabic:'لَا إِلَٰهَ إِلَّا اللَّهُ',english:'La ilaha illallah',meaning:'There is no god but Allah',count:100,category:'After Prayer'},
-  {arabic:'أَسْتَغْفِرُ اللَّهَ',english:'Astaghfirullah',meaning:'I seek forgiveness from Allah',count:100,category:'Evening'},
-  {arabic:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',english:'SubhanAllahi wa bihamdihi',meaning:'Glory be to Allah and praise Him',count:100,category:'Morning'},
-  {arabic:'سُبْحَانَ اللَّهِ الْعَظِيمِ',english:'SubhanAllahil Azim',meaning:'Glory be to Allah the Magnificent',count:100,category:'After Prayer'},
-  {arabic:'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',english:'La hawla wala quwwata',meaning:'There is no power except with Allah',count:100,category:'Protection'},
-  {arabic:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',english:"Hasbunallah wa ni'mal wakil",meaning:'Allah is sufficient for us',count:7,category:'Protection'},
-  {arabic:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',english:'Bismillah ir-Rahman ir-Raheem',meaning:'In the name of Allah, the Most Gracious',count:1,category:'Morning'},
-  {arabic:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',english:'Allahumma salli ala Muhammad',meaning:'O Allah, send blessings upon Muhammad',count:100,category:'Evening'},
-  {arabic:'رَبِّ اغْفِرْ لِي',english:'Rabbi ighfir li',meaning:'My Lord, forgive me',count:100,category:'After Prayer'},
+// ── Library: Post Prayer Supplications ──
+const postPrayerData = [
+  {
+    number:1,
+    title:"Seeking Forgiveness (Istighfar)",
+    arabic:"أَسْتَغْفِرُ اللهَ",
+    transliteration:"Astaghfirullah",
+    meaning:"I seek the forgiveness of Allah.",
+    count:3,
+    reference:"Sahih Muslim 591",
+    category:"After Prayer"
+  },
+  {
+    number:2,
+    title:"Supplication for Peace",
+    arabic:"اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ تَبَارَكْتَ يَا ذَا الْجَلاَلِ وَالإِكْرَامِ",
+    transliteration:"Allahumma Antas-Salam wa minkas-salam, tabarakta ya Dhal-Jalali wal-Ikram",
+    meaning:"O Allah, You are Peace and from You comes peace. Blessed are You, O Owner of Majesty and Honor.",
+    count:1,
+    reference:"Sahih Muslim 591",
+    category:"After Prayer"
+  },
+  {
+    number:3,
+    title:"Affirmation of Monotheism",
+    arabic:"لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+    transliteration:"La ilaha illallahu wahdahu la sharika lah, lahul-mulku wa lahul-hamd, wa huwa 'ala kulli shay'in qadir",
+    meaning:"There is no god but Allah alone, with no partner. His is the Dominion, to Him be all praise, and He is able to do all things.",
+    count:1,
+    reference:"Sahih al-Bukhari 844",
+    category:"After Prayer"
+  },
+  {
+    number:4,
+    title:"Tasbih — Glorification",
+    arabic:"سُبْحَانَ اللهِ",
+    transliteration:"SubhanAllah",
+    meaning:"Glory be to Allah.",
+    count:33,
+    reference:"Sahih Muslim 597",
+    category:"After Prayer"
+  },
+  {
+    number:5,
+    title:"Tahmid — Praise",
+    arabic:"الْحَمْدُ للهِ",
+    transliteration:"Alhamdulillah",
+    meaning:"All praise is due to Allah.",
+    count:33,
+    reference:"Sahih Muslim 597",
+    category:"After Prayer"
+  },
+  {
+    number:6,
+    title:"Takbir — Exaltation",
+    arabic:"اللهُ أَكْبَرُ",
+    transliteration:"Allahu Akbar",
+    meaning:"Allah is the Most Great.",
+    count:33,
+    reference:"Sahih Muslim 597",
+    category:"After Prayer"
+  },
+  {
+    number:7,
+    title:"Ayat al-Kursi",
+    arabic:"اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ",
+    transliteration:"Allahu la ilaha illa Huwal-Hayyul-Qayyum…",
+    meaning:"Allah! There is no deity except Him, the Ever-Living, the Sustainer of all existence. (Al-Baqarah 2:255)",
+    count:1,
+    reference:"Sahih al-Jami' 6464",
+    category:"After Prayer"
+  },
+  {
+    number:8,
+    title:"The Three Protecting Chapters",
+    arabic:"سُورَة الإِخْلَاص · سُورَة الْفَلَق · سُورَة النَّاس",
+    transliteration:"Surah Al-Ikhlas, Al-Falaq & An-Nas",
+    meaning:"Recite once each (3× after Fajr & Maghrib). For protection and seeking refuge in Allah.",
+    count:1,
+    reference:"Sunan Abi Dawud 1523",
+    category:"After Prayer"
+  },
+  {
+    number:9,
+    title:"Supplication for Firm Worship",
+    arabic:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+    transliteration:"Allahumma a'inni 'ala dhikrika, wa shukrika, wa husni 'ibadatik",
+    meaning:"O Allah, help me to remember You, to give thanks to You, and to worship You in the best manner.",
+    count:1,
+    reference:"Sunan Abi Dawud 1522",
+    category:"After Prayer"
+  },
 ];
 
 function allZikr(){
   try{
-    const c=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
-    return[...zikrData,...c.map(z=>({...z,category:z.category||'Custom'}))];
-  }catch{return zikrData;}
+    const custom=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
+    return[...postPrayerData,...custom];
+  }catch{return postPrayerData;}
 }
 
-let activeCategory='All',searchQuery='';
-let _filtered=[];
-
-function renderLibrary(filter='All',query=''){
-  const items=allZikr().filter(z=>{
-    const mc=filter==='All'||z.category===filter;
-    const mq=!query||z.english.toLowerCase().includes(query.toLowerCase())||(z.arabic&&z.arabic.includes(query))||(z.meaning&&z.meaning.toLowerCase().includes(query.toLowerCase()));
-    return mc&&mq;
-  });
-  _filtered=items;
+function renderLibrary(){
+  const items=allZikr();
   const list=document.getElementById('zikrList');
-  if(!items.length){
-    list.innerHTML='<p style="text-align:center;color:var(--muted);padding:32px 0;">No Adhkar found</p>';
-    return;
-  }
   list.innerHTML=items.map((z,i)=>`
-    <div class="zikr-card">
-      <div class="zikr-body">
-        ${z.arabic?`<div class="zikr-arabic">${z.arabic}</div>`:''}
-        <div class="zikr-name">${z.english}</div>
-        ${z.meaning?`<div class="zikr-meaning">${z.meaning}</div>`:''}
+    <div class="prayer-card p-5" onclick="startFromLibrary(${i})">
+      <div class="flex justify-between items-start gap-3">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="text-[10px] font-bold rounded-full px-2 py-0.5"
+              style="background:var(--primary-c);color:var(--on-pc)">${z.number}</span>
+            <span class="text-xs font-bold uppercase tracking-wider text-[color:var(--secondary)] truncate">${z.title}</span>
+          </div>
+          <p class="font-serif text-xl text-[color:var(--primary)] text-right leading-loose mb-2" dir="rtl">${z.arabic}</p>
+          <p class="text-xs text-[color:var(--on-sv)] italic mb-1">${z.transliteration}</p>
+          <p class="text-sm text-[color:var(--on-surf)] leading-relaxed">${z.meaning}</p>
+        </div>
+        <div class="flex flex-col items-end gap-2 flex-shrink-0">
+          <span class="text-xs font-bold px-3 py-1 rounded-full"
+            style="background:rgba(225,193,157,.15);color:var(--secondary)">${z.count}×</span>
+          <button class="w-9 h-9 rounded-full flex items-center justify-center"
+            style="background:var(--secondary);color:var(--on-sec)">
+            <span class="material-symbols-outlined text-[16px]">play_arrow</span>
+          </button>
+        </div>
       </div>
-      <div class="zikr-right">
-        <span class="zikr-badge">${z.count}×</span>
-        <button class="start-btn" onclick="startFromLibrary(${i})">
-          <svg width="12" height="12" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        </button>
-      </div>
-    </div>`).join('');
+      <p class="text-[10px] text-[color:var(--on-sv)] mt-3 opacity-60">📖 ${z.reference||''}</p>
+    </div>
+  `).join('');
 }
 
 function startFromLibrary(i){
-  const z=_filtered[i];if(!z)return;
+  const all=allZikr();
+  const z=all[i];if(!z)return;
   document.getElementById('counterArabic').textContent=z.arabic||'';
-  document.getElementById('counterEnglish').textContent=z.english;
-  document.getElementById('counterMeaning').textContent=z.meaning||'';
-  state.count=0;state.target=z.count||33;saveState();
+  document.getElementById('counterEnglish').textContent=z.meaning||z.transliteration||'';
+  document.getElementById('counterRecommended').textContent='Recommended: '+z.count+' times';
+  state.count=0;state.target=z.count||1;saveState();
   updateCounterUI();
-  document.querySelectorAll('.target-chip').forEach(c=>c.classList.toggle('active',parseInt(c.textContent)===state.target));
+  setTarget(state.target);
   navigateTo('counter');
 }
 
-document.querySelectorAll('.cat-chip').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.cat-chip').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    activeCategory=btn.dataset.cat;
-    renderLibrary(activeCategory,searchQuery);
-  });
-});
-document.getElementById('librarySearch').addEventListener('input',e=>{
-  searchQuery=e.target.value;
-  renderLibrary(activeCategory,searchQuery);
-});
-
-// ── Modal ──
+// ── Add Zikr Modal ──
 function openAddZikrModal(){document.getElementById('addZikrModal').classList.add('open');}
 function closeAddZikrModal(){
   document.getElementById('addZikrModal').classList.remove('open');
-  document.getElementById('newArabic').value='';
-  document.getElementById('newTranslit').value='';
-  document.getElementById('newMeaning').value='';
+  ['newArabic','newTranslit','newMeaning'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('newCount').value='33';
   document.getElementById('translitError').style.display='none';
 }
 function saveNewZikr(){
   const t=document.getElementById('newTranslit').value.trim();
   if(!t){document.getElementById('translitError').style.display='block';return;}
+  const existing=allZikr();
   const z={
+    number:existing.length+1,
+    title:t,
     arabic:document.getElementById('newArabic').value.trim(),
-    english:t,
+    transliteration:t,
     meaning:document.getElementById('newMeaning').value.trim(),
     category:document.getElementById('newCategory').value,
     count:parseInt(document.getElementById('newCount').value)||33,
+    reference:'',
   };
   try{
-    const ex=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
-    ex.push(z);localStorage.setItem('thasbeeh_custom',JSON.stringify(ex));
+    const custom=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
+    custom.push(z);localStorage.setItem('thasbeeh_custom',JSON.stringify(custom));
   }catch{}
-  closeAddZikrModal();
-  renderLibrary(activeCategory,searchQuery);
+  closeAddZikrModal();renderLibrary();
 }
-document.getElementById('addZikrModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeAddZikrModal();});
+document.getElementById('addZikrModal').addEventListener('click',e=>{
+  if(e.target===e.currentTarget)closeAddZikrModal();
+});
 
 // ── Init ──
 loadState();
 setTheme(state.theme);
 updateCounterUI();
 updateHomeUI();
+renderHomeChart();
 renderLibrary();
 
 if('serviceWorker'in navigator){
