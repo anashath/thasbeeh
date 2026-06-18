@@ -442,8 +442,15 @@ nav{
     <div id="tap-ripple"></div>
   </div>
 
+  <!-- Focus mode toggle (bottom-right, always visible) -->
+  <button id="focus-btn" onclick="toggleFocus(event)"
+    class="fixed bottom-20 right-5 z-[150] w-10 h-10 rounded-full flex items-center justify-center transition-all"
+    style="background:var(--sc-high);color:var(--on-sv);border:1px solid var(--outl-v);display:none">
+    <span class="material-symbols-outlined text-[18px]" id="focus-icon">fullscreen</span>
+  </button>
+
   <!-- Action row (non-tappable) -->
-  <div class="px-6 pb-4 space-y-3">
+  <div id="counter-actions" class="px-6 pb-4 space-y-3">
     <!-- Target chips -->
     <div class="flex gap-2 justify-center">
       <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
@@ -785,6 +792,9 @@ function navigateTo(page){
   if(page==='progress')updateProgressUI();
   if(page==='settings')updateSettingsUI();
   if(page==='library')renderLibrary();
+  // show focus button only on counter page; exit focus if leaving
+  document.getElementById('focus-btn').style.display=page==='counter'?'flex':'none';
+  if(page!=='counter'&&focusMode)exitFocus();
 }
 
 // ── Theme ──
@@ -862,6 +872,26 @@ document.getElementById('haptic-btn').addEventListener('click',e=>{
   document.getElementById('hapticIcon').style.opacity=state.hapticEnabled?'1':'0.35';
   saveState();
 });
+
+let focusMode=false;
+function toggleFocus(e){
+  e.stopPropagation();
+  focusMode?exitFocus():enterFocus();
+}
+function enterFocus(){
+  focusMode=true;
+  document.querySelector('nav').style.display='none';
+  document.getElementById('counter-actions').style.display='none';
+  document.getElementById('focus-icon').textContent='fullscreen_exit';
+  document.getElementById('focus-btn').style.bottom='24px';
+}
+function exitFocus(){
+  focusMode=false;
+  document.querySelector('nav').style.display='';
+  document.getElementById('counter-actions').style.display='';
+  document.getElementById('focus-icon').textContent='fullscreen';
+  document.getElementById('focus-btn').style.bottom='80px';
+}
 
 function setTarget(val){
   state.target=val;saveState();
@@ -1059,16 +1089,36 @@ const postPrayerData = [
   },
   {
     number:8,
-    title:"The Three Protecting Chapters",
-    arabic:"سُورَة الإِخْلَاص · سُورَة الْفَلَق · سُورَة النَّاس",
-    transliteration:"Surah Al-Ikhlas, Al-Falaq & An-Nas",
-    meaning:"Recite once each (3× after Fajr & Maghrib). For protection and seeking refuge in Allah.",
+    title:"Surah Al-Ikhlas",
+    arabic:"قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",
+    transliteration:"Qul Huwallahu Ahad, Allahus-Samad, lam yalid wa lam yulad, wa lam yakun lahu kufuwan ahad",
+    meaning:"Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born. Nor is there any equivalent to Him.",
     count:1,
     reference:"Sunan Abi Dawud 1523",
     category:"After Prayer"
   },
   {
     number:9,
+    title:"Surah Al-Falaq",
+    arabic:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+    transliteration:"Qul a'udhu bi rabbil-falaq, min sharri ma khalaq, wa min sharri ghasiqin idha waqab, wa min sharrin-naffathati fil-'uqad, wa min sharri hasidin idha hasad",
+    meaning:"Say: I seek refuge in the Lord of daybreak, from the evil of that which He created, from the evil of darkness when it settles, from the evil of those who blow on knots, and from the evil of an envier when he envies.",
+    count:1,
+    reference:"Sunan Abi Dawud 1523",
+    category:"After Prayer"
+  },
+  {
+    number:10,
+    title:"Surah An-Nas",
+    arabic:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ",
+    transliteration:"Qul a'udhu bi rabbin-nas, malikin-nas, ilahin-nas, min sharril-waswasil-khannas, alladhi yuwaswisu fi sudurin-nas, minal-jinnati wan-nas",
+    meaning:"Say: I seek refuge in the Lord of mankind, the Sovereign of mankind, the God of mankind, from the evil of the retreating whisperer, who whispers into the hearts of mankind — from among the jinn and mankind.",
+    count:1,
+    reference:"Sunan Abi Dawud 1523",
+    category:"After Prayer"
+  },
+  {
+    number:11,
     title:"Supplication for Firm Worship",
     arabic:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
     transliteration:"Allahumma a'inni 'ala dhikrika, wa shukrika, wa husni 'ibadatik",
