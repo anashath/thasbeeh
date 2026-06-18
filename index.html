@@ -141,18 +141,16 @@ nav{
 }
 .nav-btn.active{background:var(--primary-c);color:var(--on-pc)}
 .nav-btn.active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
-.nav-center{position:relative;top:-14px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.nav-center{display:flex;align-items:center;justify-content:center}
 .nav-center-btn{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--secondary);color:var(--on-sec);
+  width:44px;height:44px;border-radius:50%;
+  color:var(--on-sv);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 20px rgba(0,0,0,.4);
-  transition:transform .18s,background .18s;
+  transition:all .18s;
 }
-.nav-center-btn:active{transform:scale(.9)}
-.nav-center-btn.active{background:var(--primary);color:var(--sc-low)}
-.nav-center-lbl{font-size:10px;font-weight:700;letter-spacing:.04em;color:var(--on-sv);text-align:center}
-.nav-center-lbl.active{color:var(--on-pc)}
+.nav-center-btn.active{background:var(--primary-c);color:var(--on-pc)}
+.nav-center-btn.active .material-symbols-outlined{font-variation-settings:'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24}
+.nav-center-lbl{display:none}
 
 /* ── Tonal gradient bg ── */
 .tonal-layer{
@@ -221,6 +219,33 @@ nav{
   opacity:0;pointer-events:none;transition:opacity .3s;z-index:300;
 }
 .toast.show{opacity:1}
+
+/* ── Counter full-screen tap zone ── */
+#page-counter{
+  display:none;
+  flex-direction:column;
+  height:calc(100dvh - 72px);
+}
+#page-counter.active{display:flex}
+.counter-tap-zone{
+  flex:1;display:flex;flex-direction:column;
+  cursor:pointer;position:relative;overflow:hidden;
+  -webkit-user-select:none;user-select:none;
+}
+.count-num{
+  font-size:clamp(80px,20vw,120px);
+  transition:transform .1s ease;
+}
+.count-num.bump{transform:scale(1.06)}
+#tap-ripple{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:rgba(225,193,157,.15);transform:scale(0);
+  animation:none;
+}
+@keyframes ripple-out{
+  0%{transform:scale(0);opacity:1}
+  100%{transform:scale(4);opacity:0}
+}
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar{width:4px}
@@ -387,99 +412,65 @@ nav{
 
 <!-- ══════════════════════════ COUNTER ════════════════════════════ -->
 <div class="page" id="page-counter">
-  <main class="max-w-[720px] mx-auto px-6 pt-8 pb-4 flex flex-col items-center min-h-[calc(100dvh-88px)]">
+  <!-- Full-screen tap zone (everything except action row) -->
+  <div id="tap-target" class="counter-tap-zone">
 
-    <!-- Zikr selector chips -->
-    <div class="flex gap-2 flex-wrap justify-center mb-6">
-      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
-        style="background:var(--primary-c);color:var(--on-pc);border:1.5px solid var(--primary)"
-        data-arabic="سُبْحَانَ اللهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
-      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
-        style="background:var(--sc-high);color:var(--on-sv);border:1.5px solid var(--outl-v)"
-        data-arabic="الْحَمْدُ للهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
-      <button class="zikr-chip px-4 py-1.5 rounded-full text-xs font-bold transition-all"
-        style="background:var(--sc-high);color:var(--on-sv);border:1.5px solid var(--outl-v)"
-        data-arabic="اللهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
-    </div>
-
-    <!-- Arabic text -->
-    <div class="w-full rounded-2xl p-6 flex flex-col items-center space-y-3 text-center mb-8"
-      style="background:var(--sc-low)">
-      <span class="text-xs font-bold uppercase tracking-widest text-[color:var(--on-sv)]" id="counterCategory">Tasbih</span>
-      <h2 class="font-serif text-4xl text-[color:var(--primary)] leading-relaxed" id="counterArabic" dir="rtl">
-        سُبْحَانَ ٱللَّٰهِ
-      </h2>
-      <p class="text-sm text-[color:var(--on-surf)]" id="counterEnglish">Glory be to Allah.</p>
-      <div class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--secondary)"></span>
-        <span class="text-xs text-[color:var(--on-sv)]" id="counterRecommended">Recommended: 33 times</span>
+    <!-- Arabic text card -->
+    <div class="px-6 pt-8">
+      <div class="w-full rounded-2xl p-6 flex flex-col items-center space-y-3 text-center"
+        style="background:var(--sc-low)">
+        <span class="text-xs font-bold uppercase tracking-widest text-[color:var(--on-sv)]" id="counterCategory">Tasbih</span>
+        <h2 class="font-serif text-4xl text-[color:var(--primary)] leading-relaxed" id="counterArabic" dir="rtl">
+          سُبْحَانَ ٱللَّٰهِ
+        </h2>
+        <p class="text-sm text-[color:var(--on-surf)]" id="counterEnglish">Glory be to Allah.</p>
+        <div class="flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full" style="background:var(--secondary)"></span>
+          <span class="text-xs text-[color:var(--on-sv)]" id="counterRecommended">Recommended: 33 times</span>
+        </div>
       </div>
     </div>
 
-    <!-- Counter display + tap area -->
-    <div class="relative flex flex-col items-center justify-center mb-8">
-      <!-- Decorative ring -->
-      <div class="absolute w-60 h-60 rounded-full"
-        style="border:1px solid rgba(225,193,157,.1);animation:pulse-ring 4s infinite ease-in-out"></div>
-      <style>
-        @keyframes pulse-ring{
-          0%{opacity:.6;transform:scale(1)}
-          50%{opacity:1;transform:scale(1.03)}
-          100%{opacity:.6;transform:scale(1)}
-        }
-      </style>
-      <!-- Count display -->
-      <div class="relative z-10 flex flex-col items-center mb-10">
-        <span class="font-serif text-[88px] leading-none text-[color:var(--primary)]" id="counter-value">0</span>
-        <span class="text-sm font-semibold text-[color:var(--on-sv)] opacity-70 tracking-widest uppercase" id="target-display">OF 33</span>
-      </div>
-      <!-- Fingerprint tap button -->
-      <button id="tap-target"
-        class="w-48 h-48 rounded-full flex items-center justify-center transition-all duration-300 active:scale-95"
-        style="background:rgba(45,67,65,.25);border:2px solid rgba(225,193,157,.2);
-               box-shadow:0 0 40px rgba(232,200,163,.05)">
-        <span class="material-symbols-outlined text-[color:var(--secondary)] transition-transform group-active:scale-125"
-          style="font-size:80px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 48">fingerprint</span>
-      </button>
+    <!-- Count display (tappable center) -->
+    <div class="flex-1 flex flex-col items-center justify-center py-6">
+      <span class="font-serif leading-none text-[color:var(--primary)] count-num" id="counter-value">0</span>
+      <span class="text-sm font-semibold text-[color:var(--on-sv)] opacity-60 tracking-widest uppercase mt-2" id="target-display">OF 33</span>
+      <p class="text-xs text-[color:var(--on-sv)] mt-4 opacity-40">Tap anywhere to count</p>
     </div>
 
+    <!-- Tap ripple overlay -->
+    <div id="tap-ripple"></div>
+  </div>
+
+  <!-- Action row (non-tappable) -->
+  <div class="px-6 pb-4 space-y-3">
     <!-- Target chips -->
-    <div class="flex gap-2 justify-center mb-6">
-      <button class="target-chip px-6 py-2 rounded-full text-sm font-bold active"
+    <div class="flex gap-2 justify-center">
+      <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
         style="background:var(--secondary);color:var(--on-sec)" onclick="setTarget(33)">33</button>
       <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
         style="background:var(--sc-high);color:var(--on-sv)" onclick="setTarget(99)">99</button>
       <button class="target-chip px-6 py-2 rounded-full text-sm font-bold"
         style="background:var(--sc-high);color:var(--on-sv)" onclick="setTarget(1000)">1000</button>
     </div>
-
-    <!-- Actions -->
-    <div class="flex gap-8 justify-center">
-      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]" id="reset-btn">
-        <div class="w-11 h-11 rounded-full flex items-center justify-center"
+    <!-- Reset / Haptic -->
+    <div class="flex gap-6 justify-center">
+      <button class="flex flex-col items-center gap-1 text-xs font-semibold text-[color:var(--on-sv)]" id="reset-btn">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center"
           style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
-          <span class="material-symbols-outlined text-[20px]">refresh</span>
+          <span class="material-symbols-outlined text-[18px]">refresh</span>
         </div>
         Reset
       </button>
-      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]" id="haptic-btn">
-        <div class="w-11 h-11 rounded-full flex items-center justify-center" id="hapticIcon"
+      <button class="flex flex-col items-center gap-1 text-xs font-semibold text-[color:var(--on-sv)]" id="haptic-btn">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" id="hapticIcon"
           style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
-          <span class="material-symbols-outlined text-[20px]">vibration</span>
+          <span class="material-symbols-outlined text-[18px]">vibration</span>
         </div>
         Haptic
       </button>
-      <button class="flex flex-col items-center gap-1.5 text-xs font-semibold text-[color:var(--on-sv)]"
-        onclick="navigateTo('library')">
-        <div class="w-11 h-11 rounded-full flex items-center justify-center"
-          style="background:var(--sc-high);border:1.5px solid var(--outl-v)">
-          <span class="material-symbols-outlined text-[20px]">menu_book</span>
-        </div>
-        Library
-      </button>
     </div>
-
-  </main>
+  </div>
 </div>
 
 <!-- ══════════════════════════ PROGRESS ══════════════════════════ -->
@@ -782,22 +773,10 @@ function navigateTo(page){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
 
-  // Regular nav buttons
-  document.querySelectorAll('.nav-btn').forEach(b=>{
+  // Nav buttons (including center)
+  document.querySelectorAll('.nav-btn,.nav-center-btn').forEach(b=>{
     b.classList.toggle('active',b.dataset.page===page);
   });
-  // Center counter button
-  const centerBtn=document.querySelector('.nav-center-btn');
-  const centerLbl=document.getElementById('nav-center-lbl');
-  if(page==='counter'){
-    centerBtn.style.background='var(--primary)';
-    centerBtn.style.color='var(--sc-low)';
-    centerLbl.classList.add('active');
-  }else{
-    centerBtn.style.background='var(--secondary)';
-    centerBtn.style.color='var(--on-sec)';
-    centerLbl.classList.remove('active');
-  }
 
   currentPage=page;
   const fab=document.getElementById('addZikrFab');
@@ -838,23 +817,47 @@ function updateCounterUI(){
   updateHomeUI();
 }
 
-const tapBtn=document.getElementById('tap-target');
-tapBtn.addEventListener('click',()=>{
+// Full-zone tap handler with ripple
+const tapZone=document.getElementById('tap-target');
+const rippleEl=document.getElementById('tap-ripple');
+
+function doCount(e){
   state.count++;state.todayCount++;state.lifetimeCount++;
   state.lastCountDate=new Date().toDateString();
   if(state.streak===0&&state.todayCount===1)state.streak=1;
   state.dailyCounts[todayKey()]=state.todayCount;
   saveState();updateCounterUI();
-  if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate(20);
+  if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate(18);
+  // Number bump animation
+  const numEl=document.getElementById('counter-value');
+  numEl.classList.remove('bump');
+  void numEl.offsetWidth;
+  numEl.classList.add('bump');
+  setTimeout(()=>numEl.classList.remove('bump'),120);
+  // Ripple
+  if(e){
+    const r=tapZone.getBoundingClientRect();
+    const x=(e.clientX||e.touches?.[0]?.clientX||r.width/2)-r.left;
+    const y=(e.clientY||e.touches?.[0]?.clientY||r.height/2)-r.top;
+    const size=Math.max(r.width,r.height)*1.4;
+    rippleEl.style.cssText=`width:${size}px;height:${size}px;left:${x-size/2}px;top:${y-size/2}px;animation:none`;
+    void rippleEl.offsetWidth;
+    rippleEl.style.animation='ripple-out .5s ease-out forwards';
+  }
   if(state.count===state.target){
-    if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate([100,50,100]);
+    if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate([80,40,80]);
     showToast();
   }
+}
+
+tapZone.addEventListener('click',doCount);
+
+document.getElementById('reset-btn').addEventListener('click',e=>{
+  e.stopPropagation();state.count=0;saveState();updateCounterUI();
 });
 
-document.getElementById('reset-btn').addEventListener('click',()=>{state.count=0;saveState();updateCounterUI();});
-
-document.getElementById('haptic-btn').addEventListener('click',()=>{
+document.getElementById('haptic-btn').addEventListener('click',e=>{
+  e.stopPropagation();
   state.hapticEnabled=!state.hapticEnabled;
   document.getElementById('hapticIcon').style.opacity=state.hapticEnabled?'1':'0.35';
   saveState();
@@ -869,22 +872,6 @@ function setTarget(val){
   });
   updateCounterUI();
 }
-
-// Zikr chip switching on counter page
-document.querySelectorAll('.zikr-chip').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.getElementById('counterArabic').textContent=btn.dataset.arabic;
-    document.getElementById('counterEnglish').textContent=btn.dataset.english;
-    document.getElementById('counterRecommended').textContent='Recommended: '+state.target+' times';
-    state.count=0;saveState();updateCounterUI();
-    document.querySelectorAll('.zikr-chip').forEach(b=>{
-      const a=b===btn;
-      b.style.background=a?'var(--primary-c)':'var(--sc-high)';
-      b.style.color=a?'var(--on-pc)':'var(--on-sv)';
-      b.style.borderColor=a?'var(--primary)':'var(--outl-v)';
-    });
-  });
-});
 
 function loadAndCount(arabic,english,meaning,count){
   document.getElementById('counterArabic').textContent=arabic;
