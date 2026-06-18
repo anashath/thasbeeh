@@ -1,706 +1,701 @@
 <!DOCTYPE html>
-<html class="light" lang="en">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sacred Devotion - Thasbeeh</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Thasbeeh</title>
 <link rel="manifest" href="./manifest.json"/>
-<meta name="theme-color" content="#064e3b" id="themeColorMeta"/>
+<meta name="theme-color" content="#059669"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Thasbeeh"/>
 <link rel="apple-touch-icon" href="./icons/icon-192.png"/>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        colors: {
-          "surface-container-low": "#f3f4f5",
-          "primary-container": "#064e3b",
-          "on-error": "#ffffff",
-          "on-background": "#191c1d",
-          "secondary-fixed-dim": "#ffb77d",
-          "inverse-on-surface": "#f0f1f2",
-          "on-secondary-container": "#663500",
-          "secondary": "#904d00",
-          "surface-container": "#edeeef",
-          "error": "#ba1a1a",
-          "primary-fixed-dim": "#95d3ba",
-          "tertiary-fixed": "#6ffbbe",
-          "outline-variant": "#bfc9c3",
-          "error-container": "#ffdad6",
-          "surface-bright": "#f8f9fa",
-          "on-secondary": "#ffffff",
-          "surface-container-highest": "#e1e3e4",
-          "background": "#f8f9fa",
-          "on-tertiary": "#ffffff",
-          "on-tertiary-fixed": "#002113",
-          "surface-variant": "#e1e3e4",
-          "on-secondary-fixed-variant": "#6e3900",
-          "on-error-container": "#93000a",
-          "inverse-surface": "#2e3132",
-          "on-secondary-fixed": "#2f1500",
-          "inverse-primary": "#95d3ba",
-          "on-primary-fixed-variant": "#0b513d",
-          "surface-container-lowest": "#ffffff",
-          "on-primary-fixed": "#002117",
-          "surface": "#f8f9fa",
-          "on-tertiary-container": "#31c98f",
-          "on-primary-container": "#80bea6",
-          "on-tertiary-fixed-variant": "#005236",
-          "tertiary-fixed-dim": "#4edea3",
-          "tertiary": "#003623",
-          "surface-tint": "#2b6954",
-          "on-primary": "#ffffff",
-          "tertiary-container": "#004f34",
-          "secondary-container": "#fe932c",
-          "primary": "#003527",
-          "secondary-fixed": "#ffdcc3",
-          "primary-fixed": "#b0f0d6",
-          "outline": "#707974",
-          "surface-dim": "#d9dadb",
-          "on-surface-variant": "#404944",
-          "on-surface": "#191c1d",
-          "surface-container-high": "#e7e8e9"
-        },
-        borderRadius: {
-          DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"
-        },
-        spacing: {
-          "margin-mobile": "20px", md: "24px", "margin-desktop": "auto",
-          xl: "64px", lg: "40px", gutter: "16px", sm: "12px", base: "8px", xs: "4px"
-        },
-        fontFamily: {
-          "display-lg": ["Noto Serif"], "body-lg": ["Manrope"],
-          "headline-lg": ["Noto Serif"], "body-md": ["Manrope"],
-          "headline-lg-mobile": ["Noto Serif"], "label-md": ["Manrope"],
-          "arabic-display": ["Noto Serif"]
-        },
-        fontSize: {
-          "display-lg": ["48px", {lineHeight:"56px", letterSpacing:"-0.02em", fontWeight:"700"}],
-          "body-lg": ["18px", {lineHeight:"28px", fontWeight:"400"}],
-          "headline-lg": ["32px", {lineHeight:"40px", fontWeight:"600"}],
-          "body-md": ["16px", {lineHeight:"24px", fontWeight:"400"}],
-          "headline-lg-mobile": ["24px", {lineHeight:"32px", fontWeight:"600"}],
-          "label-md": ["14px", {lineHeight:"20px", letterSpacing:"0.05em", fontWeight:"600"}],
-          "arabic-display": ["40px", {lineHeight:"72px", fontWeight:"500"}]
-        }
-      }
-    }
-  }
-</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;700&display=swap" rel="stylesheet"/>
 <style>
-  body {
-    background-color: #f8f9fa;
-    color: #191c1d;
-    -webkit-tap-highlight-color: transparent;
-    min-height: 100dvh;
-  }
-  .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    user-select: none;
-  }
+/* ── Variables ── */
+:root {
+  --bg:      #f2f7f4;
+  --surface: #ffffff;
+  --card:    #ffffff;
+  --surface2:#e8f0eb;
+  --accent:  #059669;
+  --accent2: #d1fae5;
+  --text:    #0f1f18;
+  --muted:   #4d7a66;
+  --border:  #d4e4db;
+  --danger:  #dc2626;
+  --nav-h:   68px;
+  --r:       16px;
+}
+.dark {
+  --bg:      #0d1512;
+  --surface: #131f1a;
+  --card:    #1a2920;
+  --surface2:#1f3028;
+  --accent:  #34d399;
+  --accent2: #064e3b;
+  --text:    #e2ede8;
+  --muted:   #6aad90;
+  --border:  #243d30;
+  --danger:  #f87171;
+}
 
-  /* ===== DARK MODE ===== */
-  .dark body                            { background-color: #111514; color: #e0e3e1; }
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100dvh;
+  -webkit-tap-highlight-color:transparent;
+  overflow-x:hidden;
+}
+button{cursor:pointer;border:none;background:none;font:inherit;color:inherit}
+input,select,textarea{
+  font:inherit;color:var(--text);
+  background:var(--surface2);
+  border:1.5px solid var(--border);
+  border-radius:12px;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 20%,transparent);
+}
 
-  /* Surfaces */
-  .dark .bg-background                  { background-color: #111514 !important; }
-  .dark .bg-surface-container-lowest    { background-color: #1a1f1d !important; }
-  .dark .bg-surface-container-low       { background-color: #1f2422 !important; }
-  .dark .bg-surface-container           { background-color: #252b29 !important; }
-  .dark .bg-surface-container-high      { background-color: #2e3432 !important; }
-  .dark .bg-surface-container-highest   { background-color: #38403e !important; }
-  .dark .bg-surface-dim                 { background-color: #131817 !important; }
-  .dark .bg-surface-variant             { background-color: #252b29 !important; }
+/* ── Layout ── */
+#app{max-width:480px;margin:0 auto;padding-bottom:var(--nav-h);min-height:100dvh}
 
-  /* Text */
-  .dark .text-on-surface                { color: #e0e3e1 !important; }
-  .dark .text-on-surface-variant        { color: #bec9c3 !important; }
-  .dark .text-on-background             { color: #e0e3e1 !important; }
-  .dark .text-outline                   { color: #899389 !important; }
+/* ── Pages ── */
+.page{display:none;flex-direction:column;gap:16px;padding:20px 18px}
+.page.active{display:flex;animation:fadeUp .2s ease-out}
+#page-counter.active{
+  align-items:center;justify-content:center;
+  min-height:calc(100dvh - var(--nav-h));
+  padding:16px 18px;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-  /* Primary */
-  .dark .text-primary                   { color: #95d3ba !important; }
-  .dark .bg-primary                     { background-color: #1a4a3a !important; }
-  .dark .text-on-primary                { color: #e0e3e1 !important; }
-  .dark .text-primary-fixed-dim         { color: #95d3ba !important; }
-  .dark .bg-primary-fixed               { background-color: #0a2d22 !important; }
-  .dark .text-on-primary-fixed          { color: #95d3ba !important; }
-  .dark .bg-primary-fixed\/30           { background-color: rgba(149,211,186,0.15) !important; }
+/* ── Bottom nav ── */
+nav{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:480px;height:var(--nav-h);
+  background:var(--surface);border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-around;
+  z-index:100;padding-bottom:env(safe-area-inset-bottom);
+}
+.nav-item{
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:8px 12px;border-radius:12px;
+  font-size:11px;font-weight:600;color:var(--muted);
+  transition:color .2s;
+}
+.nav-item.active{color:var(--accent)}
+.nav-item svg{width:22px;height:22px;transition:transform .2s}
+.nav-item.active svg{transform:scale(1.1)}
 
-  /* Primary container */
-  .dark .bg-primary-container           { background-color: #0d3d2e !important; }
-  .dark .text-on-primary-container      { color: #95d3ba !important; }
-  .dark .text-primary-container         { color: #4db891 !important; }
-  .dark .border-primary-container       { border-color: #0d3d2e !important; }
+/* ── Card ── */
+.card{background:var(--card);border-radius:var(--r);padding:18px;border:1px solid var(--border)}
 
-  /* Secondary */
-  .dark .text-secondary                 { color: #ffb77d !important; }
-  .dark .bg-secondary-container         { background-color: #5a2e00 !important; }
-  .dark .text-on-secondary-container    { color: #ffdcc3 !important; }
-  .dark .bg-secondary-fixed             { background-color: #3a1e00 !important; }
-  .dark .border-secondary               { border-color: #ffb77d !important; }
-  .dark .border-b-secondary-container   { border-color: #5a2e00 !important; }
+/* ── Home ── */
+.home-header{display:flex;justify-content:space-between;align-items:center;padding-top:6px}
+.home-title{font-size:24px;font-weight:700;color:var(--accent)}
+.home-sub{font-size:13px;color:var(--muted);margin-top:3px}
+.icon-btn{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--surface2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .15s;
+}
+.icon-btn:active{background:var(--border)}
 
-  /* Borders */
-  .dark .border-outline-variant         { border-color: #3a4440 !important; }
-  .dark .border-surface-container-highest { border-color: #38403e !important; }
-  .dark .border-outline                 { border-color: #4e5954 !important; }
-  .dark .border-error                   { border-color: #ff8989 !important; }
+.ring-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:20px;display:flex;align-items:center;gap:20px;
+}
+.ring-info{flex:1}
+.ring-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.ring-count{font-size:40px;font-weight:700;line-height:1;margin-top:4px}
+.ring-sub{font-size:13px;color:var(--muted);margin-top:4px}
 
-  /* Text colours that appear on dark primary bg */
-  .dark .text-surface-container-lowest  { color: #e0e3e1 !important; }
-  .dark .text-on-primary-container      { color: #95d3ba !important; }
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
+.stat-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.stat-val{font-size:28px;font-weight:700;margin-top:4px}
+.stat-sub{font-size:12px;color:var(--muted);margin-top:2px}
 
-  /* Error */
-  .dark .text-error                     { color: #ff8989 !important; }
-  .dark .bg-error-container             { background-color: #4a0000 !important; }
+.btn-primary{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px;border-radius:var(--r);
+  background:var(--accent);color:#fff;
+  font-size:15px;font-weight:600;
+  transition:opacity .15s;
+}
+.btn-primary:active{opacity:.85}
 
-  /* Inverse surface (tooltips) */
-  .dark .bg-inverse-surface             { background-color: #e0e3e1 !important; }
-  .dark .text-inverse-on-surface        { color: #2e3132 !important; }
+.quote-card{
+  background:var(--accent2);border-radius:var(--r);padding:16px;
+  border:1px solid color-mix(in srgb,var(--accent) 20%,transparent);
+}
+.quote-text{font-size:14px;font-style:italic;color:var(--accent);line-height:1.6}
+.quote-ref{font-size:11px;color:var(--muted);margin-top:6px}
 
-  /* Inputs, selects, textareas */
-  .dark input, .dark textarea, .dark select {
-    background-color: #1f2422 !important;
-    color: #e0e3e1 !important;
-    border-color: #3a4440 !important;
-  }
-  .dark input::placeholder, .dark textarea::placeholder { color: #6a7470 !important; }
-  .dark input:focus, .dark textarea:focus, .dark select:focus {
-    border-color: #4db891 !important;
-    box-shadow: 0 0 0 2px rgba(77,184,145,0.25) !important;
-  }
+/* ── Counter ── */
+.zikr-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.zikr-chip{
+  padding:6px 14px;border-radius:999px;
+  font-size:12px;font-weight:600;
+  background:var(--surface2);color:var(--muted);
+  border:1.5px solid var(--border);transition:all .15s;
+}
+.zikr-chip.active{background:var(--accent2);color:var(--accent);border-color:var(--accent)}
 
-  /* Toggle switch track */
-  .dark .bg-surface-dim { background-color: #131817 !important; }
-  .dark .peer-checked\:bg-primary { --tw-bg-opacity:1; }
-  .dark .peer:checked ~ .peer-checked\:bg-primary { background-color: #0d6b50 !important; }
+.counter-arabic{
+  font-family:'Noto Naskh Arabic',serif;
+  font-size:40px;font-weight:500;
+  color:var(--text);text-align:center;
+  line-height:1.5;direction:rtl;
+}
+.counter-latin{font-size:15px;font-weight:600;color:var(--muted);text-align:center;letter-spacing:.07em;text-transform:uppercase}
+.counter-meaning{font-size:13px;color:var(--muted);text-align:center;margin-top:2px}
 
-  /* Header / nav bar backdrop */
-  .dark header { background-color: rgba(17,21,20,0.92) !important; }
-  .dark nav     { background-color: #1a1f1d !important; }
-  .dark .nav-active { background-color: #0d3d2e !important; color: #95d3ba !important; }
+.tap-btn{
+  width:min(72vw,270px);height:min(72vw,270px);
+  border-radius:50%;background:var(--card);
+  border:2px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px color-mix(in srgb,var(--accent) 12%,transparent),0 2px 8px rgba(0,0,0,.06);
+  transition:transform .1s ease,box-shadow .1s ease;
+  position:relative;overflow:hidden;
+  margin:12px 0;
+}
+.tap-btn:active{transform:scale(0.96)}
+.tap-btn svg{position:absolute;inset:0;width:100%;height:100%}
+.tap-count{font-size:68px;font-weight:700;color:var(--text);line-height:1;position:relative}
+.tap-sub{font-size:14px;color:var(--muted);position:relative}
 
-  /* Counter button */
-  .dark .counter-glow { box-shadow: 0 10px 40px rgba(0,0,0,0.4) !important; }
+.target-chips{display:flex;gap:8px;justify-content:center}
+.target-chip{
+  padding:8px 20px;border-radius:999px;
+  font-size:13px;font-weight:600;
+  background:var(--surface2);color:var(--muted);
+  border:1.5px solid var(--border);transition:all .15s;
+}
+.target-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-  /* Modal backdrop sheet */
-  .dark #addZikrModal > div:last-child { background-color: #1a1f1d !important; }
+.counter-actions{display:flex;gap:28px;justify-content:center}
+.action-btn{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted)}
+.action-icon{
+  width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--border);background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+}
 
-  /* Settings theme indicator */
-  .dark .active-tab-indicator { background: #252b29 !important; box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important; }
+/* ── Library ── */
+.search-box{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:12px 14px;
+}
+.search-box input{flex:1;border:none;background:none;font-size:15px;color:var(--text)}
+.search-box input::placeholder{color:var(--muted)}
+.search-box input:focus{box-shadow:none;border-color:transparent}
 
-  /* Achievement locked badge */
-  .dark .bg-surface-container-high .material-symbols-outlined { color: #6a7470 !important; }
+.cat-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.cat-chips::-webkit-scrollbar{display:none}
+.cat-chip{
+  flex-shrink:0;padding:7px 16px;border-radius:999px;
+  font-size:12px;font-weight:600;
+  background:var(--card);color:var(--muted);
+  border:1.5px solid var(--border);transition:all .15s;
+}
+.cat-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-  /* SVG ring tracks that use currentColor via text-* */
-  .dark .text-surface-container-high  { color: #2e3432 !important; }
-  .dark .text-surface-container-highest { color: #38403e !important; }
+.zikr-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.zikr-body{flex:1;min-width:0}
+.zikr-arabic{font-family:'Noto Naskh Arabic',serif;font-size:20px;text-align:right;direction:rtl;margin-bottom:4px;color:var(--text)}
+.zikr-name{font-size:14px;font-weight:600;color:var(--text)}
+.zikr-meaning{font-size:12px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zikr-right{display:flex;flex-direction:column;align-items:center;gap:8px;flex-shrink:0}
+.zikr-badge{
+  background:var(--accent2);color:var(--accent);
+  font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:999px;
+  white-space:nowrap;
+}
+.start-btn{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .15s;
+}
+.start-btn:active{opacity:.8}
 
-  /* Toggle switch track color when unchecked */
-  .dark .bg-surface-dim { background-color: #1f2422 !important; }
+.fab{
+  position:fixed;bottom:calc(var(--nav-h)+14px);right:18px;
+  width:50px;height:50px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 16px color-mix(in srgb,var(--accent) 40%,transparent);
+  z-index:50;transition:opacity .2s,transform .2s;
+}
+.fab.hidden{opacity:0;pointer-events:none;transform:scale(0.8)}
 
-  /* Category chips unchecked state */
-  .dark .hover\:bg-surface-container-high:hover { background-color: #2e3432 !important; }
+/* ── Progress ── */
+.streak-hero{
+  background:var(--accent);color:#fff;
+  border-radius:var(--r);padding:28px;text-align:center;
+}
+.streak-num{font-size:56px;font-weight:700;line-height:1}
+.streak-lbl{font-size:12px;font-weight:700;opacity:.85;text-transform:uppercase;letter-spacing:.1em;margin-top:6px}
 
-  /* Milestone locked badge card */
-  .dark .border-dashed { border-color: #3a4440 !important; }
+.bar-chart{display:flex;align-items:flex-end;gap:6px;height:96px;padding:0 2px}
+.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px}
+.bar-fill{width:100%;border-radius:5px 5px 0 0;min-height:4px;background:var(--surface2);transition:height .5s cubic-bezier(.4,0,.2,1)}
+.bar-fill.reached{background:var(--accent)}
+.bar-fill.today{background:var(--accent);opacity:.65}
+.bar-day{font-size:10px;font-weight:600;color:var(--muted)}
+.bar-day.today{color:var(--accent)}
 
-  /* Zikr article hover shadow */
-  .dark .hover\:shadow-md:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
+/* ── Settings ── */
+.settings-section{display:flex;flex-direction:column;gap:8px}
+.settings-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding-left:2px}
+.settings-group{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.settings-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.settings-row:last-child{border-bottom:none}
+.row-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  background:var(--accent2);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+}
+.row-title{font-size:15px;font-weight:500;flex:1}
+.row-sub{font-size:12px;color:var(--muted);margin-top:1px}
 
-  /* Completion toast */
-  .dark #completionToast { background-color: #0d3d2e !important; color: #95d3ba !important; }
+/* Toggle */
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0;display:block}
+.toggle input{opacity:0;width:0;height:0;position:absolute}
+.toggle-track{
+  position:absolute;inset:0;border-radius:12px;
+  background:var(--surface2);border:1.5px solid var(--border);
+  transition:background .2s,border-color .2s;
+}
+.toggle input:checked~.toggle-track{background:var(--accent);border-color:var(--accent)}
+.toggle-thumb{
+  position:absolute;top:3px;left:3px;
+  width:18px;height:18px;border-radius:50%;
+  background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.25);
+  transition:transform .2s;
+}
+.toggle input:checked~.toggle-thumb{transform:translateX(20px)}
 
-  /* Scrollbar in dark */
-  .dark ::-webkit-scrollbar-thumb { background: #2e3432 !important; }
-  /* Page transitions */
-  .page { display: none; }
-  .page.active { display: block; }
-  /* Counter styles */
-  .counter-glow { box-shadow: 0px 10px 40px rgba(6, 78, 59, 0.12); }
-  .progress-ring {
-    transition: stroke-dashoffset 0.3s ease;
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-  }
-  .tap-active { transform: scale(0.96); transition: transform 0.1s ease-out; }
-  /* Progress ring home */
-  .progress-ring__circle {
-    transition: stroke-dashoffset 0.35s;
-    transform: rotate(-90deg);
-    transform-origin: 50% 50%;
-  }
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #e1e3e4; border-radius: 10px; }
-  /* Settings toggle */
-  .active-tab-indicator {
-    position: absolute;
-    height: 100%;
-    background: #ffffff;
-    border-radius: 9999px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  }
-  /* Chart bars */
-  .progress-bar-fill { transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); }
-  .achievement-card:hover .badge-glow { opacity: 1; transform: scale(1.1); }
-  /* Category active */
-  .active-category { border-left: 3px solid #b0f0d6; }
-  /* No scrollbar */
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-  /* Bottom nav glow for active */
-  .nav-active { background-color: #064e3b; color: #80bea6; border-radius: 9999px; }
-  /* Slide in animation */
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .page.active { animation: slideIn 0.25s ease-out; }
+/* Theme switch */
+.theme-sw{display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--surface2);padding:3px;border-radius:10px}
+.theme-btn{
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  padding:7px;border-radius:8px;
+  font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;
+}
+.theme-btn.active{background:var(--card);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+/* Stepper */
+.stepper{display:flex;align-items:center;gap:8px}
+.step-btn{
+  width:28px;height:28px;border-radius:50%;
+  border:1.5px solid var(--border);background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;
+}
+.step-val{font-size:15px;font-weight:700;color:var(--accent);min-width:28px;text-align:center}
+
+/* About */
+.about{text-align:center;padding:20px 0 8px;color:var(--muted);font-size:13px}
+.about-logo{
+  width:68px;height:68px;border-radius:18px;
+  background:var(--accent);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 12px;
+}
+.about-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:4px}
+
+/* ── Modal ── */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);z-index:200;
+  display:none;align-items:flex-end;justify-content:center;
+}
+.modal-bg.open{display:flex}
+.modal-sheet{
+  width:100%;max-width:480px;
+  background:var(--surface);border-radius:20px 20px 0 0;
+  padding:22px 18px 36px;max-height:90dvh;overflow-y:auto;
+  display:flex;flex-direction:column;gap:16px;
+}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-size:18px;font-weight:700}
+.modal-close{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--surface2);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+}
+.form-lbl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px}
+.form-input{width:100%;padding:11px 13px;font-size:15px}
+.form-arabic{font-family:'Noto Naskh Arabic',serif;font-size:22px;direction:rtl;text-align:right}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.error-txt{font-size:12px;color:var(--danger);margin-top:4px;display:none}
+
+/* ── Toast ── */
+.toast{
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;
+  padding:10px 22px;border-radius:999px;
+  font-size:14px;font-weight:600;
+  opacity:0;pointer-events:none;transition:opacity .3s;z-index:300;
+  white-space:nowrap;
+}
+.toast.show{opacity:1}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
-<body class="font-body-md text-body-md overflow-x-hidden">
+<body>
 
-<!-- ===== TOP APP BAR ===== -->
-<header class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-background/90 backdrop-blur-md">
-  <div class="flex justify-between items-center px-margin-mobile md:px-lg py-sm w-full">
-    <button id="settingsBtn" class="hover:opacity-80 transition-opacity active:scale-95 duration-200">
-      <span class="material-symbols-outlined text-primary">settings</span>
+<div id="app">
+
+<!-- ═══════════════════════════ HOME ═════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="home-header">
+    <div>
+      <div class="home-title">Thasbeeh</div>
+      <div class="home-sub" id="greetingText">Assalamu Alaikum</div>
+    </div>
+    <button class="icon-btn" id="themeBtn" title="Toggle theme">
+      <svg id="themeIcon" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
+      </svg>
     </button>
-    <h1 class="font-display-lg text-[28px] leading-none text-primary">Sacred Devotion</h1>
-    <button id="themeBtn" class="hover:opacity-80 transition-opacity active:scale-95 duration-200" title="Toggle dark mode">
-      <span class="material-symbols-outlined text-primary" id="themeIcon">dark_mode</span>
-    </button>
-  </div>
-</header>
-
-<!-- ===== PAGES ===== -->
-<div class="pt-[64px] pb-[80px] max-w-[640px] mx-auto min-h-screen">
-
-  <!-- PAGE: HOME -->
-  <div class="page active" id="page-home">
-    <main class="pt-10 pb-4 px-margin-mobile md:px-lg">
-      <!-- Greeting -->
-      <section class="mb-lg">
-        <p class="text-on-surface-variant font-label-md uppercase tracking-widest mb-xs">Welcome back</p>
-        <h2 class="font-headline-lg-mobile md:font-headline-lg text-primary">Assalamu Alaikum</h2>
-        <p class="text-on-surface-variant mt-xs" id="greetingSubtitle">May your day be filled with remembrance and peace.</p>
-      </section>
-      <div class="grid grid-cols-1 gap-gutter">
-        <!-- Daily Progress -->
-        <section class="bg-surface-container-lowest rounded-xl p-md shadow-sm border border-outline-variant/30 flex items-center justify-between overflow-hidden relative">
-          <div class="relative z-10">
-            <h3 class="font-label-md text-on-surface-variant mb-base">Daily Progress</h3>
-            <div class="flex items-baseline gap-xs">
-              <span class="font-display-lg text-primary" id="homeDailyCount">0</span>
-              <span class="text-on-surface-variant font-body-md">/ <span id="homeDailyTarget">33</span></span>
-            </div>
-            <p class="text-sm text-on-surface-variant mt-base" id="homeProgressPct">0% of your daily goal achieved</p>
-          </div>
-          <div class="relative flex items-center justify-center">
-            <svg class="w-24 h-24 md:w-32 md:h-32">
-              <circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
-              <circle class="text-primary-container progress-ring__circle" cx="48" cy="48" fill="transparent" r="40" id="homeProgressCircle"
-                stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke-width="8"></circle>
-            </svg>
-            <div class="absolute">
-              <span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">eco</span>
-            </div>
-          </div>
-        </section>
-        <!-- Featured Zikr -->
-        <section class="bg-primary text-white rounded-xl p-md shadow-lg overflow-hidden relative">
-          <div class="absolute top-0 right-0 p-4 opacity-10">
-            <span class="material-symbols-outlined text-[120px]">auto_awesome</span>
-          </div>
-          <div class="relative z-10">
-            <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 rounded-full text-xs font-bold mb-md">FEATURED ZIKR</span>
-            <h4 class="font-arabic-display text-arabic-display mb-xs leading-none">سُبْحَانَ اللهِ</h4>
-            <h3 class="font-headline-lg-mobile mb-xs">SubhanAllah</h3>
-            <p class="text-primary-fixed-dim text-sm opacity-80 mb-lg max-w-[240px]">Glory be to Allah. The foundational remembrance for clarity and gratitude.</p>
-            <button onclick="navigateTo('counter')" class="bg-primary-fixed text-primary px-6 py-2 rounded-lg font-bold flex items-center gap-base hover:opacity-90 transition-all active:scale-95">
-              Start Now
-              <span class="material-symbols-outlined">play_arrow</span>
-            </button>
-          </div>
-        </section>
-        <!-- Quick Access -->
-        <div class="grid grid-cols-2 gap-gutter">
-          <div onclick="navigateTo('library')" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/20 hover:border-primary-container transition-colors cursor-pointer">
-            <div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-lg flex items-center justify-center mb-base">
-              <span class="material-symbols-outlined">history</span>
-            </div>
-            <h4 class="font-label-md text-on-surface">Library</h4>
-            <p class="text-xs text-on-surface-variant">Browse Adhkar</p>
-          </div>
-          <div onclick="navigateTo('progress')" class="bg-surface-container-low rounded-xl p-md border border-outline-variant/20 hover:border-primary-container transition-colors cursor-pointer">
-            <div class="w-10 h-10 bg-secondary-container text-on-secondary-container rounded-lg flex items-center justify-center mb-base">
-              <span class="material-symbols-outlined">query_stats</span>
-            </div>
-            <h4 class="font-label-md text-on-surface">Progress</h4>
-            <p class="text-xs text-on-surface-variant" id="homeStreakLabel">7 day streak</p>
-          </div>
-        </div>
-        <!-- Inspiration -->
-        <section class="h-48 rounded-xl overflow-hidden relative bg-primary-container flex items-end">
-          <div class="absolute inset-0 opacity-20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-[160px] text-primary-fixed">mosque</span>
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
-          <div class="relative bottom-0 p-4 text-white w-full">
-            <p class="font-label-md italic">"Verily, in the remembrance of Allah do hearts find rest."</p>
-            <p class="text-[10px] mt-1 opacity-70">Surah Ar-Ra'd 13:28</p>
-          </div>
-        </section>
-      </div>
-    </main>
   </div>
 
-  <!-- PAGE: LIBRARY -->
-  <div class="page" id="page-library">
-    <main class="pt-10 pb-4 px-margin-mobile md:px-lg">
-      <section class="mb-lg">
-        <div class="relative flex items-center">
-          <span class="material-symbols-outlined absolute left-4 text-on-surface-variant">search</span>
-          <input id="librarySearch" class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm focus:ring-2 focus:ring-primary-fixed transition-all text-body-md placeholder:text-on-surface-variant/50" placeholder="Search Adhkar..." type="text"/>
-        </div>
-      </section>
-      <!-- Category chips -->
-      <section class="mb-lg overflow-x-auto no-scrollbar flex gap-sm py-xs">
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-primary-container text-on-primary-container font-label-md text-label-md shadow-sm transition-all" data-cat="All">All</button>
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Morning">Morning</button>
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Evening">Evening</button>
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="After Prayer">After Prayer</button>
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Protection">Protection</button>
-        <button class="category-chip flex-shrink-0 px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-container-high transition-all" data-cat="Custom">My Zikr</button>
-      </section>
-      <div class="space-y-base" id="zikrList"></div>
-      <!-- FAB: Add Zikr -->
-      <button onclick="openAddZikrModal()" class="fixed bottom-24 right-4 z-40 w-14 h-14 rounded-full bg-primary-container text-on-primary-container shadow-lg flex items-center justify-center hover:brightness-110 active:scale-95 transition-all duration-200" id="addZikrFab" style="display:none">
-        <span class="material-symbols-outlined text-[28px]">add</span>
-      </button>
-    </main>
+  <!-- Ring progress -->
+  <div class="ring-card">
+    <div class="ring-info">
+      <div class="ring-label">Daily Progress</div>
+      <div class="ring-count"><span id="homeDailyCount">0</span><span style="font-size:18px;color:var(--muted)"> / <span id="homeDailyTarget">33</span></span></div>
+      <div class="ring-sub" id="homeProgressPct">0% of daily goal</div>
+    </div>
+    <svg width="88" height="88" viewBox="0 0 88 88">
+      <circle cx="44" cy="44" r="38" fill="none" stroke="var(--surface2)" stroke-width="8"/>
+      <circle id="homeRing" cx="44" cy="44" r="38" fill="none" stroke="var(--accent)" stroke-width="8"
+        stroke-linecap="round" stroke-dasharray="238.76" stroke-dashoffset="238.76"
+        transform="rotate(-90 44 44)"/>
+    </svg>
   </div>
 
-  <!-- PAGE: COUNTER -->
-  <div class="page" id="page-counter">
-    <main class="flex-grow w-full flex flex-col items-center justify-center px-margin-mobile pt-10 pb-4">
-      <!-- Zikr selector -->
-      <div class="text-center mb-8 space-y-2">
-        <h2 class="font-arabic-display text-arabic-display text-primary-container" id="counterArabic">سُبْحَانَ ٱللَّٰهِ</h2>
-        <p class="font-body-lg text-body-lg text-on-surface-variant tracking-wide uppercase opacity-80" id="counterEnglish">SubhanAllah</p>
-        <p class="font-label-md text-label-md text-outline" id="counterMeaning">Glory be to Allah</p>
-        <!-- Zikr switcher -->
-        <div class="flex gap-2 justify-center pt-2 flex-wrap">
-          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-primary-container text-on-primary-container" data-arabic="سُبْحَانَ ٱللَّٰهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
-          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-surface-container text-on-surface-variant" data-arabic="الْحَمْدُ لِلَّهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
-          <button class="zikr-btn px-3 py-1 rounded-full text-xs font-bold bg-surface-container text-on-surface-variant" data-arabic="اللَّهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
-        </div>
-      </div>
-      <!-- Counter circle -->
-      <div class="relative w-full aspect-square max-w-[320px] flex items-center justify-center mb-8">
-        <svg class="absolute inset-0 w-full h-full p-2" viewBox="0 0 100 100">
-          <circle class="text-surface-container-high stroke-current" cx="50" cy="50" fill="transparent" r="46" stroke-width="4"></circle>
-          <circle class="text-secondary-container stroke-current progress-ring" cx="50" cy="50" fill="transparent"
-            id="progress-circle" r="46" stroke-dasharray="289.02" stroke-dashoffset="289.02" stroke-linecap="round" stroke-width="4"></circle>
-        </svg>
-        <button class="w-[85%] h-[85%] rounded-full bg-surface-container-lowest counter-glow flex flex-col items-center justify-center border border-surface-container-high z-10 hover:shadow-xl transition-all duration-300 active:scale-95"
-          id="tap-target">
-          <span class="font-display-lg text-[72px] leading-none text-primary-container" id="counter-value">0</span>
-          <span class="font-label-md text-label-md text-outline mt-2 tracking-[0.2em]" id="target-display">/ 33</span>
-        </button>
-      </div>
-      <!-- Target chips -->
-      <div class="w-full flex flex-col gap-6">
-        <div class="flex justify-center gap-base">
-          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-primary-container bg-primary-container text-white" onclick="setTarget(33)">33</button>
-          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-outline-variant text-on-surface-variant hover:bg-surface-container" onclick="setTarget(99)">99</button>
-          <button class="target-chip px-6 py-2 rounded-full font-label-md text-label-md transition-all border border-outline-variant text-on-surface-variant hover:bg-surface-container" onclick="setTarget(1000)">1000</button>
-        </div>
-        <div class="flex justify-center items-center gap-lg">
-          <button class="flex flex-col items-center gap-base group" id="reset-btn">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors">
-              <span class="material-symbols-outlined text-on-surface-variant">refresh</span>
-            </div>
-            <span class="font-label-md text-label-md text-on-surface-variant">Reset</span>
-          </button>
-          <button class="flex flex-col items-center gap-base group" id="haptic-btn">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors" id="hapticIcon">
-              <span class="material-symbols-outlined text-on-surface-variant">vibration</span>
-            </div>
-            <span class="font-label-md text-label-md text-on-surface-variant">Haptic</span>
-          </button>
-          <button onclick="navigateTo('library')" class="flex flex-col items-center gap-base group">
-            <div class="w-12 h-12 rounded-full flex items-center justify-center border border-outline-variant group-hover:bg-surface-container transition-colors">
-              <span class="material-symbols-outlined text-on-surface-variant">list_alt</span>
-            </div>
-            <span class="font-label-md text-label-md text-on-surface-variant">Dhikr</span>
-          </button>
-        </div>
-      </div>
-      <!-- Completion toast -->
-      <div id="completionToast" class="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-primary-container text-on-primary-container px-6 py-3 rounded-full font-label-md text-label-md shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none">
-        🎉 Target reached! MashaAllah!
-      </div>
-    </main>
+  <!-- Stats -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-label">Streak</div>
+      <div class="stat-val" id="homeStreak">0</div>
+      <div class="stat-sub">days 🔥</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Lifetime</div>
+      <div class="stat-val" id="homeLifetime">0</div>
+      <div class="stat-sub">total dhikr</div>
+    </div>
   </div>
 
-  <!-- PAGE: PROGRESS -->
-  <div class="page" id="page-progress">
-    <main class="pt-10 pb-4 px-margin-mobile space-y-md">
-      <!-- Streak Hero -->
-      <section class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-md shadow-lg">
-        <div class="relative z-10 flex flex-col items-center text-center">
-          <span class="font-label-md text-label-md text-on-primary-container mb-xs">CURRENT STREAK</span>
-          <div class="flex items-center gap-base">
-            <span class="material-symbols-outlined text-[40px] text-secondary-container" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-            <span class="font-display-lg text-display-lg text-surface-container-lowest" id="streakDisplay">0 Days</span>
-          </div>
-          <p class="font-body-md text-body-md text-primary-fixed-dim mt-xs opacity-90">Keep the flame of remembrance alive.</p>
-        </div>
-        <div class="absolute top-0 right-0 opacity-10 pointer-events-none transform translate-x-1/4 -translate-y-1/4">
-          <span class="material-symbols-outlined text-[160px]">diamond</span>
-        </div>
-      </section>
-      <!-- Stats -->
-      <div class="grid grid-cols-2 gap-gutter">
-        <div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col justify-between">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Lifetime Count</span>
-          <div class="mt-sm">
-            <span class="font-headline-lg text-headline-lg text-primary" id="lifetimeCount">0</span>
-            <p class="text-xs text-on-surface-variant mt-1">Total Dhikr</p>
-          </div>
-        </div>
-        <div class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm flex flex-col justify-between">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Today</span>
-          <div class="mt-sm">
-            <span class="font-headline-lg text-headline-lg text-secondary" id="todayCount">0</span>
-            <p class="text-xs text-on-surface-variant mt-1">Counted today</p>
-          </div>
-        </div>
-      </div>
-      <!-- Weekly Chart -->
-      <section class="bg-surface-container-lowest rounded-xl p-md border border-outline-variant shadow-sm">
-        <div class="flex justify-between items-center mb-lg">
-          <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Weekly Activity</h2>
-          <div class="flex gap-xs items-center">
-            <div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
-            <span class="text-[10px] text-on-surface-variant font-bold uppercase">Goal Reached</span>
-          </div>
-        </div>
-        <div class="flex items-end justify-between h-32 gap-xs px-xs" id="weeklyChart"></div>
-      </section>
-      <!-- Milestones -->
-      <section class="space-y-sm">
-        <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Milestones</h2>
-        <div class="grid grid-cols-3 gap-gutter">
-          <div class="achievement-card flex flex-col items-center p-base bg-surface-container-lowest rounded-xl border border-outline-variant transition-all hover:border-secondary shadow-sm" id="badge7">
-            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
-              <div class="badge-glow absolute inset-0 bg-secondary-container opacity-20 rounded-full blur-xl transition-all duration-500 scale-75"></div>
-              <div class="relative w-12 h-12 bg-secondary-fixed flex items-center justify-center rounded-full border-2 border-secondary shadow-inner">
-                <span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
-              </div>
-            </div>
-            <span class="font-label-md text-[10px] text-center text-primary uppercase">Consistent</span>
-            <span class="text-[9px] text-on-surface-variant text-center">7 Day Streak</span>
-          </div>
-          <div class="achievement-card flex flex-col items-center p-base bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm" id="badge100">
-            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
-              <div class="relative w-12 h-12 bg-primary-fixed flex items-center justify-center rounded-full border-2 border-primary shadow-inner">
-                <span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-              </div>
-            </div>
-            <span class="font-label-md text-[10px] text-center text-primary uppercase">Centurion</span>
-            <span class="text-[9px] text-on-surface-variant text-center">100 Dhikr Daily</span>
-          </div>
-          <div class="achievement-card flex flex-col items-center p-base bg-surface-container rounded-xl border border-dashed border-outline shadow-sm grayscale opacity-50" id="badge30">
-            <div class="relative w-16 h-16 flex items-center justify-center mb-xs">
-              <div class="relative w-12 h-12 bg-surface-container-high flex items-center justify-center rounded-full">
-                <span class="material-symbols-outlined text-outline text-2xl">lock</span>
-              </div>
-            </div>
-            <span class="font-label-md text-[10px] text-center text-on-surface-variant uppercase">Devoted</span>
-            <span class="text-[9px] text-on-surface-variant text-center">30 Day Streak</span>
-          </div>
-        </div>
-      </section>
-      <!-- Insight -->
-      <section class="bg-primary-container text-on-primary-container p-md rounded-xl flex items-start gap-md border-b-2 border-secondary-container">
-        <div class="bg-surface-container-lowest/10 p-base rounded-lg">
-          <span class="material-symbols-outlined text-on-primary-container">lightbulb</span>
-        </div>
-        <div class="space-y-xs">
-          <h3 class="font-label-md text-label-md text-primary-fixed-dim">Spiritual Insight</h3>
-          <p class="text-sm leading-relaxed text-surface-container-lowest">Your journey of remembrance is growing. Stay consistent and let each Dhikr bring you closer to inner peace.</p>
-        </div>
-      </section>
-    </main>
-  </div>
+  <button class="btn-primary" onclick="navigateTo('counter')">
+    <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+    Start Counting
+  </button>
 
-  <!-- PAGE: SETTINGS -->
-  <div class="page" id="page-settings">
-    <main class="pt-10 pb-4 px-margin-mobile max-w-[640px] mx-auto space-y-md">
-      <!-- Appearance -->
-      <section class="space-y-sm">
-        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-xs">Appearance</h2>
-        <div class="bg-surface-container-low rounded-xl p-md shadow-sm border border-surface-container-highest">
-          <div class="flex items-center justify-between mb-gutter">
-            <div class="flex items-center gap-sm">
-              <span class="material-symbols-outlined text-primary">palette</span>
-              <span class="font-body-lg text-body-lg text-on-surface">Visual Theme</span>
-            </div>
-          </div>
-          <div class="relative flex bg-surface-dim p-1 rounded-full w-full h-12 items-center">
-            <div class="active-tab-indicator w-1/2 left-1" id="theme-indicator"></div>
-            <button class="relative z-10 flex-1 flex items-center justify-center gap-xs font-label-md text-label-md text-primary transition-colors duration-300" onclick="setTheme('light')">
-              <span class="material-symbols-outlined text-[20px]">light_mode</span> Light
-            </button>
-            <button class="relative z-10 flex-1 flex items-center justify-center gap-xs font-label-md text-label-md text-on-surface-variant transition-colors duration-300" onclick="setTheme('dark')">
-              <span class="material-symbols-outlined text-[20px]">dark_mode</span> Dark
-            </button>
-          </div>
-        </div>
-      </section>
-      <!-- General -->
-      <section class="space-y-sm">
-        <h2 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest px-xs">General</h2>
-        <div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden">
-          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
-            <div class="flex items-center gap-sm">
-              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary">vibration</span>
-              </div>
-              <div>
-                <p class="font-body-lg text-body-lg text-on-surface">Haptic Feedback</p>
-                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Vibrate on each tasbeeh count</p>
-              </div>
-            </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input id="hapticToggle" checked class="sr-only peer" type="checkbox"/>
-              <div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-            </label>
-          </div>
-          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
-            <div class="flex items-center gap-sm">
-              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary">notifications_active</span>
-              </div>
-              <div>
-                <p class="font-body-lg text-body-lg text-on-surface">Daily Reminders</p>
-                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Daily goals and prayer times</p>
-              </div>
-            </div>
-            <label class="relative inline-flex items-center cursor-pointer">
-              <input class="sr-only peer" type="checkbox"/>
-              <div class="w-11 h-6 bg-surface-dim peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-            </label>
-          </div>
-          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer border-b border-surface-container-highest">
-            <div class="flex items-center gap-sm">
-              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary">track_changes</span>
-              </div>
-              <div>
-                <p class="font-body-lg text-body-lg text-on-surface">Daily Goal</p>
-                <p class="font-label-md text-label-md text-on-surface-variant opacity-70" id="goalLabel">33 Dhikr per day</p>
-              </div>
-            </div>
-            <div class="flex items-center gap-xs">
-              <button onclick="adjustGoal(-1)" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container">
-                <span class="material-symbols-outlined text-[18px]">remove</span>
-              </button>
-              <span class="font-label-md text-label-md text-primary w-8 text-center" id="goalDisplay">33</span>
-              <button onclick="adjustGoal(1)" class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container">
-                <span class="material-symbols-outlined text-[18px]">add</span>
-              </button>
-            </div>
-          </div>
-          <div class="flex items-center justify-between p-gutter hover:bg-surface-container-low transition-colors cursor-pointer">
-            <div class="flex items-center gap-sm">
-              <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center">
-                <span class="material-symbols-outlined text-primary">delete_sweep</span>
-              </div>
-              <div>
-                <p class="font-body-lg text-body-lg text-on-surface">Reset All Progress</p>
-                <p class="font-label-md text-label-md text-on-surface-variant opacity-70">Clear all counts and streaks</p>
-              </div>
-            </div>
-            <button onclick="resetAllProgress()" class="px-4 py-1 rounded-full border border-error text-error font-label-md text-label-md hover:bg-error-container transition-colors">
-              Reset
-            </button>
-          </div>
-        </div>
-      </section>
-      <!-- About -->
-      <section class="pt-lg pb-base text-center">
-        <div class="flex justify-center mb-md">
-          <div class="relative w-20 h-20 bg-primary rounded-2xl flex items-center justify-center shadow-lg transform rotate-3">
-            <span class="material-symbols-outlined text-[40px] text-white">mosque</span>
-          </div>
-        </div>
-        <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Sacred Devotion</h3>
-        <p class="font-label-md text-label-md text-on-surface-variant mb-md">Version 1.0.0</p>
-        <p class="mt-lg text-on-surface-variant font-label-md text-label-md opacity-60">
-          Designed for Mindfulness &amp; Presence.<br/>
-          © 2024 Sacred Devotion
-        </p>
-      </section>
-    </main>
+  <div class="quote-card">
+    <div class="quote-text">"Verily, in the remembrance of Allah do hearts find rest."</div>
+    <div class="quote-ref">— Surah Ar-Ra'd 13:28</div>
   </div>
-
 </div>
 
-<!-- ===== ADD ZIKR MODAL ===== -->
-<div id="addZikrModal" class="fixed inset-0 z-[100] flex items-end justify-center" style="display:none !important">
-  <!-- Backdrop -->
-  <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="closeAddZikrModal()"></div>
-  <!-- Sheet -->
-  <div class="relative w-full max-w-[640px] bg-surface-container-lowest rounded-t-2xl shadow-2xl p-md pb-8 space-y-md" style="max-height:92dvh;overflow-y:auto">
-    <div class="flex items-center justify-between mb-sm">
-      <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Add New Zikr</h2>
-      <button onclick="closeAddZikrModal()" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors">
-        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+<!-- ═══════════════════════════ COUNTER ══════════════════════════ -->
+<div class="page" id="page-counter">
+  <div class="zikr-chips">
+    <button class="zikr-chip active" data-arabic="سُبْحَانَ ٱللَّٰهِ" data-english="SubhanAllah" data-meaning="Glory be to Allah">SubhanAllah</button>
+    <button class="zikr-chip" data-arabic="الْحَمْدُ لِلَّهِ" data-english="Alhamdulillah" data-meaning="All praise is due to Allah">Alhamdulillah</button>
+    <button class="zikr-chip" data-arabic="اللَّهُ أَكْبَرُ" data-english="Allahu Akbar" data-meaning="Allah is the Greatest">Allahu Akbar</button>
+  </div>
+
+  <div class="counter-arabic" id="counterArabic">سُبْحَانَ ٱللَّٰهِ</div>
+  <div class="counter-latin" id="counterEnglish">SubhanAllah</div>
+  <div class="counter-meaning" id="counterMeaning">Glory be to Allah</div>
+
+  <button class="tap-btn" id="tap-target">
+    <svg viewBox="0 0 270 270" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="135" cy="135" r="130" fill="none" stroke="var(--surface2)" stroke-width="5"/>
+      <circle id="progress-circle" cx="135" cy="135" r="130" fill="none" stroke="var(--accent)" stroke-width="5"
+        stroke-linecap="round" stroke-dasharray="816.81" stroke-dashoffset="816.81"
+        transform="rotate(-90 135 135)"/>
+    </svg>
+    <span class="tap-count" id="counter-value">0</span>
+    <span class="tap-sub" id="target-display">/ 33</span>
+  </button>
+
+  <div class="target-chips">
+    <button class="target-chip active" onclick="setTarget(33)">33</button>
+    <button class="target-chip" onclick="setTarget(99)">99</button>
+    <button class="target-chip" onclick="setTarget(1000)">1000</button>
+  </div>
+
+  <div class="counter-actions">
+    <button class="action-btn" id="reset-btn">
+      <div class="action-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>
+        </svg>
+      </div>
+      Reset
+    </button>
+    <button class="action-btn" id="haptic-btn">
+      <div class="action-icon" id="hapticIcon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M5 9v6"/><path d="M9 5v14"/><path d="M13 5v14"/><path d="M17 9v6"/><path d="M21 11v2"/>
+        </svg>
+      </div>
+      Haptic
+    </button>
+    <button class="action-btn" onclick="navigateTo('library')">
+      <div class="action-icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      Library
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ LIBRARY ══════════════════════════ -->
+<div class="page" id="page-library">
+  <div class="search-box">
+    <svg width="17" height="17" fill="none" stroke="var(--muted)" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input id="librarySearch" placeholder="Search Adhkar…" type="text"/>
+  </div>
+
+  <div class="cat-chips">
+    <button class="cat-chip active" data-cat="All">All</button>
+    <button class="cat-chip" data-cat="Morning">Morning</button>
+    <button class="cat-chip" data-cat="Evening">Evening</button>
+    <button class="cat-chip" data-cat="After Prayer">After Prayer</button>
+    <button class="cat-chip" data-cat="Protection">Protection</button>
+    <button class="cat-chip" data-cat="Custom">My Zikr</button>
+  </div>
+
+  <div id="zikrList" style="display:flex;flex-direction:column;gap:10px;"></div>
+</div>
+
+<!-- ═══════════════════════════ PROGRESS ═════════════════════════ -->
+<div class="page" id="page-progress">
+  <div class="streak-hero">
+    <div style="font-size:32px;margin-bottom:4px;">🔥</div>
+    <div class="streak-num" id="streakDisplay">0</div>
+    <div class="streak-lbl">Day Streak</div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-label">Lifetime</div>
+      <div class="stat-val" id="lifetimeCount">0</div>
+      <div class="stat-sub">total dhikr</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Today</div>
+      <div class="stat-val" id="todayCount">0</div>
+      <div class="stat-sub">counted today</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:14px;font-weight:700;margin-bottom:14px;">This Week</div>
+    <div class="bar-chart" id="weeklyChart"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ SETTINGS ═════════════════════════ -->
+<div class="page" id="page-settings">
+  <div style="padding-top:4px;">
+    <h2 style="font-size:22px;font-weight:700;">Settings</h2>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-lbl">Appearance</div>
+    <div class="settings-group">
+      <div class="settings-row">
+        <div class="row-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </div>
+        <div class="row-title">Theme</div>
+        <div class="theme-sw">
+          <button class="theme-btn active" id="lightBtn" onclick="setTheme('light')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            Light
+          </button>
+          <button class="theme-btn" id="darkBtn" onclick="setTheme('dark')">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+            Dark
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-lbl">General</div>
+    <div class="settings-group">
+      <div class="settings-row">
+        <div class="row-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M5 9v6"/><path d="M9 5v14"/><path d="M13 5v14"/><path d="M17 9v6"/><path d="M21 11v2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="row-title">Haptic Feedback</div>
+          <div class="row-sub">Vibrate on each count</div>
+        </div>
+        <label class="toggle" style="margin-left:auto">
+          <input type="checkbox" id="hapticToggle" checked/>
+          <div class="toggle-track"></div>
+          <div class="toggle-thumb"></div>
+        </label>
+      </div>
+
+      <div class="settings-row">
+        <div class="row-icon">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div>
+          <div class="row-title">Daily Goal</div>
+          <div class="row-sub" id="goalLabel">33 dhikr per day</div>
+        </div>
+        <div class="stepper" style="margin-left:auto">
+          <button class="step-btn" onclick="adjustGoal(-1)">−</button>
+          <span class="step-val" id="goalDisplay">33</span>
+          <button class="step-btn" onclick="adjustGoal(1)">+</button>
+        </div>
+      </div>
+
+      <div class="settings-row">
+        <div class="row-icon" style="background:color-mix(in srgb,var(--danger) 15%,transparent);color:var(--danger)">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="row-title">Reset Progress</div>
+          <div class="row-sub">Clear all counts and streaks</div>
+        </div>
+        <button onclick="resetAllProgress()" style="margin-left:auto;padding:6px 14px;border-radius:999px;border:1.5px solid var(--danger);color:var(--danger);font-size:13px;font-weight:600">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="about">
+    <div class="about-logo">
+      <svg width="32" height="32" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24">
+        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/>
+      </svg>
+    </div>
+    <div class="about-name">Sacred Devotion</div>
+    <div>Version 1.0.0 · Thasbeeh Counter</div>
+    <div style="margin-top:8px;">Designed for mindfulness &amp; presence</div>
+  </div>
+</div>
+
+</div><!-- /#app -->
+
+<!-- Bottom Nav -->
+<nav>
+  <button class="nav-item active" onclick="navigateTo('home')" data-page="home">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>
+    Home
+  </button>
+  <button class="nav-item" onclick="navigateTo('counter')" data-page="counter">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+    </svg>
+    Counter
+  </button>
+  <button class="nav-item" onclick="navigateTo('library')" data-page="library">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </svg>
+    Library
+  </button>
+  <button class="nav-item" onclick="navigateTo('progress')" data-page="progress">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+    </svg>
+    Progress
+  </button>
+  <button class="nav-item" onclick="navigateTo('settings')" data-page="settings">
+    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </svg>
+    Settings
+  </button>
+</nav>
+
+<!-- FAB -->
+<button class="fab hidden" id="addZikrFab" onclick="openAddZikrModal()">
+  <svg width="22" height="22" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </svg>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast">🎉 MashaAllah! Target reached!</div>
+
+<!-- Add Zikr Modal -->
+<div class="modal-bg" id="addZikrModal">
+  <div class="modal-sheet">
+    <div class="modal-hdr">
+      <span class="modal-title">Add New Zikr</span>
+      <button class="modal-close" onclick="closeAddZikrModal()">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </button>
     </div>
-
-    <!-- Arabic text -->
-    <div class="space-y-xs">
-      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Arabic Text <span class="text-outline">(optional)</span></label>
-      <textarea id="newArabic" dir="rtl" rows="2" placeholder="اكتب النص العربي هنا..."
-        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-arabic-display text-right text-2xl focus:ring-2 focus:ring-primary-fixed outline-none transition-all resize-none placeholder:text-on-surface-variant/40"></textarea>
+    <div>
+      <label class="form-lbl">Arabic <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+      <textarea id="newArabic" class="form-input form-arabic" rows="2" placeholder="اكتب هنا…" style="resize:none"></textarea>
     </div>
-
-    <!-- Transliteration -->
-    <div class="space-y-xs">
-      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Transliteration <span class="text-error text-xs">*</span></label>
-      <input id="newTranslit" type="text" placeholder="e.g. Astaghfirullah"
-        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all"/>
-      <p id="translitError" class="text-xs text-error hidden">Transliteration is required.</p>
+    <div>
+      <label class="form-lbl">Transliteration <span style="color:var(--danger)">*</span></label>
+      <input id="newTranslit" class="form-input" type="text" placeholder="e.g. Astaghfirullah"/>
+      <div id="translitError" class="error-txt">This field is required</div>
     </div>
-
-    <!-- Translation / Meaning -->
-    <div class="space-y-xs">
-      <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Meaning <span class="text-outline">(optional)</span></label>
-      <textarea id="newMeaning" rows="2" placeholder="e.g. I seek forgiveness from Allah"
-        class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all resize-none placeholder:text-on-surface-variant/40"></textarea>
+    <div>
+      <label class="form-lbl">Meaning <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+      <textarea id="newMeaning" class="form-input" rows="2" placeholder="e.g. I seek forgiveness from Allah" style="resize:none"></textarea>
     </div>
-
-    <!-- Category + Count row -->
-    <div class="grid grid-cols-2 gap-gutter">
-      <div class="space-y-xs">
-        <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Category</label>
-        <select id="newCategory"
-          class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all">
+    <div class="form-grid">
+      <div>
+        <label class="form-lbl">Category</label>
+        <select id="newCategory" class="form-input">
           <option value="Custom">My Zikr</option>
           <option value="Morning">Morning</option>
           <option value="Evening">Evening</option>
@@ -708,577 +703,332 @@
           <option value="Protection">Protection</option>
         </select>
       </div>
-      <div class="space-y-xs">
-        <label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Target Count</label>
-        <input id="newCount" type="number" min="1" max="9999" value="33"
-          class="w-full px-4 py-3 bg-surface-container border border-outline-variant rounded-xl text-body-md focus:ring-2 focus:ring-primary-fixed outline-none transition-all"/>
+      <div>
+        <label class="form-lbl">Target Count</label>
+        <input id="newCount" class="form-input" type="number" min="1" max="9999" value="33"/>
       </div>
     </div>
-
-    <!-- Submit -->
-    <button onclick="saveNewZikr()" class="w-full py-4 rounded-xl bg-primary-container text-on-primary-container font-label-md text-label-md tracking-widest hover:brightness-110 active:scale-95 transition-all duration-200 flex items-center justify-center gap-sm">
-      <span class="material-symbols-outlined">check_circle</span>
+    <button class="btn-primary" onclick="saveNewZikr()">
+      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       Save Zikr
     </button>
   </div>
 </div>
 
-<!-- ===== BOTTOM NAVIGATION ===== -->
-<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[640px] z-50 bg-surface-container-lowest shadow-[0_-4px_20px_rgba(0,0,0,0.06)] rounded-t-xl">
-  <div class="flex justify-around items-center py-base px-sm">
-    <button onclick="navigateTo('home')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="home">
-      <span class="material-symbols-outlined nav-icon">home</span>
-      <span class="font-label-md text-label-md">Home</span>
-    </button>
-    <button onclick="navigateTo('library')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="library">
-      <span class="material-symbols-outlined nav-icon">menu_book</span>
-      <span class="font-label-md text-label-md">Library</span>
-    </button>
-    <button onclick="navigateTo('counter')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="counter">
-      <span class="material-symbols-outlined nav-icon">fingerprint</span>
-      <span class="font-label-md text-label-md">Counter</span>
-    </button>
-    <button onclick="navigateTo('progress')" class="nav-btn flex flex-col items-center justify-center px-4 py-1 transition-all duration-300" data-page="progress">
-      <span class="material-symbols-outlined nav-icon">query_stats</span>
-      <span class="font-label-md text-label-md">Progress</span>
-    </button>
-  </div>
-</nav>
-
 <script>
-// ===== APP STATE =====
+// ── State ──
 const state = {
-  count: 0,
-  target: 33,
-  dailyGoal: 33,
-  lifetimeCount: 0,
-  todayCount: 0,
-  streak: 0,
-  lastCountDate: null,
-  hapticEnabled: true,
-  theme: 'light',
-  dailyCounts: {},   // { "2026-06-15": 245, ... } — keyed by ISO date
-  bookmarks: [],
+  count:0, target:33, dailyGoal:33,
+  lifetimeCount:0, todayCount:0, streak:0,
+  lastCountDate:null, hapticEnabled:true, theme:'light',
+  dailyCounts:{}, bookmarks:[],
 };
 
-// Returns today as a consistent "YYYY-MM-DD" key
-function todayKey() {
-  const d = new Date();
-  return d.getFullYear() + '-' +
-    String(d.getMonth() + 1).padStart(2, '0') + '-' +
-    String(d.getDate()).padStart(2, '0');
+function todayKey(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
 }
 
-function loadState() {
-  try {
-    const saved = localStorage.getItem('thasbeeh_state');
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      // Migrate old weeklyData array to dailyCounts if needed
-      if (parsed.weeklyData && !parsed.dailyCounts) {
-        parsed.dailyCounts = {};
+function loadState(){
+  try{
+    const saved=localStorage.getItem('thasbeeh_state');
+    if(saved){
+      const p=JSON.parse(saved);
+      if(p.weeklyData&&!p.dailyCounts)p.dailyCounts={};
+      Object.assign(state,p);
+    }
+    if(!state.dailyCounts)state.dailyCounts={};
+    const today=new Date().toDateString();
+    if(state.lastCountDate!==today){
+      if(state.lastCountDate){
+        const yest=new Date();yest.setDate(yest.getDate()-1);
+        if(state.lastCountDate===yest.toDateString()){
+          if(state.todayCount>0)state.streak=(state.streak||0)+1;
+        }else state.streak=0;
       }
-      Object.assign(state, parsed);
+      state.todayCount=0;state.count=0;
+      state.lastCountDate=today;saveState();
     }
-    if (!state.dailyCounts) state.dailyCounts = {};
-
-    const today = new Date().toDateString();
-    if (state.lastCountDate !== today) {
-      // New day — update streak
-      if (state.lastCountDate) {
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        if (state.lastCountDate === yesterday.toDateString()) {
-          // Consecutive day
-          if (state.todayCount > 0) state.streak = (state.streak || 0) + 1;
-        } else {
-          state.streak = 0;
-        }
-      }
-      state.todayCount = 0;
-      state.count = 0;
-      state.lastCountDate = today;
-      saveState();
-    }
-    // Sync todayCount with dailyCounts for the current day
-    const key = todayKey();
-    if (state.dailyCounts[key] !== undefined) {
-      state.todayCount = state.dailyCounts[key];
-    } else {
-      state.dailyCounts[key] = state.todayCount;
-    }
-  } catch(e) {}
+    const k=todayKey();
+    if(state.dailyCounts[k]!==undefined)state.todayCount=state.dailyCounts[k];
+    else state.dailyCounts[k]=state.todayCount;
+  }catch(e){}
 }
 
-function saveState() {
-  try { localStorage.setItem('thasbeeh_state', JSON.stringify(state)); } catch(e) {}
+function saveState(){
+  try{localStorage.setItem('thasbeeh_state',JSON.stringify(state));}catch(e){}
 }
 
-// ===== NAVIGATION =====
-let currentPage = 'home';
-
-function navigateTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
-  // Update nav buttons
-  document.querySelectorAll('.nav-btn').forEach(btn => {
-    const isActive = btn.dataset.page === page;
-    btn.classList.toggle('nav-active', isActive);
-    btn.classList.toggle('text-on-surface-variant', !isActive);
-    const icon = btn.querySelector('.nav-icon');
-    if (isActive) {
-      icon.style.fontVariationSettings = "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24";
-    } else {
-      icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24";
-    }
-  });
-  currentPage = page;
-  const fab = document.getElementById('addZikrFab');
-  fab.style.display = page === 'library' ? 'flex' : 'none';
-  if (page === 'home') updateHomeUI();
-  if (page === 'progress') updateProgressUI();
-  if (page === 'settings') updateSettingsUI();
+// ── Navigation ──
+let currentPage='home';
+function navigateTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+  currentPage=page;
+  document.getElementById('addZikrFab').classList.toggle('hidden',page!=='library');
+  if(page==='home')updateHomeUI();
+  if(page==='progress')updateProgressUI();
+  if(page==='settings')updateSettingsUI();
+  if(page==='library')renderLibrary(activeCategory,searchQuery);
 }
 
-// ===== THEME =====
-function setTheme(mode) {
-  state.theme = mode;
-  const html = document.documentElement;
-  const indicator = document.getElementById('theme-indicator');
-  const themeIcon = document.getElementById('themeIcon');
-  if (mode === 'dark') {
-    html.classList.add('dark');
-    if (indicator) { indicator.style.left = 'calc(50% - 4px)'; }
-    themeIcon.textContent = 'light_mode';
-  } else {
-    html.classList.remove('dark');
-    if (indicator) { indicator.style.left = '4px'; }
-    themeIcon.textContent = 'dark_mode';
+// ── Theme ──
+function setTheme(mode){
+  state.theme=mode;
+  document.documentElement.classList.toggle('dark',mode==='dark');
+  const icon=document.getElementById('themeIcon');
+  if(mode==='dark'){
+    icon.innerHTML='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  }else{
+    icon.innerHTML='<path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>';
   }
+  document.getElementById('lightBtn')?.classList.toggle('active',mode==='light');
+  document.getElementById('darkBtn')?.classList.toggle('active',mode==='dark');
   saveState();
 }
+document.getElementById('themeBtn').addEventListener('click',()=>setTheme(state.theme==='light'?'dark':'light'));
 
-document.getElementById('themeBtn').addEventListener('click', () => {
-  setTheme(state.theme === 'light' ? 'dark' : 'light');
-});
-
-document.getElementById('settingsBtn').addEventListener('click', () => navigateTo('settings'));
-
-// ===== COUNTER =====
-const circleLength = 289.02;
-
-function updateCounterUI() {
-  const pct = Math.min(state.count, state.target) / state.target;
-  const offset = circleLength - pct * circleLength;
-  document.getElementById('progress-circle').style.strokeDashoffset = offset;
-  document.getElementById('counter-value').textContent = state.count;
-  document.getElementById('target-display').textContent = '/ ' + state.target;
+// ── Counter ──
+const CIRCLE=816.81;
+function updateCounterUI(){
+  const pct=Math.min(state.count,state.target)/state.target;
+  document.getElementById('progress-circle').style.strokeDashoffset=CIRCLE-pct*CIRCLE;
+  document.getElementById('counter-value').textContent=state.count;
+  document.getElementById('target-display').textContent='/ '+state.target;
   updateHomeUI();
 }
 
-const tapTarget = document.getElementById('tap-target');
-tapTarget.addEventListener('pointerdown', () => {
-  tapTarget.classList.add('tap-active');
-  state.count++;
-  state.todayCount++;
-  state.lifetimeCount++;
-  state.lastCountDate = new Date().toDateString();
-  if (state.streak === 0 && state.todayCount === 1) state.streak = 1;
-  // Write today's running total into the date-keyed store
-  state.dailyCounts[todayKey()] = state.todayCount;
-  saveState();
-  updateCounterUI();
-
-  if (state.hapticEnabled && navigator.vibrate) navigator.vibrate(20);
-
-  if (state.count === state.target) {
-    if (state.hapticEnabled && navigator.vibrate) navigator.vibrate([100, 50, 100]);
+document.getElementById('tap-target').addEventListener('pointerdown',()=>{
+  state.count++;state.todayCount++;state.lifetimeCount++;
+  state.lastCountDate=new Date().toDateString();
+  if(state.streak===0&&state.todayCount===1)state.streak=1;
+  state.dailyCounts[todayKey()]=state.todayCount;
+  saveState();updateCounterUI();
+  if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate(20);
+  if(state.count===state.target){
+    if(state.hapticEnabled&&navigator.vibrate)navigator.vibrate([100,50,100]);
     showToast();
   }
 });
-tapTarget.addEventListener('pointerup', () => tapTarget.classList.remove('tap-active'));
-tapTarget.addEventListener('pointerleave', () => tapTarget.classList.remove('tap-active'));
 
-document.getElementById('reset-btn').addEventListener('click', () => {
-  state.count = 0;
-  saveState();
-  updateCounterUI();
-});
+document.getElementById('reset-btn').addEventListener('click',()=>{state.count=0;saveState();updateCounterUI();});
 
-document.getElementById('haptic-btn').addEventListener('click', () => {
-  state.hapticEnabled = !state.hapticEnabled;
-  const icon = document.getElementById('hapticIcon');
-  icon.style.backgroundColor = state.hapticEnabled ? '' : '#e1e3e4';
+document.getElementById('haptic-btn').addEventListener('click',()=>{
+  state.hapticEnabled=!state.hapticEnabled;
+  document.getElementById('hapticIcon').style.opacity=state.hapticEnabled?'1':'0.35';
   saveState();
 });
 
-function setTarget(val) {
-  state.target = val;
-  saveState();
-  document.querySelectorAll('.target-chip').forEach(chip => {
-    const v = parseInt(chip.textContent.trim());
-    if (v === val) {
-      chip.classList.add('bg-primary-container', 'text-white', 'border-primary-container');
-      chip.classList.remove('border-outline-variant', 'text-on-surface-variant');
-    } else {
-      chip.classList.remove('bg-primary-container', 'text-white', 'border-primary-container');
-      chip.classList.add('border-outline-variant', 'text-on-surface-variant');
-    }
-  });
+function setTarget(val){
+  state.target=val;saveState();
+  document.querySelectorAll('.target-chip').forEach(c=>c.classList.toggle('active',parseInt(c.textContent)===val));
   updateCounterUI();
 }
 
-// Zikr switcher
-document.querySelectorAll('.zikr-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.getElementById('counterArabic').textContent = btn.dataset.arabic;
-    document.getElementById('counterEnglish').textContent = btn.dataset.english;
-    document.getElementById('counterMeaning').textContent = btn.dataset.meaning;
-    state.count = 0;
-    saveState();
-    updateCounterUI();
-    document.querySelectorAll('.zikr-btn').forEach(b => {
-      b.classList.toggle('bg-primary-container', b === btn);
-      b.classList.toggle('text-on-primary-container', b === btn);
-      b.classList.toggle('bg-surface-container', b !== btn);
-      b.classList.toggle('text-on-surface-variant', b !== btn);
-    });
+document.querySelectorAll('.zikr-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.getElementById('counterArabic').textContent=btn.dataset.arabic;
+    document.getElementById('counterEnglish').textContent=btn.dataset.english;
+    document.getElementById('counterMeaning').textContent=btn.dataset.meaning;
+    state.count=0;saveState();updateCounterUI();
+    document.querySelectorAll('.zikr-chip').forEach(b=>b.classList.toggle('active',b===btn));
   });
 });
 
-function showToast() {
-  const toast = document.getElementById('completionToast');
-  toast.style.opacity = '1';
-  setTimeout(() => { toast.style.opacity = '0'; }, 2500);
+function showToast(){
+  const t=document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ===== HOME UI =====
-function updateHomeUI() {
-  const count = state.todayCount;
-  const goal = state.dailyGoal;
-  document.getElementById('homeDailyCount').textContent = count;
-  document.getElementById('homeDailyTarget').textContent = goal;
-  const pct = goal > 0 ? Math.round(Math.min(count, goal) / goal * 100) : 0;
-  document.getElementById('homeProgressPct').textContent = pct + '% of your daily goal achieved';
-  const offset = 251.2 - (pct / 100) * 251.2;
-  document.getElementById('homeProgressCircle').style.strokeDashoffset = offset;
-  document.getElementById('homeStreakLabel').textContent = state.streak + ' day streak 🔥';
-  // Time-based greeting
-  const hour = new Date().getHours();
-  let msg = 'May your day be filled with remembrance and peace.';
-  if (hour < 12) msg = 'May your morning be filled with Dhikr and blessings.';
-  else if (hour < 18) msg = 'May your afternoon be peaceful and reflective.';
-  else msg = 'May your evening be tranquil and blessed.';
-  document.getElementById('greetingSubtitle').textContent = msg;
+// ── Home ──
+function updateHomeUI(){
+  const c=state.todayCount,g=state.dailyGoal;
+  document.getElementById('homeDailyCount').textContent=c;
+  document.getElementById('homeDailyTarget').textContent=g;
+  const pct=g>0?Math.round(Math.min(c,g)/g*100):0;
+  document.getElementById('homeProgressPct').textContent=pct+'% of daily goal';
+  const circ=238.76;
+  document.getElementById('homeRing').style.strokeDashoffset=circ-(pct/100)*circ;
+  document.getElementById('homeStreak').textContent=state.streak;
+  document.getElementById('homeLifetime').textContent=state.lifetimeCount.toLocaleString();
+  const h=new Date().getHours();
+  document.getElementById('greetingText').textContent=h<12?'Good morning ☀️':h<18?'Good afternoon 🌿':'Good evening 🌙';
 }
 
-// ===== PROGRESS UI =====
-function updateProgressUI() {
-  document.getElementById('streakDisplay').textContent = state.streak + ' Days';
-  document.getElementById('lifetimeCount').textContent = state.lifetimeCount.toLocaleString();
-  document.getElementById('todayCount').textContent = state.todayCount.toLocaleString();
+// ── Progress ──
+function updateProgressUI(){
+  document.getElementById('streakDisplay').textContent=state.streak;
+  document.getElementById('lifetimeCount').textContent=state.lifetimeCount.toLocaleString();
+  document.getElementById('todayCount').textContent=state.todayCount.toLocaleString();
   renderWeeklyChart();
-  updateBadges();
 }
 
-function renderWeeklyChart() {
-  const DAY_LABELS = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
-
-  // Build an array of the last 7 calendar days, oldest first
-  const slots = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    const key = d.getFullYear() + '-' +
-      String(d.getMonth() + 1).padStart(2, '0') + '-' +
-      String(d.getDate()).padStart(2, '0');
-    slots.push({
-      label: DAY_LABELS[d.getDay()],
-      key,
-      isToday: i === 0,
-      count: (i === 0 ? state.todayCount : 0) || state.dailyCounts[key] || 0,
-    });
+function renderWeeklyChart(){
+  const DAY=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const slots=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date();d.setDate(d.getDate()-i);
+    const k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    slots.push({label:DAY[d.getDay()],key:k,isToday:i===0,count:state.dailyCounts[k]||0});
   }
-
-  // Ensure today's live count is always current
-  slots[6].count = state.todayCount;
-
-  const maxVal = Math.max(...slots.map(s => s.count), 1);
-  const chart = document.getElementById('weeklyChart');
-  chart.innerHTML = '';
-
-  slots.forEach(slot => {
-    const heightPx = Math.max(4, Math.round((slot.count / maxVal) * 128));
-    const reachedGoal = slot.count >= state.dailyGoal && slot.count > 0;
-    const barColor = reachedGoal ? 'bg-primary-container' : 'bg-surface-container';
-    const labelColor = slot.isToday ? 'text-primary font-bold' : 'text-on-surface-variant';
-    chart.innerHTML += `
-      <div class="flex flex-col items-center flex-1 gap-base">
-        <div class="w-full ${barColor} rounded-t-sm group relative" style="height:${heightPx}px">
-          <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">${slot.count}</div>
-        </div>
-        <span class="font-label-md text-[10px] ${labelColor}">${slot.label}</span>
-      </div>`;
-  });
-}
-
-function updateBadges() {
-  // 7-day badge
-  if (state.streak >= 7) {
-    document.getElementById('badge7').classList.remove('grayscale','opacity-50');
-  }
-  // 100/day badge
-  if (state.todayCount >= 100) {
-    document.getElementById('badge100').classList.remove('grayscale','opacity-50');
-  }
-  // 30-day badge
-  if (state.streak >= 30) {
-    const b = document.getElementById('badge30');
-    b.classList.remove('grayscale','opacity-50','border-dashed');
-  }
-}
-
-// ===== SETTINGS UI =====
-function updateSettingsUI() {
-  document.getElementById('goalDisplay').textContent = state.dailyGoal;
-  document.getElementById('goalLabel').textContent = state.dailyGoal + ' Dhikr per day';
-  document.getElementById('hapticToggle').checked = state.hapticEnabled;
-  const indicator = document.getElementById('theme-indicator');
-  if (state.theme === 'dark') {
-    indicator.style.left = 'calc(50% - 4px)';
-  } else {
-    indicator.style.left = '4px';
-  }
-}
-
-function adjustGoal(delta) {
-  const goals = [33, 99, 100, 500, 1000];
-  let idx = goals.indexOf(state.dailyGoal);
-  if (idx === -1) idx = 0;
-  idx = Math.max(0, Math.min(goals.length - 1, idx + delta));
-  state.dailyGoal = goals[idx];
-  state.target = state.dailyGoal;
-  saveState();
-  updateSettingsUI();
-  setTarget(state.dailyGoal);
-}
-
-function resetAllProgress() {
-  if (!confirm('Are you sure you want to reset all your progress? This cannot be undone.')) return;
-  state.count = 0;
-  state.lifetimeCount = 0;
-  state.todayCount = 0;
-  state.streak = 0;
-  state.dailyCounts = {};
-  state.lastCountDate = null;
-  saveState();
-  updateCounterUI();
-  updateHomeUI();
-  updateProgressUI();
-}
-
-// ===== LIBRARY =====
-const zikrData = [
-  { cat: 'Morning', arabic: 'اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا', transliteration: 'Allahumma bika asbahna, wa bika amsayna.', translation: 'O Allah, by Your leave we have reached the morning and by Your leave we have reached the evening.', count: '3x' },
-  { cat: 'After Prayer', arabic: 'سُبْحَانَ اللَّهِ', transliteration: 'Subhan-Allah.', translation: 'Glory be to Allah.', count: '33x' },
-  { cat: 'Protection', arabic: 'بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ', transliteration: "Bismillahil-ladhi la yadurru ma'as-mihi shay'un.", translation: 'In the name of Allah, with Whose name nothing can cause harm in the earth or the heavens.', count: '3x' },
-  { cat: 'After Prayer', arabic: 'الْحَمْدُ لِلَّهِ', transliteration: 'Alhamdulillah.', translation: 'All praise is due to Allah.', count: '33x' },
-  { cat: 'After Prayer', arabic: 'اللَّهُ أَكْبَرُ', transliteration: 'Allahu Akbar.', translation: 'Allah is the Greatest.', count: '33x' },
-  { cat: 'Evening', arabic: 'أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ', transliteration: "Amsayna wa amsal-mulku lillah.", translation: 'We have reached the evening and at this very time unto Allah belongs all sovereignty.', count: '1x' },
-  { cat: 'Morning', arabic: 'أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ', transliteration: 'Asbahna ala fitratil Islam.', translation: 'We have reached the morning upon the natural religion of Islam.', count: '1x' },
-  { cat: 'Protection', arabic: 'حَسْبِيَ اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ', transliteration: 'Hasbiyallahu la ilaha illa Hu.', translation: 'Allah is sufficient for me; there is no god but He.', count: '7x' },
-];
-
-let currentCategory = 'All';
-
-function renderLibrary(filter = '', cat = 'All') {
-  const list = document.getElementById('zikrList');
-  let items = allZikr().map((z, i) => ({ ...z, _idx: i }));
-  if (cat !== 'All') items = items.filter(z => z.cat === cat);
-  if (filter) items = items.filter(z =>
-    (z.arabic || '').includes(filter) ||
-    z.transliteration.toLowerCase().includes(filter.toLowerCase()) ||
-    (z.translation || '').toLowerCase().includes(filter.toLowerCase())
-  );
-
-  if (items.length === 0) {
-    list.innerHTML = `<div class="flex flex-col items-center py-16 text-center gap-md">
-      <span class="material-symbols-outlined text-[48px] text-outline">auto_awesome</span>
-      <p class="font-label-md text-label-md text-on-surface-variant">No Zikr found.<br/>Tap <strong>+</strong> to add your own.</p>
+  slots[6].count=state.todayCount;
+  const max=Math.max(...slots.map(s=>s.count),state.dailyGoal,1);
+  document.getElementById('weeklyChart').innerHTML=slots.map(s=>{
+    const h=Math.max(4,Math.round(s.count/max*96));
+    const cls=s.isToday?'today':s.count>=state.dailyGoal?'reached':'';
+    return`<div class="bar-col">
+      <div class="bar-fill ${cls}" style="height:${h}px"></div>
+      <div class="bar-day ${s.isToday?'today':''}">${s.label}</div>
     </div>`;
-    return;
-  }
-
-  list.innerHTML = items.map(z => {
-    const bookmarkKey = z.custom ? 'c' + (z._idx - zikrData.length) : z._idx;
-    const isBookmarked = state.bookmarks.includes(bookmarkKey);
-    const deleteBtn = z.custom
-      ? `<button class="material-symbols-outlined text-on-surface-variant hover:text-error transition-colors"
-           onclick="event.stopPropagation();deleteCustomZikr(${z._idx - zikrData.length})">delete</button>`
-      : '';
-    return `
-    <article class="bg-surface-container-lowest p-md rounded-xl shadow-sm border border-outline-variant/30 hover:shadow-md transition-all cursor-pointer active:scale-[0.99]"
-      onclick="startZikrFromLibrary(${z._idx})">
-      <div class="flex justify-between items-start mb-sm">
-        <div class="flex items-center gap-xs">
-          <span class="text-label-md font-label-md text-primary uppercase tracking-widest bg-primary-fixed/30 px-2 py-0.5 rounded">${z.cat}</span>
-          ${z.custom ? '<span class="text-[10px] bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-bold">CUSTOM</span>' : ''}
-        </div>
-        <div class="flex items-center gap-xs">
-          ${deleteBtn}
-          <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors"
-            onclick="event.stopPropagation();toggleBookmark('${bookmarkKey}',this)">
-            ${isBookmarked ? 'bookmark' : 'bookmark_add'}
-          </button>
-        </div>
-      </div>
-      ${z.arabic ? `<div class="text-right mb-md"><p class="font-arabic-display text-arabic-display text-on-surface leading-loose" dir="rtl">${z.arabic}</p></div>` : ''}
-      <div class="space-y-xs">
-        <p class="text-body-md font-medium text-primary italic leading-relaxed">${z.transliteration}</p>
-        ${z.translation ? `<p class="text-label-md font-label-md text-on-surface-variant leading-normal">${z.translation}</p>` : ''}
-      </div>
-      <div class="mt-md flex justify-end gap-base">
-        <div class="flex items-center gap-xs px-3 py-1 bg-surface-container rounded-full">
-          <span class="material-symbols-outlined text-[18px] text-on-surface-variant">repeat</span>
-          <span class="text-label-md font-label-md text-on-surface-variant">${z.count}</span>
-        </div>
-        <div class="flex items-center gap-xs px-3 py-1 bg-primary-fixed/30 rounded-full text-primary font-label-md text-label-md">
-          <span class="material-symbols-outlined text-[16px]">fingerprint</span> Count
-        </div>
-      </div>
-    </article>`;
   }).join('');
 }
 
-function deleteCustomZikr(customIdx) {
-  if (!confirm('Remove this Zikr?')) return;
-  customZikr.splice(customIdx, 1);
-  saveCustomZikr();
-  renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+// ── Settings ──
+function updateSettingsUI(){
+  document.getElementById('goalDisplay').textContent=state.dailyGoal;
+  document.getElementById('goalLabel').textContent=state.dailyGoal+' dhikr per day';
+  document.getElementById('hapticToggle').checked=state.hapticEnabled;
+  document.getElementById('lightBtn').classList.toggle('active',state.theme==='light');
+  document.getElementById('darkBtn').classList.toggle('active',state.theme==='dark');
 }
 
-function toggleBookmark(idx, btn) {
-  if (state.bookmarks.includes(idx)) {
-    state.bookmarks = state.bookmarks.filter(b => b !== idx);
-    btn.textContent = 'bookmark_add';
-  } else {
-    state.bookmarks.push(idx);
-    btn.textContent = 'bookmark';
+function adjustGoal(d){
+  state.dailyGoal=Math.max(1,state.dailyGoal+d);
+  document.getElementById('goalDisplay').textContent=state.dailyGoal;
+  document.getElementById('goalLabel').textContent=state.dailyGoal+' dhikr per day';
+  saveState();
+}
+
+document.getElementById('hapticToggle').addEventListener('change',e=>{
+  state.hapticEnabled=e.target.checked;saveState();
+});
+
+function resetAllProgress(){
+  if(!confirm('Reset all progress? This cannot be undone.'))return;
+  state.count=0;state.todayCount=0;state.lifetimeCount=0;
+  state.streak=0;state.dailyCounts={};state.lastCountDate=null;
+  saveState();updateCounterUI();updateHomeUI();
+}
+
+// ── Library ──
+const zikrData=[
+  {arabic:'سُبْحَانَ اللَّهِ',english:'SubhanAllah',meaning:'Glory be to Allah',count:33,category:'Morning'},
+  {arabic:'الْحَمْدُ لِلَّهِ',english:'Alhamdulillah',meaning:'All praise is due to Allah',count:33,category:'Morning'},
+  {arabic:'اللَّهُ أَكْبَرُ',english:'Allahu Akbar',meaning:'Allah is the Greatest',count:34,category:'Morning'},
+  {arabic:'لَا إِلَٰهَ إِلَّا اللَّهُ',english:'La ilaha illallah',meaning:'There is no god but Allah',count:100,category:'After Prayer'},
+  {arabic:'أَسْتَغْفِرُ اللَّهَ',english:'Astaghfirullah',meaning:'I seek forgiveness from Allah',count:100,category:'Evening'},
+  {arabic:'سُبْحَانَ اللَّهِ وَبِحَمْدِهِ',english:'SubhanAllahi wa bihamdihi',meaning:'Glory be to Allah and praise Him',count:100,category:'Morning'},
+  {arabic:'سُبْحَانَ اللَّهِ الْعَظِيمِ',english:'SubhanAllahil Azim',meaning:'Glory be to Allah the Magnificent',count:100,category:'After Prayer'},
+  {arabic:'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',english:'La hawla wala quwwata',meaning:'There is no power except with Allah',count:100,category:'Protection'},
+  {arabic:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',english:"Hasbunallah wa ni'mal wakil",meaning:'Allah is sufficient for us',count:7,category:'Protection'},
+  {arabic:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ',english:'Bismillah ir-Rahman ir-Raheem',meaning:'In the name of Allah, the Most Gracious',count:1,category:'Morning'},
+  {arabic:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ',english:'Allahumma salli ala Muhammad',meaning:'O Allah, send blessings upon Muhammad',count:100,category:'Evening'},
+  {arabic:'رَبِّ اغْفِرْ لِي',english:'Rabbi ighfir li',meaning:'My Lord, forgive me',count:100,category:'After Prayer'},
+];
+
+function allZikr(){
+  try{
+    const c=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
+    return[...zikrData,...c.map(z=>({...z,category:z.category||'Custom'}))];
+  }catch{return zikrData;}
+}
+
+let activeCategory='All',searchQuery='';
+let _filtered=[];
+
+function renderLibrary(filter='All',query=''){
+  const items=allZikr().filter(z=>{
+    const mc=filter==='All'||z.category===filter;
+    const mq=!query||z.english.toLowerCase().includes(query.toLowerCase())||(z.arabic&&z.arabic.includes(query))||(z.meaning&&z.meaning.toLowerCase().includes(query.toLowerCase()));
+    return mc&&mq;
+  });
+  _filtered=items;
+  const list=document.getElementById('zikrList');
+  if(!items.length){
+    list.innerHTML='<p style="text-align:center;color:var(--muted);padding:32px 0;">No Adhkar found</p>';
+    return;
   }
-  saveState();
+  list.innerHTML=items.map((z,i)=>`
+    <div class="zikr-card">
+      <div class="zikr-body">
+        ${z.arabic?`<div class="zikr-arabic">${z.arabic}</div>`:''}
+        <div class="zikr-name">${z.english}</div>
+        ${z.meaning?`<div class="zikr-meaning">${z.meaning}</div>`:''}
+      </div>
+      <div class="zikr-right">
+        <span class="zikr-badge">${z.count}×</span>
+        <button class="start-btn" onclick="startFromLibrary(${i})">
+          <svg width="12" height="12" fill="white" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </button>
+      </div>
+    </div>`).join('');
 }
 
-function startZikrFromLibrary(i) {
-  const z = allZikr()[i];
-  document.getElementById('counterArabic').textContent = z.arabic || z.transliteration;
-  document.getElementById('counterEnglish').textContent = z.transliteration;
-  document.getElementById('counterMeaning').textContent = z.translation || '';
-  state.count = 0;
-  state.target = parseInt(z.count) || 33;
-  saveState();
+function startFromLibrary(i){
+  const z=_filtered[i];if(!z)return;
+  document.getElementById('counterArabic').textContent=z.arabic||'';
+  document.getElementById('counterEnglish').textContent=z.english;
+  document.getElementById('counterMeaning').textContent=z.meaning||'';
+  state.count=0;state.target=z.count||33;saveState();
   updateCounterUI();
+  document.querySelectorAll('.target-chip').forEach(c=>c.classList.toggle('active',parseInt(c.textContent)===state.target));
   navigateTo('counter');
 }
 
-document.querySelectorAll('.category-chip').forEach(chip => {
-  chip.addEventListener('click', () => {
-    currentCategory = chip.dataset.cat;
-    document.querySelectorAll('.category-chip').forEach(c => {
-      const isActive = c === chip;
-      c.classList.toggle('bg-primary-container', isActive);
-      c.classList.toggle('text-on-primary-container', isActive);
-      c.classList.toggle('bg-surface-container-highest', !isActive);
-      c.classList.toggle('text-on-surface-variant', !isActive);
-    });
-    renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+document.querySelectorAll('.cat-chip').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.cat-chip').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCategory=btn.dataset.cat;
+    renderLibrary(activeCategory,searchQuery);
   });
 });
-
-document.getElementById('librarySearch').addEventListener('input', e => {
-  renderLibrary(e.target.value, currentCategory);
+document.getElementById('librarySearch').addEventListener('input',e=>{
+  searchQuery=e.target.value;
+  renderLibrary(activeCategory,searchQuery);
 });
 
-// ===== CUSTOM ZIKR =====
-let customZikr = [];
-
-function loadCustomZikr() {
-  try {
-    customZikr = JSON.parse(localStorage.getItem('thasbeeh_custom') || '[]');
-  } catch(e) { customZikr = []; }
+// ── Modal ──
+function openAddZikrModal(){document.getElementById('addZikrModal').classList.add('open');}
+function closeAddZikrModal(){
+  document.getElementById('addZikrModal').classList.remove('open');
+  document.getElementById('newArabic').value='';
+  document.getElementById('newTranslit').value='';
+  document.getElementById('newMeaning').value='';
+  document.getElementById('newCount').value='33';
+  document.getElementById('translitError').style.display='none';
 }
-
-function saveCustomZikr() {
-  localStorage.setItem('thasbeeh_custom', JSON.stringify(customZikr));
-}
-
-function allZikr() {
-  return [
-    ...zikrData.map(z => ({ ...z, custom: false })),
-    ...customZikr.map(z => ({ ...z, custom: true })),
-  ];
-}
-
-function openAddZikrModal() {
-  const modal = document.getElementById('addZikrModal');
-  modal.style.display = 'flex';
-  // clear fields
-  ['newArabic','newTranslit','newMeaning'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('newCount').value = 33;
-  document.getElementById('newCategory').value = 'Custom';
-  document.getElementById('translitError').classList.add('hidden');
-}
-
-function closeAddZikrModal() {
-  document.getElementById('addZikrModal').style.display = 'none';
-}
-
-function saveNewZikr() {
-  const translit = document.getElementById('newTranslit').value.trim();
-  if (!translit) {
-    document.getElementById('translitError').classList.remove('hidden');
-    document.getElementById('newTranslit').focus();
-    return;
-  }
-  document.getElementById('translitError').classList.add('hidden');
-
-  const entry = {
-    arabic: document.getElementById('newArabic').value.trim(),
-    transliteration: translit,
-    translation: document.getElementById('newMeaning').value.trim(),
-    cat: document.getElementById('newCategory').value,
-    count: document.getElementById('newCount').value + 'x',
+function saveNewZikr(){
+  const t=document.getElementById('newTranslit').value.trim();
+  if(!t){document.getElementById('translitError').style.display='block';return;}
+  const z={
+    arabic:document.getElementById('newArabic').value.trim(),
+    english:t,
+    meaning:document.getElementById('newMeaning').value.trim(),
+    category:document.getElementById('newCategory').value,
+    count:parseInt(document.getElementById('newCount').value)||33,
   };
-  customZikr.push(entry);
-  saveCustomZikr();
+  try{
+    const ex=JSON.parse(localStorage.getItem('thasbeeh_custom')||'[]');
+    ex.push(z);localStorage.setItem('thasbeeh_custom',JSON.stringify(ex));
+  }catch{}
   closeAddZikrModal();
-  // Switch to My Zikr category to show new entry
-  currentCategory = entry.cat === 'Custom' ? 'Custom' : entry.cat;
-  document.querySelectorAll('.category-chip').forEach(c => {
-    const isActive = c.dataset.cat === currentCategory;
-    c.classList.toggle('bg-primary-container', isActive);
-    c.classList.toggle('text-on-primary-container', isActive);
-    c.classList.toggle('bg-surface-container-highest', !isActive);
-    c.classList.toggle('text-on-surface-variant', !isActive);
-  });
-  renderLibrary(document.getElementById('librarySearch').value, currentCategory);
+  renderLibrary(activeCategory,searchQuery);
 }
+document.getElementById('addZikrModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeAddZikrModal();});
 
-// ===== SERVICE WORKER =====
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
-  });
-}
-
-// ===== INIT =====
+// ── Init ──
 loadState();
-loadCustomZikr();
 setTheme(state.theme);
-setTarget(state.target);
 updateCounterUI();
 updateHomeUI();
 renderLibrary();
-navigateTo('home');
+
+if('serviceWorker'in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
 </script>
 </body>
 </html>
